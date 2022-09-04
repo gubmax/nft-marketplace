@@ -2,6 +2,7 @@ import { memo } from 'react'
 import { Link, useLocation, useRoutes } from 'react-router-dom'
 
 import { routes } from './routes'
+import './reset.css'
 
 function App() {
   const location = useLocation()
