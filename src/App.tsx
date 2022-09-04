@@ -1,14 +1,28 @@
+import { memo } from 'react'
+import { Link, useLocation, useRoutes } from 'react-router-dom'
+
+import { routes } from './routes'
+
 function App() {
+  const location = useLocation()
+  const routeEl = useRoutes(routes, location)
+  
   return (
     <>
-      <h1>Vite + React</h1>
-      <div>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
+      <nav>
+        <ul>
+          {routes.map(({ name, path }) => {
+            return (
+              <li key={path}>
+                <Link to={path}>{name}</Link>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
+      {routeEl}
     </>
   )
 }
 
-export default App
+export default memo(App)
