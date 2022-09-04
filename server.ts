@@ -2,8 +2,10 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import fastify from 'fastify'
-import { ViteDevServer } from 'vite'
+import fastify, { FastifyReply, FastifyRequest } from 'fastify'
+import { Manifest, ViteDevServer } from 'vite'
+
+import { collectPreloadLinksByManifest, collectPreloadLinksByModule } from './collectPreloadLinks'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -22,46 +24,58 @@ async function createServer(
 
   const server = fastify()
 
+  let manifest: Manifest
   let viteDevServer: ViteDevServer
-  if (!isProd) {
-    const vite = await import('vite')
-    viteDevServer = await vite.createServer({
-      root,
-      appType: 'custom',
-      server: {
-        middlewareMode: true,
-        watch: {},
-      },
-    })
+  let preloadLinks: string
 
-    await server.register(import('@fastify/middie'))
-    server.use(viteDevServer.middlewares)
-  } else {
+  if (isProd) {
     await server.register(import('@fastify/compress'))
     await server.register(import('@fastify/static'), {
       root: resolve('client'),
       index: false,
     })
+
+    manifest = JSON.parse(readFileSync(resolve('client/manifest.json'), 'utf-8')) as Manifest
+  } else {
+    const vite = await import('vite')
+    viteDevServer = await vite.createServer({
+      root,
+      appType: 'custom',
+      server: { middlewareMode: true },
+    })
+
+    await server.register(import('@fastify/middie'))
+    server.use(viteDevServer.middlewares)
   }
 
-  const renderHandler = async (req, res) => {
+  async function renderHandler(req: FastifyRequest, res: FastifyReply): Promise<void> {
     try {
       const url = req.url
-      let template: string, render: RenderFn
+      let template: string
+      let render: RenderFn
 
       if (isProd) {
         template = indexProd
         // @ts-ignore
         render = (await import('./server/entry-server.js')).render
+
+        // Collect preload links
+        preloadLinks = collectPreloadLinksByManifest(manifest, resolve('/src/entry-server.tsx'))
       } else {
         // Always read fresh template in dev
         template = readFileSync(resolve('index.html'), 'utf-8')
         template = await viteDevServer.transformIndexHtml(url, template)
         render = (await viteDevServer.ssrLoadModule('/src/entry-server.tsx')).render
+
+        // Collect preload links
+        const mod = await viteDevServer.moduleGraph.getModuleByUrl(resolve('/src/entry-server.tsx'))
+        preloadLinks = collectPreloadLinksByModule(mod)
       }
 
       const appHtml = render({ url })
-      const html = template.replace(`<!--app-html-->`, appHtml)
+      const html = template
+        .replace('<!--preload-links-->', preloadLinks)
+        .replace(`<!--app-html-->`, appHtml)
 
       res.status(200).headers({ 'Content-Type': 'text/html' }).send(html)
     } catch (e) {
