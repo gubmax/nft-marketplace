@@ -2,8 +2,7 @@ import { build } from 'esbuild'
 
 import packageJson from '../package.json'
 
-const ENTRY_MAIN = 'server.ts'
-const OUTFILE_NAME = 'index.js'
+const OUTFILE = './dist/server/index.js'
 
 function getExternal(
   packages: Record<string, boolean | string | string[] | Record<string, unknown>>,
@@ -17,7 +16,7 @@ function getExternal(
   }, [])
 }
 
-console.log(`esbuild | building server for production...`)
+console.log(`esbuild building server for production...`)
 
 build({
   platform: 'node',
@@ -25,12 +24,10 @@ build({
   bundle: true,
   sourcemap: false,
   external: getExternal(packageJson),
-  entryPoints: [ENTRY_MAIN],
-  outfile: './dist/server.js',
+  entryPoints: ['./src/server/main.ts'],
+  outfile: OUTFILE,
   format: 'esm',
-  tsconfig: './tsconfig.json',
+  tsconfig: './tsconfig.node.json',
 })
-  .then(() => {
-    console.log(`outfile: ${OUTFILE_NAME}`)
-  })
+  .then(() => console.log(OUTFILE))
   .catch(() => process.exit())

@@ -7,24 +7,39 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { Manifest } from 'vite';
+
+import { AssetCollectorService } from '../src/server/modules/assetCollector/assetCollector.service'
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const resolve = (p: string) => path.resolve(__dirname, p)
 
-const template = readFileSync(resolve('../dist/static/index.html'), 'utf-8')
-const { render } = await import('../dist/server/entry-server.js')
+const template = readFileSync(resolve('../dist/client/src/client/index.html'), 'utf-8')
+const { render } = await import('../dist/server/server.entry.js')
 
 // Determine routes to pre-render from src/pages
 const routesToPrerender = ['/', '/about']
 
-;(async () => {
-  // Pre-render each route...
-  for (const url of routesToPrerender) {
-    const appHtml = render({ url })
+// Pre-render each route...
+for (const url of routesToPrerender) {
+  const appHtml = render({ url })
 
-    const html = template.replace(`<!--app-html-->`, appHtml)
+  const manifest = JSON.parse(
+    readFileSync(resolve('../dist/client/manifest.json'), 'utf-8')
+  ) as Manifest;
 
-    const filePath = `../dist/static${url === '/' ? '/index' : url}.html`
-    writeFileSync(resolve(filePath), html)
-    console.log('pre-rendered:', filePath)
-  }
-})()
+  const assetCollectorService = new AssetCollectorService()
+
+  const preloadLinks = assetCollectorService.collectPreloadLinksByManifest(
+    manifest,
+    'src/client/index.html'
+  )
+
+  const html = template
+    .replace('<!--preload-links-->', preloadLinks)
+    .replace(`<!--app-html-->`, appHtml)
+
+  const filePath = `../dist/client${url === '/' ? '/index' : url}.html`
+  writeFileSync(resolve(filePath), html)
+  console.log('pre-rendered:', filePath)
+}
