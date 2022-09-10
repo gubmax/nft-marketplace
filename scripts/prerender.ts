@@ -11,8 +11,10 @@ import { Manifest } from 'vite';
 
 import { AssetCollectorService } from '../src/server/modules/assetCollector/assetCollector.service'
 
+process.env.NODE_ENV = 'production'
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const resolve = (p: string) => path.resolve(__dirname, p)
+const resolve = (p: string): string => path.resolve(__dirname, p)
 
 const template = readFileSync(resolve('../dist/client/src/client/index.html'), 'utf-8')
 const { render } = await import('../dist/server/server.entry.js')

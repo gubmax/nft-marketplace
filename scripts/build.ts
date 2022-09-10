@@ -2,6 +2,8 @@ import { build } from 'esbuild'
 
 import packageJson from '../package.json'
 
+process.env.NODE_ENV = 'production'
+
 const OUTFILE = './dist/server/index.js'
 
 function getExternal(

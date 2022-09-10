@@ -5,12 +5,11 @@ import { fileURLToPath } from 'node:url'
 import { FastifyInstance } from 'fastify'
 import { Manifest, ViteDevServer } from 'vite'
 
-import serverConfig from '../../../../vite.config.node'
+import serverConfig from '../../../../vite.config.server'
 import { ConfigService } from '../config/config.service'
 import { AssetCollectorService } from '../assetCollector/assetCollector.service'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-
 const resolve = (p: string): string => path.resolve(__dirname, p)
 
 type RenderFn = ({ url }: { url: string }) => string

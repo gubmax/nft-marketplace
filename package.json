@@ -8,13 +8,12 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "dev": "vite-node src/server/main",
-    "debug": "vite-node --inspect-brk src/server/main",
+    "dev": "vite-node -c vite.config.node src/server/main",
     "build": "pnpm build:client && pnpm build:render && pnpm build:server && pnpm prerender",
     "build:client": "vite build",
     "build:render": "vite build --ssr",
-    "build:server": "vite-node scripts/build",
-    "prerender": "vite-node scripts/prerender",
+    "build:server": "vite-node -c vite.config.node scripts/build",
+    "prerender": "vite-node -c vite.config.node scripts/prerender",
     "serve": "cross-env NODE_ENV=production node dist/server"
   },
   "dependencies": {
