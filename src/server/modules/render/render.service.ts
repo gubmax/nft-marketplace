@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { FastifyInstance } from 'fastify'
 import { Manifest, ViteDevServer } from 'vite'
 
+import { PAGES_CONFIG } from 'server/config/pages.config'
 import serverConfig from '../../../../vite.config.server'
 import { ConfigService } from '../config/config.service'
 import { AssetCollectorService } from '../assetCollector/assetCollector.service'
@@ -48,10 +49,10 @@ export class RenderService {
     }
   }
 
-  async render({ url, path }: { url: string, path: string }): Promise<string> {
+  async render({ url }: { url: string }): Promise<string> {
     const { isProd } = this.configService
     const indexProd = isProd
-      ? readFileSync(resolve(path), 'utf-8')
+      ? readFileSync(resolve(`../client/${PAGES_CONFIG[url].name}.html`), 'utf-8')
       : ''
 
     let preloadLinks: string

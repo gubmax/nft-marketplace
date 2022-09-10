@@ -1,14 +1,15 @@
-import { RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom'
 
-import { AboutPage } from 'client/modules/pages/about';
-import { HomePage } from 'client/modules/pages/home';
+import { AboutPage } from 'client/modules/pages/about'
+import { HomePage } from 'client/modules/pages/home'
+import { PageRoutes } from 'shared/routes'
 
 interface Route extends RouteObject {
-  path: string;
-  name: string;
+  path: string
+  name: string
 }
 
 export const routes: Route[] = [
-  { path: '/', name: 'home', element: <HomePage /> },
-  { path: '/about', name: 'about', element: <AboutPage /> },
-];
+  { path: PageRoutes.HOME, name: 'home', element: <HomePage /> },
+  { path: PageRoutes.ABOUT, name: 'about', element: <AboutPage /> },
+]

@@ -1,6 +1,7 @@
 import { FastifyReply } from 'fastify'
 import fp from 'fastify-plugin'
 
+import { PageRoutes } from 'shared/routes'
 import { RenderService } from './render.service'
 
 interface RenderControllerOptions {
@@ -13,9 +14,9 @@ export const renderController = fp<RenderControllerOptions>(async (server, optio
   const sendHtml = (res: FastifyReply, html: string) =>
     res.status(200).headers({ 'Content-Type': 'text/html' }).send(html)
 
-  server.get('/', async (req, res) => {
+  server.get(PageRoutes.HOME, async (req, res) => {
     try {
-      const html = await renderService.render({ url: req.url, path: '../client/index.html'  })
+      const html = await renderService.render({ url: req.url })
       sendHtml(res, html)
     } catch (error) {
       console.error(error)
@@ -23,9 +24,9 @@ export const renderController = fp<RenderControllerOptions>(async (server, optio
     }
   })
 
-  server.get('/about', async (req, res) => {
+  server.get(PageRoutes.ABOUT, async (req, res) => {
     try {
-      const html = await renderService.render({ url: req.url, path: '../client/about.html'  })
+      const html = await renderService.render({ url: req.url })
       sendHtml(res, html)
     } catch (error) {
       console.error(error)

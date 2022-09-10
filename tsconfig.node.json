@@ -13,6 +13,7 @@
     "vite.config.server.ts",
     "vite.config.ts",
     "src/scripts",
-    "src/server"
+    "src/server",
+    "src/shared"
   ]
 }
