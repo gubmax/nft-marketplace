@@ -9,6 +9,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { Manifest } from 'vite';
+import pc from 'picocolors'
 
 import { PAGES_CONFIG } from '../src/server/config/pages.config'
 import { AssetCollectorService } from '../src/server/modules/assetCollector/assetCollector.service'
@@ -18,6 +19,10 @@ process.env.NODE_ENV = 'production'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const resolve = (p: string): string => path.resolve(__dirname, p)
 
+// Start pre-render
+
+console.log(`${pc.cyan('pre-render script')} ${pc.green('generating HTML files...')}`)
+
 const template = readFileSync(resolve('../dist/client/src/client/index.html'), 'utf-8')
 const { render } = await import('../dist/server/server.entry.js')
 
@@ -25,7 +30,7 @@ const manifest = JSON.parse(
   readFileSync(resolve('../dist/client/manifest.json'), 'utf-8')
 ) as Manifest;
 
-// Pre-render each route...
+// Pre-render each app page...
 for (const url in PAGES_CONFIG) {
   const pageConfig = PAGES_CONFIG[url]
 
@@ -46,5 +51,5 @@ for (const url in PAGES_CONFIG) {
   const filePath = `../dist/client/${pageConfig.name}.html`
   writeFileSync(resolve(filePath), html)
 
-  console.log('pre-rendered:', filePath)
+  console.log(`${pc.dim('dist/client/')}${pc.green(`${pageConfig.name}.html`)}`)
 }

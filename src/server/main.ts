@@ -1,3 +1,5 @@
+import pc from 'picocolors'
+
 import { bootstrap } from './bootstrap'
 
 const SERVER_PORT = 5000
@@ -9,7 +11,9 @@ if (!isTest) {
   const { server } = await bootstrap({ isProd })
 
   server.listen({ port: SERVER_PORT }, () => {
-    console.log(`http://localhost:${SERVER_PORT}`)
+    if (!isProd) {
+      console.log(pc.green(`You can now view app in the browser at http://localhost:${SERVER_PORT}`))
+    }
   })
 }
 

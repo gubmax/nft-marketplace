@@ -1,10 +1,11 @@
 import { build } from 'esbuild'
+import pc from 'picocolors'
 
 import packageJson from '../package.json'
 
 process.env.NODE_ENV = 'production'
 
-const OUTFILE = './dist/server/index.js'
+const OUTFILE = 'index.js'
 
 function getExternal(
   packages: Record<string, boolean | string | string[] | Record<string, unknown>>,
@@ -18,7 +19,7 @@ function getExternal(
   }, [])
 }
 
-console.log(`esbuild building server for production...`)
+console.log(`${pc.cyan('esbuild')} ${pc.green('building server for production...')}`)
 
 build({
   platform: 'node',
@@ -27,9 +28,9 @@ build({
   sourcemap: false,
   external: getExternal(packageJson),
   entryPoints: ['./src/server/main.ts'],
-  outfile: OUTFILE,
+  outfile: `./dist/server/${OUTFILE}`,
   format: 'esm',
   tsconfig: './tsconfig.node.json',
 })
-  .then(() => console.log(OUTFILE))
+  .then(() => console.log(`${pc.dim(`dist/server/`)}${OUTFILE}`))
   .catch(() => process.exit())
