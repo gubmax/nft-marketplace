@@ -28,16 +28,16 @@
   },
   "devDependencies": {
     "@fastify/middie": "8.0.0",
-    "@types/node": "18.7.15",
-    "@types/react": "18.0.18",
+    "@types/node": "18.7.16",
+    "@types/react": "18.0.19",
     "@types/react-dom": "18.0.6",
     "@vanilla-extract/css": "1.9.0",
-    "@vanilla-extract/vite-plugin": "3.3.1",
+    "@vanilla-extract/vite-plugin": "3.4.0",
     "@vitejs/plugin-react": "2.1.0",
     "esbuild": "0.15.7",
-    "typescript": "4.8.2",
+    "typescript": "4.8.3",
     "vite": "3.1.0",
-    "vite-node": "0.23.1",
+    "vite-node": "0.23.2",
     "vite-tsconfig-paths": "3.5.0"
   },
   "overrides": {

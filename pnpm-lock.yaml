@@ -4,11 +4,11 @@ specifiers:
   '@fastify/compress': 6.1.1
   '@fastify/middie': 8.0.0
   '@fastify/static': 6.5.0
-  '@types/node': 18.7.15
-  '@types/react': 18.0.18
+  '@types/node': 18.7.16
+  '@types/react': 18.0.19
   '@types/react-dom': 18.0.6
   '@vanilla-extract/css': 1.9.0
-  '@vanilla-extract/vite-plugin': 3.3.1
+  '@vanilla-extract/vite-plugin': 3.4.0
   '@vitejs/plugin-react': 2.1.0
   cross-env: 7.0.3
   esbuild: 0.15.7
@@ -17,9 +17,9 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-router-dom: 6.3.0
-  typescript: 4.8.2
+  typescript: 4.8.3
   vite: 3.1.0
-  vite-node: 0.23.1
+  vite-node: 0.23.2
   vite-tsconfig-paths: 3.5.0
 
 dependencies:
@@ -34,16 +34,16 @@ dependencies:
 
 devDependencies:
   '@fastify/middie': 8.0.0
-  '@types/node': 18.7.15
-  '@types/react': 18.0.18
+  '@types/node': 18.7.16
+  '@types/react': 18.0.19
   '@types/react-dom': 18.0.6
   '@vanilla-extract/css': 1.9.0
-  '@vanilla-extract/vite-plugin': 3.3.1_vite@3.1.0
+  '@vanilla-extract/vite-plugin': 3.4.0_vite@3.1.0
   '@vitejs/plugin-react': 2.1.0_vite@3.1.0
   esbuild: 0.15.7
-  typescript: 4.8.2
+  typescript: 4.8.3
   vite: 3.1.0
-  vite-node: 0.23.1
+  vite-node: 0.23.2
   vite-tsconfig-paths: 3.5.0_vite@3.1.0
 
 packages:
@@ -438,8 +438,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@types/node/18.7.15:
-    resolution: {integrity: sha512-XnjpaI8Bgc3eBag2Aw4t2Uj/49lLBSStHWfqKvIuXD7FIrZyMLWp8KuAFHAqxMZYTF9l08N1ctUn9YNybZJVmQ==}
+  /@types/node/18.7.16:
+    resolution: {integrity: sha512-EQHhixfu+mkqHMZl1R2Ovuvn47PUw18azMJOTwSZr9/fhzHNGXAJ0ma0dayRVchprpCj0Kc1K1xKoWaATWF1qg==}
     dev: true
 
   /@types/prop-types/15.7.5:
@@ -449,11 +449,11 @@ packages:
   /@types/react-dom/18.0.6:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
-      '@types/react': 18.0.18
+      '@types/react': 18.0.19
     dev: true
 
-  /@types/react/18.0.18:
-    resolution: {integrity: sha512-6hI08umYs6NaiHFEEGioXnxJ+oEhY3eRz8VCUaudZmGdtvPviCJB8mgaMxaDWAdPSYd4eFavrPk2QIolwbLYrg==}
+  /@types/react/18.0.19:
+    resolution: {integrity: sha512-BDc3Q+4Q3zsn7k9xZrKfjWyJsSlEDMs38gD1qp2eDazLCdcPqAT+vq1ND+Z8AGel/UiwzNUk8ptpywgNQcJ1MQ==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -496,8 +496,8 @@ packages:
     resolution: {integrity: sha512-17kVyLq3ePTKOkveHxXuIJZtGYs+cSoev7BlP+Lf4916qfDhk/HBjvlYDe8egrea7LNPHKwSZJK/bzZC+Q6AwQ==}
     dev: true
 
-  /@vanilla-extract/vite-plugin/3.3.1_vite@3.1.0:
-    resolution: {integrity: sha512-x5tl1s7uELTKU5HDMrZB9zDW7z+rcTuiT+sGPJ5/OOb+DHS4Y5S8caXOEytk/lhGegBS2gib4fN7yaJ0azuJlQ==}
+  /@vanilla-extract/vite-plugin/3.4.0_vite@3.1.0:
+    resolution: {integrity: sha512-gXe1ogwHaIdsaaLSn/tZBE5MmOP8wBH8Gp5GGun5oG2TUb75khcYQIMTQ+uj6288PGCinUrzjAfuAIzr8nabQQ==}
     peerDependencies:
       vite: ^2.2.3
     dependencies:
@@ -1896,8 +1896,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /typescript/4.8.2:
-    resolution: {integrity: sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==}
+  /typescript/4.8.3:
+    resolution: {integrity: sha512-goMHfm00nWPa8UvR/CPSvykqf6dVV8x/dp0c5mFTMTIu0u0FlGWRioyy7Nn0PGAdHxpJZnuO/ut+PpQ8UiHAig==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
@@ -1927,8 +1927,8 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: false
 
-  /vite-node/0.23.1:
-    resolution: {integrity: sha512-Pw/tUT+28AArEuY5OoNzcNVD1QtUmJklNIX6mlk9w0Eda/31HrCpgIf14OJGLf3DiAPNdCEJI9jHQFyvb4U8rw==}
+  /vite-node/0.23.2:
+    resolution: {integrity: sha512-LRkcAu0oQYNp+2LX84Z8NkYXzISdeLi9NxL8cWgJPxxYcv8Lv9VpqU4kNzAqTIWzgIQFnVkf5mZarcoLgQXInQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     dependencies:
