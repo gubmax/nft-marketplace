@@ -6,7 +6,7 @@ import { FastifyInstance } from 'fastify'
 import { Manifest, ViteDevServer } from 'vite'
 
 import { PAGES_CONFIG } from 'server/config/pages.config'
-import serverConfig from '../../../../vite.config.server'
+import { VITE_DEV_SERVER_CONFIG } from 'server/config/viteDevServer.config'
 import { ConfigService } from '../config/config.service'
 import { AssetCollectorService } from '../assetCollector/assetCollector.service'
 
@@ -42,7 +42,7 @@ export class RenderService {
       ) as Manifest
     } else {
       const vite = await import('vite')
-      this.viteDevServer = await vite.createServer(serverConfig)
+      this.viteDevServer = await vite.createServer(VITE_DEV_SERVER_CONFIG)
 
       await server.register(import('@fastify/middie'))
       server.use(this.viteDevServer.middlewares)
