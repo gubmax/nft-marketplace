@@ -19,7 +19,7 @@ export async function bootstrap({ isProd }: { isProd: boolean }): Promise<{ serv
 
   // Routes
 
-  server.register(renderController, { renderService })
+  server.register(renderController, { configService, renderService })
 
   return { server }
 }

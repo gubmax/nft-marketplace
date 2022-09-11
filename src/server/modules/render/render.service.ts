@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { createReadStream, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -13,7 +13,11 @@ import { AssetCollectorService } from '../assetCollector/assetCollector.service'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const resolve = (p: string): string => path.resolve(__dirname, p)
 
-type RenderFn = ({ url }: { url: string }) => string
+interface RenderOptions {
+  url: string
+}
+
+type RenderFn = (options: RenderOptions) => Promise<string>
 
 export class RenderService {
   configService: ConfigService
@@ -49,12 +53,10 @@ export class RenderService {
     }
   }
 
-  async render({ url }: { url: string }): Promise<string> {
-    const { isProd } = this.configService
-    const indexProd = isProd
-      ? readFileSync(resolve(`../client/${PAGES_CONFIG[url].name}.html`), 'utf-8')
-      : ''
+  // Public
 
+  async render({ url }: RenderOptions): Promise<string> {
+    const { isProd } = this.configService
     let preloadLinks: string
 
     try {
@@ -62,7 +64,7 @@ export class RenderService {
       let render: RenderFn
 
       if (isProd) {
-        template = indexProd
+        template = readFileSync(resolve(`../client/${PAGES_CONFIG[url].name}.html`), 'utf-8')
         // @ts-ignore
         render = (await import('./server.entry.js')).render
 
@@ -74,10 +76,7 @@ export class RenderService {
           )
       } else {
         // Always read fresh template in dev
-        template = readFileSync(
-          resolve('../../../client/index.html'),
-          'utf-8'
-        )
+        template = readFileSync(resolve('../../../client/index.html'), 'utf-8')
         template = await this.viteDevServer.transformIndexHtml(url, template)
         render = (
           await this.viteDevServer.ssrLoadModule('/src/client/server.entry.tsx')
@@ -91,7 +90,7 @@ export class RenderService {
           this.assetCollectorService.collectPreloadLinksByModule(mod)
       }
 
-      const appHtml = render({ url })
+      const appHtml = await render({ url })
       const html = template
         .replace('<!--preload-links-->', preloadLinks)
         .replace(`<!--app-html-->`, appHtml)
