@@ -13,6 +13,7 @@ import pc from 'picocolors'
 
 import { PAGES_CONFIG } from '../src/server/config/pages.config'
 import { AssetCollectorService } from '../src/server/modules/assetCollector/assetCollector.service'
+import { generateCriticalCss } from './criticalCss'
 
 process.env.NODE_ENV = 'production'
 
@@ -22,6 +23,8 @@ const resolve = (p: string): string => path.resolve(__dirname, p)
 // Start pre-render
 
 console.log(`${pc.cyan('pre-render script')} ${pc.green('generating HTML files...')}`)
+
+const prerenderedHtml: string[] = []
 
 const template = readFileSync(resolve('../dist/client/src/client/index.html'), 'utf-8')
 const { render } = await import('../dist/server/server.entry.js')
@@ -48,8 +51,20 @@ for (const url in PAGES_CONFIG) {
     .replace('<!--preload-links-->', preloadLinks)
     .replace(`<!--app-html-->`, appHtml)
 
-  const filePath = `../dist/client/${pageConfig.name}.html`
+  const fileName = `${pageConfig.name}.html`
+  const filePath = `../dist/client/${fileName}`
   writeFileSync(resolve(filePath), html)
 
-  console.log(`${pc.dim('dist/client/')}${pc.green(`${pageConfig.name}.html`)}`)
+  prerenderedHtml.push(fileName)
+
+  console.log(`${pc.dim('dist/client/')}${pc.green(`${fileName}`)}`)
 }
+
+ // Critical
+
+ console.log(`\n${pc.cyan('critical')} ${pc.green('inlining critical CSS to HTML...')}`)
+
+ for await (const fileName of prerenderedHtml) {
+  await generateCriticalCss(fileName)
+  console.log(`${pc.dim('dist/client/')}${pc.green(fileName)}`)
+ }
