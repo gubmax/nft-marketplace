@@ -13,7 +13,6 @@ import pc from 'picocolors'
 
 import { PAGES_CONFIG } from '../src/server/config/pages.config'
 import { AssetCollectorService } from '../src/server/modules/assetCollector/assetCollector.service'
-import { generateCriticalCss } from './criticalCss'
 
 process.env.NODE_ENV = 'production'
 
@@ -59,12 +58,3 @@ for (const url in PAGES_CONFIG) {
 
   console.log(`${pc.dim('dist/client/')}${pc.green(`${fileName}`)}`)
 }
-
- // Critical
-
- console.log(`\n${pc.cyan('critical')} ${pc.green('inlining critical CSS to HTML...')}`)
-
- for await (const fileName of prerenderedHtml) {
-  await generateCriticalCss(fileName)
-  console.log(`${pc.dim('dist/client/')}${pc.green(fileName)}`)
- }
