@@ -6,4 +6,11 @@ import tsconfigPaths from 'vite-tsconfig-paths'
  */
 export default defineConfig({
   plugins: [tsconfigPaths({ projects: ['tsconfig.node.json'] })],
+  build: { minify: false },
+  server: { hmr: false },
+  clearScreen: false,
+  optimizeDeps: {
+    disabled: true,
+    entries: [],
+  }
 })
