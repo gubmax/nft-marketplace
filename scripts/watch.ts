@@ -2,7 +2,7 @@ import nodemon from 'nodemon';
 import pc from 'picocolors'
 
 nodemon({
-  exec: 'pnpm ts ./src/server/main.ts',
+  exec: 'tsx ./src/server/main.ts',
   ext: 'ts,tsx,json',
   ignore: ['*/node_modules/.vite'],
   quiet: true,

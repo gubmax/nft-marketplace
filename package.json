@@ -9,13 +9,12 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production node dist/server",
-    "ts": "vite-node -c vite.config.node",
-    "dev": "pnpm ts scripts/watch",
+    "dev": "tsx scripts/watch",
     "build": "pnpm build:client && pnpm build:render && pnpm build:server && pnpm prerender",
     "build:client": "vite build",
     "build:render": "vite build --ssr",
-    "build:server": "pnpm ts scripts/build",
-    "prerender": "pnpm ts scripts/prerender"
+    "build:server": "tsx scripts/build",
+    "prerender": "tsx scripts/prerender"
   },
   "dependencies": {
     "@fastify/compress": "6.1.1",
@@ -40,9 +39,9 @@
     "esbuild": "0.15.7",
     "nodemon": "2.0.20",
     "picocolors": "1.0.0",
+    "tsx": "3.9.0",
     "typescript": "4.8.3",
     "vite": "3.1.2",
-    "vite-node": "0.23.2",
     "vite-tsconfig-paths": "3.5.0"
   },
   "overrides": {

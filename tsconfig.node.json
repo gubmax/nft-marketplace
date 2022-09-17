@@ -9,7 +9,6 @@
     "baseUrl": "src"
   },
   "include": [
-    "vite.config.node.ts",
     "vite.config.ts",
     "src/scripts",
     "src/server",
