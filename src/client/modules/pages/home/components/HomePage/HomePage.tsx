@@ -1,5 +1,6 @@
-import { dt } from 'client/common/styles/designTokens'
 import { memo } from 'react'
+
+import { dt } from 'client/common/styles/designTokens'
 
 function Home() {
   return (

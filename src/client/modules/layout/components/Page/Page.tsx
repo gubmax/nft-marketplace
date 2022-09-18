@@ -1,5 +1,5 @@
-import { memo, useCallback, MouseEvent } from 'react'
-import { useLocation, useRoutes, useNavigate } from 'react-router-dom'
+import { memo, MouseEvent, useCallback } from 'react'
+import { useLocation, useNavigate, useRoutes } from 'react-router-dom'
 
 import { A } from 'client/common/components/typography/Anchor'
 import { routes } from './routes'
@@ -15,7 +15,7 @@ function Page() {
       event.preventDefault()
       navigate(path)
     },
-    [navigate]
+    [navigate],
   )
 
   return (

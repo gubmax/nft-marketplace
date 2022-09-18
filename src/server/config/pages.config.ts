@@ -1,11 +1,11 @@
-import { PageRoutes } from 'shared/routes'
+import { PageRoutes } from 'server/common/constants'
 
 interface PageOptions {
   name: string
   // getServerSideProps: Function
 }
 
-export const PAGES_CONFIG: Record<PageRoutes, PageOptions | undefined> = {
+export const PAGES_CONFIG: Record<string, PageOptions> = {
   [PageRoutes.HOME]: {
     name: 'home',
   },

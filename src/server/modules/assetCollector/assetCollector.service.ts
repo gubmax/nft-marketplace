@@ -2,10 +2,8 @@ import { Manifest, ModuleNode } from 'vite'
 
 export class AssetCollectorService {
   private getPreloadLink(file: string): string {
-    if (file.endsWith('.js'))
-      return `<link rel='modulepreload' crossorigin href='${file}'>`
-    else if (file.endsWith('.css'))
-      return `<link rel='stylesheet' href='${file}'>`
+    if (file.endsWith('.js')) return `<link rel='modulepreload' crossorigin href='${file}'>`
+    else if (file.endsWith('.css')) return `<link rel='stylesheet' href='${file}'>`
     else if (file.endsWith('.woff'))
       return `<link rel='preload' href='${file}' as='font' type='font/woff' crossorigin>`
     else if (file.endsWith('.woff2'))
@@ -26,7 +24,7 @@ export class AssetCollectorService {
     const seen = new Set()
 
     const collect = (m: ModuleNode) => {
-      if (!m?.id || seen.has(m.id)) return
+      if (!m.id || seen.has(m.id)) return
 
       seen.add(m.id)
 
@@ -49,7 +47,7 @@ export class AssetCollectorService {
     const collect = (p: string) => {
       if (seen.has(p)) return
 
-      const { file, imports = [], css } = manifest[p] ?? {}
+      const { file, imports = [], css = [] } = manifest[p]
 
       seen.add(p)
 
@@ -57,7 +55,7 @@ export class AssetCollectorService {
         links += this.getPreloadLink(file)
       }
 
-      if (css?.length) {
+      if (css.length) {
         css.forEach((url) => (links += this.getPreloadLink(url)))
       }
 

@@ -9,6 +9,6 @@ export function render({ url }: { url: string }): string {
   return renderToString(
     <StaticRouter location={url}>
       <App />
-    </StaticRouter>
+    </StaticRouter>,
   )
 }

@@ -32,5 +32,5 @@ build({
   format: 'esm',
   tsconfig: './tsconfig.node.json',
 })
-  .then(() => console.log(`${pc.dim(`dist/server/`)}${OUTFILE}`))
+  .then(() => console.log(`${pc.dim('dist/server/')}${OUTFILE}`))
   .catch(() => process.exit())

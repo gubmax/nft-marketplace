@@ -1,12 +1,12 @@
-import { system } from './system.css'
-import { palette } from './palette.css'
 import { surface } from './components.css'
+import { palette } from './palette.css'
+import { system } from './system.css'
 
 /**
  * Design tokens store style values, such as CSS custom properties (variables) and media queries,
  * allowing style values to be applied consistently.
  */
- export const dt = {
+export const dt = {
   /**
    * Reference tokens.
    * Available tokens with associated values.
@@ -22,5 +22,5 @@ import { surface } from './components.css'
    * Component tokens.
    * The design attributes assigned to elements in a component.
    */
-  comp: { surface }
+  comp: { surface },
 } as const

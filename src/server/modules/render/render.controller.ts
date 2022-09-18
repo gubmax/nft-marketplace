@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import fp from 'fastify-plugin'
-import { PAGES_CONFIG } from 'server/config/pages.config'
 
-import { PageRoutes } from 'shared/routes'
+import { PageRoutes } from 'server/common/constants'
+import { PAGES_CONFIG } from 'server/config/pages.config'
 import { ConfigService } from '../config/config.service'
 import { RenderService } from './render.service'
 
@@ -23,10 +23,10 @@ export const renderController = fp<RenderControllerOptions>(async (server, optio
 
       const html = await renderService.render({ url: req.url })
 
-      res.status(200).headers({ 'Content-Type': 'text/html' }).send(html)
+      return res.status(200).headers({ 'Content-Type': 'text/html' }).send(html)
     } catch (error) {
       console.error(error)
-      res.status(500).send(error.stack)
+      return res.status(500).send(error)
     }
   }
 
@@ -37,4 +37,6 @@ export const renderController = fp<RenderControllerOptions>(async (server, optio
   server.get(PageRoutes.ABOUT, async (req, res) => {
     return sendHtml(req, res, PageRoutes.ABOUT)
   })
+
+  return Promise.resolve()
 })

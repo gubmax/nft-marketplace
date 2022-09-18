@@ -6,8 +6,8 @@ import './common/styles/reset.css'
 import './common/styles/global.css'
 
 hydrateRoot(
-  document.getElementById('app') as HTMLElement,
+  document.getElementById('app') ?? document.body,
   <BrowserRouter>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 )
