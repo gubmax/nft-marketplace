@@ -32,7 +32,7 @@ export class RenderService {
   }
 
   async init(server: FastifyInstance) {
-    if (this.configService.isProd) {
+    if (this.configService.env.isProd) {
       await server.register(import('@fastify/compress'))
       await server.register(import('@fastify/static'), {
         root: resolve('../client'),
@@ -54,7 +54,7 @@ export class RenderService {
   // Public
 
   async render({ url }: RenderOptions): Promise<string> {
-    const { isProd } = this.configService
+    const { isProd } = this.configService.env
     let preloadLinks: string
 
     try {

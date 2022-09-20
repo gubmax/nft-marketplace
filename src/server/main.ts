@@ -1,20 +1,17 @@
 import pc from 'picocolors'
 
 import { bootstrap } from './bootstrap'
+import { ENV_CONFIG } from './config/env.config'
 
-const SERVER_PORT = 3000
-const isProd = process.env.NODE_ENV === 'production'
-const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
+const { isTest, isProd, host, port } = ENV_CONFIG
 
 // Bootstrap
 if (!isTest) {
-  const { server } = await bootstrap({ isProd })
+  const { server } = await bootstrap()
 
-  server.listen({ port: SERVER_PORT }, () => {
+  server.listen({ port }, () => {
     if (!isProd) {
-      console.log(
-        pc.green(`You can now view app in the browser at http://localhost:${SERVER_PORT}`),
-      )
+      console.log(pc.green(`You can now view app in the browser at ${host}:${port}`))
     }
   })
 }

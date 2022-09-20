@@ -16,7 +16,7 @@ export const renderController = fp<RenderControllerOptions>(async (server, optio
 
   async function sendHtml(req: FastifyRequest, res: FastifyReply, route: PageRoutes) {
     try {
-      if (configService.isProd) {
+      if (configService.env.isProd) {
         const { name } = PAGES_CONFIG[route]
         return res.sendFile(`${name}.html`)
       }

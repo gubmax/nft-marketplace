@@ -1,11 +1,5 @@
-export interface Config {
-  isProd: boolean
-}
+import { ENV_CONFIG } from 'server/config/env.config'
 
 export class ConfigService {
-  isProd: boolean
-
-  constructor({ isProd }: Config) {
-    this.isProd = isProd
-  }
+  env = ENV_CONFIG
 }
