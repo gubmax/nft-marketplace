@@ -1,18 +1,22 @@
 import { IncomingMessage, Server, ServerResponse } from 'node:http'
 
-import fastify, { FastifyInstance } from 'fastify'
+import fastify from 'fastify'
 
 import { AssetCollectorService } from './modules/assetCollector/assetCollector.service'
 import { ConfigService } from './modules/config/config.service'
+import { LoggerService } from './modules/logger/logger.service'
 import { renderController } from './modules/render/render.controller'
 import { RenderService } from './modules/render/render.service'
 
-export async function bootstrap(): Promise<{ server: FastifyInstance }> {
-  const server = fastify<Server, IncomingMessage, ServerResponse>()
-
+export async function bootstrap(): Promise<void> {
   const configService = new ConfigService()
+  const loggerService = new LoggerService(configService)
   const assetCollectorService = new AssetCollectorService()
   const renderService = new RenderService(configService, assetCollectorService)
+
+  const server = fastify<Server, IncomingMessage, ServerResponse>({
+    logger: loggerService.options,
+  })
 
   // Initialization
 
@@ -22,5 +26,8 @@ export async function bootstrap(): Promise<{ server: FastifyInstance }> {
 
   await server.register(renderController, { configService, renderService })
 
-  return { server }
+  // Listen
+
+  const { host, port } = configService.env
+  await server.listen({ host, port })
 }

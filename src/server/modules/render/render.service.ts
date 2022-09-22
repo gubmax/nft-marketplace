@@ -21,15 +21,13 @@ interface RenderOptions {
 export type RenderFn = (options: RenderOptions) => Promise<string>
 
 export class RenderService {
-  configService: ConfigService
-  assetCollectorService: AssetCollectorService
   viteDevServer?: ViteDevServer
   manifest?: Manifest
 
-  constructor(configService: ConfigService, assetCollectorService: AssetCollectorService) {
-    this.configService = configService
-    this.assetCollectorService = assetCollectorService
-  }
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly assetCollectorService: AssetCollectorService,
+  ) {}
 
   async init(server: FastifyInstance) {
     if (this.configService.env.isProd) {
