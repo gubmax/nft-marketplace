@@ -1,4 +1,4 @@
-import { FastifyBaseLogger, FastifyLoggerOptions } from 'fastify'
+import { FastifyBaseLogger } from 'fastify'
 import pino from 'pino'
 import pretty from 'pino-pretty'
 
@@ -7,7 +7,6 @@ import { levelPrettifier, messageFormat, timePrettifier } from './prettifier'
 
 export class LoggerService {
   readonly logger: FastifyBaseLogger
-  readonly options: FastifyLoggerOptions
 
   constructor(private readonly configService: ConfigService) {
     const optionsOrStream = configService.env.isProd
@@ -24,18 +23,5 @@ export class LoggerService {
         })
 
     this.logger = pino(optionsOrStream)
-
-    this.options = {
-      stream: optionsOrStream,
-      serializers: {
-        res(res) {
-          return {
-            statusCode: res.statusCode,
-            method: res.request.method,
-            url: res.request.url,
-          }
-        },
-      },
-    }
   }
 }

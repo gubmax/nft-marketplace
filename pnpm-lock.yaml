@@ -22,6 +22,7 @@ specifiers:
   eslint-plugin-simple-import-sort: 8.0.0
   fastify: 4.6.0
   fastify-plugin: 4.2.1
+  hyperid: 3.0.1
   nodemon: 2.0.20
   picocolors: 1.0.0
   pino: 8.6.0
@@ -41,6 +42,7 @@ dependencies:
   cross-env: 7.0.3
   fastify: 4.6.0
   fastify-plugin: 4.2.1
+  hyperid: 3.0.1
   pino: 8.6.0
   pino-pretty: 9.1.0
   react: 18.2.0
@@ -2018,6 +2020,13 @@ packages:
       toidentifier: 1.0.1
     dev: false
 
+  /hyperid/3.0.1:
+    resolution: {integrity: sha512-I+tl7TS5nsoVhkxqX1rS3Qmqlq44eoPUcgPthW8v3IW8CvWL7lwtd6HQbkDUMrBKJTG0vgEaRsjT35imW/D+9Q==}
+    dependencies:
+      uuid: 8.3.2
+      uuid-parse: 1.1.0
+    dev: false
+
   /ignore-by-default/1.0.1:
     resolution: {integrity: sha512-Ius2VYcGNk7T90CppJqcIkS5ooHUZyIQK+ClZfMfMNFEF9VSE73Fq+906u/CWu92x4gzZMWOwfFYckPObzdEbA==}
     dev: true
@@ -3243,6 +3252,15 @@ packages:
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+    dev: false
+
+  /uuid-parse/1.1.0:
+    resolution: {integrity: sha512-OdmXxA8rDsQ7YpNVbKSJkNzTw2I+S5WsbMDnCtIWSQaosNAcWtFuI/YK1TjzUI6nbkgiqEyh8gWngfcv8Asd9A==}
+    dev: false
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
     dev: false
 
   /vite-tsconfig-paths/3.5.0_vite@3.1.2:

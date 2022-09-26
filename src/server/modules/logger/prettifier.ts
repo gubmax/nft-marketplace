@@ -6,6 +6,7 @@ import { PinoPretty } from 'pino-pretty'
 import { colorByType, levelByNumber, LogLevelWeights } from './logger.constants'
 
 interface InputData {
+  [key: string]: unknown
   level: LogLevelWeights
   time: number
   pid: number
@@ -15,15 +16,13 @@ interface InputData {
     method: string
     url: string
     hostname: string
-    remoteAddress: string
-    remotePort: number
   }
   res?: {
     statusCode: number
     method: string
     url: string
+    durationMs: number
   }
-  responseTime?: number
   msg: string
 }
 
@@ -54,9 +53,9 @@ const joinMsg = (...arr: Array<string | undefined>): string =>
   arr.filter((item): item is string => !!item).join(' ')
 
 export const messageFormat: PinoPretty.MessageFormatFunc = (log) => {
-  const input = log as unknown as InputData
+  const input = log as InputData
 
-  const { msg, req, res, responseTime } = input
+  const { msg, req, res } = input
   const prettyTransport = pc.dim('http')
 
   // Request
@@ -67,7 +66,7 @@ export const messageFormat: PinoPretty.MessageFormatFunc = (log) => {
   // Response
   if (res) {
     const colorFn = res.statusCode >= 500 ? pc.red : res.statusCode >= 300 ? pc.yellow : pc.green
-    const ms = responseTime ? pc.dim(`${Math.round(responseTime)}ms`) : ''
+    const ms = res.durationMs ? pc.dim(`${Math.round(res.durationMs)}ms`) : ''
 
     return joinMsg(
       prettyTransport,
