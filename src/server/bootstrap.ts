@@ -5,6 +5,7 @@ import hyperid from 'hyperid'
 
 import { requestInterceptor } from './common/interceptors/request.interceptor'
 import { AssetCollectorService } from './modules/assetCollector/assetCollector.service'
+import { AsyncStorageService } from './modules/asyncStorage/asyncStorage.service'
 import { ConfigService } from './modules/config/config.service'
 import { LoggerService } from './modules/logger/logger.service'
 import { renderController } from './modules/render/render.controller'
@@ -14,6 +15,7 @@ export async function bootstrap(): Promise<void> {
   const uuid = hyperid()
 
   const configService = new ConfigService()
+  const asyncStorageService = new AsyncStorageService()
   const loggerService = new LoggerService(configService)
   const assetCollectorService = new AssetCollectorService()
   const renderService = new RenderService(configService, assetCollectorService)
@@ -35,7 +37,7 @@ export async function bootstrap(): Promise<void> {
 
   // Interceptors
 
-  await server.register(requestInterceptor, { loggerService })
+  await server.register(requestInterceptor, { asyncStorageService, loggerService, uuid })
 
   // Listen
 
