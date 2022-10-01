@@ -1,6 +1,6 @@
-import { surface } from './components.css'
-import { palette } from './palette.css'
-import { system } from './system.css'
+import * as comp from './components.css'
+import { gradients, palette } from './reference.css'
+import { system as sys } from './system.css'
 
 /**
  * Design tokens store style values, such as CSS custom properties (variables) and media queries,
@@ -11,16 +11,16 @@ export const dt = {
    * Reference tokens.
    * Available tokens with associated values.
    */
-  ref: { palette },
+  ref: { gradients, palette },
   /**
    * System tokens.
    * Decisions and roles that give the design system its character,
    * from color and font, to elevation and shape.
    */
-  sys: system,
+  sys,
   /**
    * Component tokens.
    * The design attributes assigned to elements in a component.
    */
-  comp: { surface },
+  comp,
 } as const

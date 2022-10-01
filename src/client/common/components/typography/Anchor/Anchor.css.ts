@@ -4,7 +4,7 @@ import { dt } from 'client/common/styles/designTokens'
 
 export const link = style({
   color: dt.ref.palette.secondary,
-  borderBottomWidth: dt.sys.border.width.md,
+  borderBottomWidth: dt.sys.border.width.s1,
   borderStyle: 'dashed',
   borderColor: 'inherit',
   transition: 'color 100ms ease-out, borderColor 100ms ease-out',

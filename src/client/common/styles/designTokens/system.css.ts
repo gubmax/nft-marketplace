@@ -1,28 +1,40 @@
 import { createGlobalTheme } from '@vanilla-extract/css'
 
 import { pxToRem } from '../../helpers/pxToRem'
-import { darkPalette, lightPalette } from './palette.css'
+import { darkGradients, darkPalette, lightGradients, lightPalette } from './reference.css'
 
 export const system = createGlobalTheme(':root', {
   border: {
     width: {
-      md: pxToRem(1.25),
+      s1: pxToRem(1.25),
     },
     radius: {
-      sm: pxToRem(4),
-      md: pxToRem(8),
+      s1: pxToRem(4),
+      s2: pxToRem(8),
     },
   },
   color: {
     light: lightPalette,
     dark: darkPalette,
   },
+  fontSize: {
+    h1: pxToRem(40),
+    h2: pxToRem(24),
+    h3: pxToRem(20),
+    subtitle1: pxToRem(16),
+    body1: pxToRem(14),
+    body2: pxToRem(13),
+  },
+  gradients: {
+    light: lightGradients,
+    dark: darkGradients,
+  },
   fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
   space: {
-    xs: pxToRem(4),
-    sm: pxToRem(8),
-    md: pxToRem(12),
-    lg: pxToRem(16),
+    s1: pxToRem(4),
+    s2: pxToRem(8),
+    s3: pxToRem(12),
+    s4: pxToRem(16),
   },
 })

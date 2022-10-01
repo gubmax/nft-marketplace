@@ -1,8 +1,15 @@
-import { globalStyle, keyframes } from '@vanilla-extract/css'
+import { assignVars, globalStyle, keyframes } from '@vanilla-extract/css'
 
 import { FONT_SIZE_DEFAULT } from './constants'
 import { dt } from './designTokens'
-import { darkPalette, lightPalette } from './designTokens/palette.css'
+import {
+  darkGradients,
+  darkPalette,
+  gradients,
+  lightGradients,
+  lightPalette,
+  palette,
+} from './designTokens/reference.css'
 
 globalStyle('*, *::before, *::after', {
   boxSizing: 'border-box',
@@ -37,11 +44,17 @@ globalStyle('a', {
 
 globalStyle(':root', {
   colorScheme: 'light',
-  vars: lightPalette,
+  vars: {
+    ...assignVars(palette, lightPalette),
+    ...assignVars(gradients, lightGradients),
+  },
   '@media': {
     '(prefers-color-scheme: dark)': {
       colorScheme: 'dark',
-      vars: darkPalette,
+      vars: {
+        ...assignVars(palette, darkPalette),
+        ...assignVars(gradients, darkGradients),
+      },
     },
   },
 })

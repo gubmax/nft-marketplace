@@ -2,8 +2,9 @@ import { memo, MouseEvent, useCallback } from 'react'
 import { useLocation, useNavigate, useRoutes } from 'react-router-dom'
 
 import { A } from 'client/common/components/typography/Anchor'
+import { cn } from 'client/common/helpers/classNames'
+import * as a from 'client/common/styles/atomic.css'
 import { routes } from './routes'
-import * as s from './Page.css'
 
 function Page() {
   const location = useLocation()
@@ -19,9 +20,9 @@ function Page() {
   )
 
   return (
-    <div className={s.wrapper}>
+    <div className={a.p4}>
       <nav>
-        <ul className={s.links}>
+        <ul className={cn(a.flex, a.gap3, a.mb4)}>
           {routes.map(({ name, path }) => (
             <li key={path}>
               <A href={path} onClick={goTo(path)}>
