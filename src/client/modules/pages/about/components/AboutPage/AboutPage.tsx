@@ -3,10 +3,15 @@ import { memo } from 'react'
 import { Button } from 'client/common/components/inputs/buttons/Button'
 import { IconButton } from 'client/common/components/inputs/buttons/IconButton'
 import { cn } from 'client/common/helpers/classNames'
+import { useDocumentTitle } from 'client/common/hooks/useDocumentTitle'
 import * as a from 'client/common/styles/atomic.css'
 import { dt } from 'client/common/styles/designTokens'
 
+const PAGE_TITLE = 'About'
+
 function About() {
+  useDocumentTitle(PAGE_TITLE)
+
   return (
     <div className={dt.comp.surface}>
       <p className={a.mb4}>The quick brown fox jumps over the lazy dog.</p>
