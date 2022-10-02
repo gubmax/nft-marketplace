@@ -9,6 +9,7 @@ export const wFull = style({ width: '100%' })
 export const flex = style({ display: 'flex' })
 export const flexRow = style({ flexDirection: 'row' })
 export const flexCol = style({ flexDirection: 'column' })
+export const itemsCenter = style({ alignItems: 'center' })
 
 export const gap1 = style({ gap: dt.sys.space.s1 })
 export const gap2 = style({ gap: dt.sys.space.s2 })
@@ -41,30 +42,3 @@ export const ml1 = style({ marginLeft: dt.sys.space.s1 })
 export const ml2 = style({ marginLeft: dt.sys.space.s2 })
 export const ml3 = style({ marginLeft: dt.sys.space.s3 })
 export const ml4 = style({ marginLeft: dt.sys.space.s4 })
-
-// Padding
-
-export const p1 = style({ padding: dt.sys.space.s1 })
-export const p2 = style({ padding: dt.sys.space.s2 })
-export const p3 = style({ padding: dt.sys.space.s3 })
-export const p4 = style({ padding: dt.sys.space.s4 })
-
-export const pt1 = style({ paddingTop: dt.sys.space.s1 })
-export const pt2 = style({ paddingTop: dt.sys.space.s2 })
-export const pt3 = style({ paddingTop: dt.sys.space.s3 })
-export const pt4 = style({ paddingTop: dt.sys.space.s4 })
-
-export const pr1 = style({ paddingRight: dt.sys.space.s1 })
-export const pr2 = style({ paddingRight: dt.sys.space.s2 })
-export const pr3 = style({ paddingRight: dt.sys.space.s3 })
-export const pr4 = style({ paddingRight: dt.sys.space.s4 })
-
-export const pb1 = style({ paddingBottom: dt.sys.space.s1 })
-export const pb2 = style({ paddingBottom: dt.sys.space.s2 })
-export const pb3 = style({ paddingBottom: dt.sys.space.s3 })
-export const pb4 = style({ paddingBottom: dt.sys.space.s4 })
-
-export const pl1 = style({ paddingLeft: dt.sys.space.s1 })
-export const pl2 = style({ paddingLeft: dt.sys.space.s2 })
-export const pl3 = style({ paddingLeft: dt.sys.space.s3 })
-export const pl4 = style({ paddingLeft: dt.sys.space.s4 })

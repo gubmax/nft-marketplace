@@ -30,7 +30,7 @@ function About() {
           Outline
         </Button>
       </div>
-      <Button as="a" variant="outline" href="/">
+      <Button as="a" variant="outline" href="/" target="_blank">
         Link
       </Button>
     </div>

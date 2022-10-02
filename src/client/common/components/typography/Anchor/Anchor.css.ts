@@ -6,7 +6,7 @@ export const link = style({
   color: dt.ref.palette.secondary,
   borderBottomWidth: dt.sys.border.width.s1,
   borderStyle: 'dashed',
-  borderColor: 'inherit',
+  borderColor: dt.ref.palette.secondary,
   transition: 'color 100ms ease-out, borderColor 100ms ease-out',
 
   ':focus': {

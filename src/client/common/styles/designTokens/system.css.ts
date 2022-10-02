@@ -36,5 +36,6 @@ export const system = createGlobalTheme(':root', {
     s2: pxToRem(8),
     s3: pxToRem(12),
     s4: pxToRem(16),
+    s5: pxToRem(20),
   },
 })
