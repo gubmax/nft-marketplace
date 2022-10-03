@@ -27,6 +27,16 @@ export async function bootstrap(): Promise<void> {
     genReqId: () => uuid(),
   })
 
+  if (configService.env.isProd) {
+    await server.register(import('@fastify/compress'))
+    await server.register(import('@fastify/static'), {
+      root: new URL('../client', import.meta.url).pathname,
+      index: false,
+    })
+  } else {
+    await server.register(import('@fastify/middie'))
+  }
+
   // Initialization
 
   await renderService.init(server)
