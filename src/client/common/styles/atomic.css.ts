@@ -10,6 +10,7 @@ export const flex = style({ display: 'flex' })
 export const flexRow = style({ flexDirection: 'row' })
 export const flexCol = style({ flexDirection: 'column' })
 export const itemsCenter = style({ alignItems: 'center' })
+export const justifyCenter = style({ justifyContent: 'center' })
 
 export const gap1 = style({ gap: dt.sys.space.s1 })
 export const gap2 = style({ gap: dt.sys.space.s2 })

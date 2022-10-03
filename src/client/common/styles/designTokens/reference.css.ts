@@ -33,12 +33,15 @@ export const darkPalette = {
 
 export const gradients = createThemeContract({
   primary: null,
+  accent: null,
 })
 
 export const lightGradients = {
-  primary: 'linear-gradient(0deg, #543bdc 0%, #6752e0 100%)',
+  primary: 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
+  accent: 'linear-gradient(0deg, #543bdc 0%, #6752e0 100%)',
 }
 
 export const darkGradients = {
-  primary: 'linear-gradient(0deg, #543bdc 0%, #6752e0 100%)',
+  primary: 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
+  accent: 'linear-gradient(0deg, #543bdc 0%, #6752e0 100%)',
 }

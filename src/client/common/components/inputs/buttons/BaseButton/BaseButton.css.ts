@@ -31,7 +31,7 @@ export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRu
   },
   primary: {
     border: 0,
-    background: dt.ref.gradients.primary,
+    background: dt.ref.gradients.accent,
     color: dt.sys.color.dark.primary,
   },
 })

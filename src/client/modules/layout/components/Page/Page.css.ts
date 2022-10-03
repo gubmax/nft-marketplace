@@ -37,10 +37,14 @@ export const aside = style({
   flexShrink: 0,
   top: 0,
   width: ASIDE_WIDTH,
-  padding: `${HEADER_HEIGHT} 0 ${PADDING_BOTTOM}`,
+  padding: `0 ${dt.sys.space.s3} ${PADDING_BOTTOM}`,
   background: dt.ref.palette.surface,
   borderRight: `${dt.sys.border.width.s1} solid ${dt.ref.palette.border}`,
   zIndex: 1,
+})
+
+export const logoWrapper = style({
+  height: HEADER_HEIGHT,
 })
 
 export const footer = style({
