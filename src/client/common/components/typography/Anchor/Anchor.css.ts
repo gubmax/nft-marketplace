@@ -3,10 +3,10 @@ import { style } from '@vanilla-extract/css'
 import { dt } from 'client/common/styles/designTokens'
 
 export const link = style({
-  color: dt.ref.palette.secondary,
+  color: 'inherit',
   borderBottomWidth: dt.sys.border.width.s1,
   borderStyle: 'dashed',
-  borderColor: dt.ref.palette.secondary,
+  borderColor: 'currentColor',
   transition: 'color 100ms ease-out, borderColor 100ms ease-out',
 
   ':focus': {

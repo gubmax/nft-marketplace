@@ -6,7 +6,7 @@ import { darkGradients, darkPalette, lightGradients, lightPalette } from './refe
 export const system = createGlobalTheme(':root', {
   border: {
     width: {
-      s1: pxToRem(1.25),
+      s1: pxToRem(1.2),
     },
     radius: {
       s1: pxToRem(4),
@@ -18,7 +18,7 @@ export const system = createGlobalTheme(':root', {
     dark: darkPalette,
   },
   fontSize: {
-    h1: pxToRem(40),
+    h1: pxToRem(32),
     h2: pxToRem(24),
     h3: pxToRem(20),
     subtitle1: pxToRem(16),

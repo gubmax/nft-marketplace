@@ -12,4 +12,7 @@ export const PAGES_CONFIG: Record<string, PageOptions> = {
   [PageRoutes.ABOUT]: {
     name: 'about',
   },
+  [PageRoutes.MARKETPLACE]: {
+    name: 'marketplace',
+  },
 } as const

@@ -1,6 +1,5 @@
 import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
 import { ButtonVariant } from './BaseButton'
 
@@ -16,7 +15,6 @@ export const tag = style([
     fontFamily: 'inherit',
     fontSize: dt.sys.fontSize.body1,
     fontWeight: 500,
-    height: pxToRem(40),
     justifyContent: 'center',
     padding: `0 ${dt.sys.space.s3}`,
     width: '100%',
@@ -25,9 +23,9 @@ export const tag = style([
 
 export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRule>>({
   outline: {
-    border: `${dt.sys.border.width.s1} solid ${dt.ref.palette.accent}`,
+    border: `${dt.sys.border.width.s1} solid ${dt.ref.palette.accentLight}`,
     background: 'transparent',
-    color: dt.ref.palette.accent,
+    color: dt.ref.palette.accentLight,
   },
   primary: {
     border: 0,

@@ -1,6 +1,6 @@
 import { useInsertionEffect } from 'react'
 
-const TITLE_DEFAULT = 'NFT Marketplace'
+const TITLE_DEFAULT = 'NFT Platform'
 
 export const useDocumentTitle = (title?: string): void => {
   useInsertionEffect(() => {

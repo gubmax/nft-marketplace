@@ -1,54 +1,33 @@
 import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/common/helpers/pxToRem'
+import { SCREEN_SIZES } from 'client/common/styles/constants/screen'
 import { dt } from 'client/common/styles/designTokens'
 
-const HEADER_HEIGHT = pxToRem(60)
-const ASIDE_WIDTH = pxToRem(240)
-const PADDING_BOTTOM = pxToRem(64)
+const ASIDE_WIDTH = pxToRem(232)
 
 export const header = style({
   position: 'fixed',
   top: 0,
-  left: ASIDE_WIDTH,
-  width: '100%',
-  height: HEADER_HEIGHT,
-  padding: `0 ${dt.sys.space.s5}`,
-  background: dt.ref.palette.surface,
-  borderBottom: `${dt.sys.border.width.s1} solid ${dt.ref.palette.border}`,
-  zIndex: 2,
+  left: 0,
+  right: 0,
+  zIndex: 1,
 })
 
 export const wrapper = style({
   position: 'relative',
-  display: 'flex',
-})
-
-export const main = style({
-  width: '100%',
+  maxWidth: SCREEN_SIZES.desktop,
   minHeight: '100vh',
-  padding: `${pxToRem(80)} ${dt.sys.space.s5} ${PADDING_BOTTOM} ${dt.sys.space.s5}`,
-  zIndex: 0,
-  overflow: 'hidden',
+  padding: `${pxToRem(100)} ${dt.sys.space.s5} ${pxToRem(64)} ${dt.sys.space.s5}`,
 })
 
 export const aside = style({
+  zIndex: 0,
+})
+
+export const sidebar = style({
   position: 'sticky',
   flexShrink: 0,
   top: 0,
   width: ASIDE_WIDTH,
-  padding: `0 ${dt.sys.space.s3} ${PADDING_BOTTOM}`,
-  background: dt.ref.palette.surface,
-  borderRight: `${dt.sys.border.width.s1} solid ${dt.ref.palette.border}`,
-  zIndex: 1,
-})
-
-export const logoWrapper = style({
-  height: HEADER_HEIGHT,
-})
-
-export const footer = style({
-  padding: dt.sys.space.s5,
-  background: dt.ref.palette.surface,
-  borderTop: `${dt.sys.border.width.s1} solid ${dt.ref.palette.border}`,
 })

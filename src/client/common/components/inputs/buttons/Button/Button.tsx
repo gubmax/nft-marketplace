@@ -11,14 +11,17 @@ const loaderVariantByButtonVariant: Record<ButtonVariant, LoaderVariant> = {
   outline: 'primary',
 }
 
+export type ButtonSize = 'sm' | 'md'
 export type ButtonProps<T extends keyof JSX.IntrinsicElements> = {
   loading?: boolean
+  size?: ButtonSize
 } & BaseButtonProps<T>
 
 function Button<T extends 'button' | 'a'>({
   children,
   className,
   loading,
+  size = 'md',
   onClick = noop,
   variant = 'primary',
   ...rest
@@ -31,7 +34,7 @@ function Button<T extends 'button' | 'a'>({
   return (
     <BaseButton
       className={cn(s.wrapper, className)}
-      innerClassName={s.inner}
+      innerClassName={cn(s.inner, s.loaderSizes[size])}
       variant={variant}
       onClick={handleClick}
       {...rest}

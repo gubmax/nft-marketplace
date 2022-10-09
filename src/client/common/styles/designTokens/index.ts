@@ -1,6 +1,7 @@
+import { media } from './media'
 import * as comp from './components.css'
 import { gradients, palette } from './reference.css'
-import { system as sys } from './system.css'
+import { system } from './system.css'
 
 /**
  * Design tokens store style values, such as CSS custom properties (variables) and media queries,
@@ -17,7 +18,7 @@ export const dt = {
    * Decisions and roles that give the design system its character,
    * from color and font, to elevation and shape.
    */
-  sys,
+  sys: { ...system, media },
   /**
    * Component tokens.
    * The design attributes assigned to elements in a component.

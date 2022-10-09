@@ -6,7 +6,7 @@ import { system } from './system.css'
 export const surface = style({
   padding: system.space.s4,
   background: palette.surface,
-  border: `${system.border.width.s1} solid ${palette.border}`,
+  border: `${system.border.width.s1} solid ${palette.borderLight}`,
   borderRadius: system.border.radius.s2,
 })
 
@@ -22,7 +22,7 @@ export const typography = styleVariants({
     heading,
     {
       fontSize: system.fontSize.h1,
-      fontWeight: 700,
+      fontWeight: 500,
       letterSpacing: 0.25,
     },
   ],
@@ -30,7 +30,7 @@ export const typography = styleVariants({
     heading,
     {
       fontSize: system.fontSize.h2,
-      fontWeight: 700,
+      fontWeight: 500,
       letterSpacing: 0,
     },
   ],
@@ -38,7 +38,6 @@ export const typography = styleVariants({
     heading,
     {
       fontSize: system.fontSize.h3,
-      fontWeight: 500,
       letterSpacing: 0.15,
     },
   ],

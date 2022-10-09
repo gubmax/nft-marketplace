@@ -13,7 +13,7 @@ export const spinner = style({
   boxSizing: 'border-box',
   margin: 'auto',
   borderStyle: 'solid',
-  borderColor: `transparent ${dt.ref.palette.accent}`,
+  borderColor: `transparent ${dt.ref.palette.accentLight}`,
   borderRadius: '50%',
   animation: `${spin} 0.65s infinite linear`,
 })

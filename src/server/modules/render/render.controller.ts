@@ -30,13 +30,9 @@ export const renderController = fp<RenderControllerOptions>(async (server, optio
     }
   }
 
-  server.get(PageRoutes.HOME, async (req, res) => {
-    return sendHtml(req, res, PageRoutes.HOME)
-  })
-
-  server.get(PageRoutes.ABOUT, async (req, res) => {
-    return sendHtml(req, res, PageRoutes.ABOUT)
-  })
+  server.get(PageRoutes.HOME, async (req, res) => sendHtml(req, res, PageRoutes.HOME))
+  server.get(PageRoutes.ABOUT, async (req, res) => sendHtml(req, res, PageRoutes.ABOUT))
+  server.get(PageRoutes.MARKETPLACE, async (req, res) => sendHtml(req, res, PageRoutes.MARKETPLACE))
 
   return Promise.resolve()
 })

@@ -1,6 +1,6 @@
 import { assignVars, globalStyle, keyframes } from '@vanilla-extract/css'
 
-import { FONT_SIZE_DEFAULT } from './constants'
+import { FONT_SIZE_DEFAULT } from './constants/font'
 import { dt } from './designTokens'
 import {
   darkGradients,
@@ -49,7 +49,7 @@ globalStyle(':root', {
     ...assignVars(gradients, lightGradients),
   },
   '@media': {
-    '(prefers-color-scheme: dark)': {
+    [dt.sys.media.prefersColorScheme.dark]: {
       colorScheme: 'dark',
       vars: {
         ...assignVars(palette, darkPalette),
