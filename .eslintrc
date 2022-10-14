@@ -19,7 +19,6 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:@typescript-eslint/strict",
-    "plugin:react-hooks/recommended",
     "plugin:react/recommended"
   ],
   "settings": {
@@ -38,7 +37,7 @@
     // React
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    // Import asn exports sort
+    // Import and exports sort
     "simple-import-sort/exports": "error",
     "simple-import-sort/imports": [
       "error",
@@ -51,6 +50,16 @@
       }
     ]
   },
+  "overrides": [
+    {
+      "files": "src/client/**/*",
+      "extends": "plugin:react-hooks/recommended"
+    },
+    {
+      "files": "*.d.ts",
+      "rules": { "no-var": "off" }
+    }
+  ],
   "ignorePatterns": [
     "dist",
     "node_modules",

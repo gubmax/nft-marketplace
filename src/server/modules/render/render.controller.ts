@@ -1,5 +1,4 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
-import fp from 'fastify-plugin'
+import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
 import { PageRoutes } from 'server/common/constants'
 import { PAGES_CONFIG } from 'server/config/pages.config'
@@ -11,7 +10,10 @@ interface RenderControllerOptions {
   renderService: RenderService
 }
 
-export const renderController = fp<RenderControllerOptions>(async (server, options) => {
+export function useRenderController(
+  server: FastifyInstance,
+  options: RenderControllerOptions,
+): void {
   const { configService, renderService } = options
 
   async function sendHtml(req: FastifyRequest, res: FastifyReply, route: PageRoutes) {
@@ -33,6 +35,4 @@ export const renderController = fp<RenderControllerOptions>(async (server, optio
   server.get(PageRoutes.HOME, async (req, res) => sendHtml(req, res, PageRoutes.HOME))
   server.get(PageRoutes.ABOUT, async (req, res) => sendHtml(req, res, PageRoutes.ABOUT))
   server.get(PageRoutes.MARKETPLACE, async (req, res) => sendHtml(req, res, PageRoutes.MARKETPLACE))
-
-  return Promise.resolve()
-})
+}

@@ -1,4 +1,4 @@
-import fp from 'fastify-plugin'
+import { FastifyInstance } from 'fastify'
 
 import { AsyncStorageService } from 'server/modules/asyncStorage/asyncStorage.service'
 import { LoggerService } from 'server/modules/logger/logger.service'
@@ -9,7 +9,10 @@ interface RequestInterceptorOptions {
   uuid(): string
 }
 
-export const requestInterceptor = fp<RequestInterceptorOptions>(async (server, options) => {
+export function useAllRequestsInterceptor(
+  server: FastifyInstance,
+  options: RequestInterceptorOptions,
+): void {
   const { storage } = options.asyncStorageService
   const { logger } = options.loggerService
 
@@ -54,6 +57,4 @@ export const requestInterceptor = fp<RequestInterceptorOptions>(async (server, o
 
     void res.header('x-request-id', reqId)
   })
-
-  return Promise.resolve()
-})
+}
