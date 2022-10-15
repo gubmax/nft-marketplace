@@ -19,13 +19,19 @@ function Header({ className, style }: StyledProps) {
 
   return (
     <header className={cn(s.header, className)} style={style}>
-      <nav className={cn(s.wrapper, a.flex, a.itemsCenter, a.gap3, a.mxAuto)}>
+      <nav className={cn(s.wrapper, a.flex, a.itemsCenter, a.gap4, a.mxAuto)}>
         <Logo />
-        <Link className={a.mlAuto} to={PageRoutes.HOME}>
-          Discover
-        </Link>
-        <Link to={PageRoutes.MARKETPLACE}>Marketplace</Link>
-        <Link to={PageRoutes.GAMING}>Gaming</Link>
+        <div className={cn(a.flex, a.mlAuto)}>
+          <Link className={s.link} to={PageRoutes.HOME}>
+            Discover
+          </Link>
+          <Link className={s.link} to={PageRoutes.MARKETPLACE}>
+            Marketplace
+          </Link>
+          <Link className={s.link} to={PageRoutes.GAMING}>
+            Gaming
+          </Link>
+        </div>
         <Button
           as="a"
           size="sm"
