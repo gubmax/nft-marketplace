@@ -5,11 +5,7 @@ import { AboutPage } from 'client/modules/pages/about'
 import { HomePage } from 'client/modules/pages/home'
 import { MarketplacePage } from 'client/modules/pages/marketplace'
 
-interface Route extends RouteObject {
-  path: string
-}
-
-export const routes: Route[] = [
+export const routes: RouteObject[] = [
   { path: PageRoutes.HOME, element: <HomePage /> },
   { path: PageRoutes.ABOUT, element: <AboutPage /> },
   { path: PageRoutes.MARKETPLACE, element: <MarketplacePage /> },

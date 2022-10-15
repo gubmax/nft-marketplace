@@ -3,7 +3,10 @@ import { IncomingMessage, Server, ServerResponse } from 'node:http'
 import fastify from 'fastify'
 import hyperid from 'hyperid'
 
-import { useAllRequestsInterceptor } from './common/interceptors/allRequests.interceptor'
+import { useNotFoundHandler } from './common/handlers/notFound.handler'
+import { useUncaughtErrorHandler } from './common/handlers/uncaughtError.handler'
+import { useRequestLoggingHook } from './common/hooks/requestLogging.hook'
+import { useRequestTimeoutHook } from './common/hooks/requestTimeout.hook'
 import { AssetCollectorService } from './modules/assetCollector/assetCollector.service'
 import { AsyncStorageService } from './modules/asyncStorage/asyncStorage.service'
 import { ConfigService } from './modules/config/config.service'
@@ -25,9 +28,10 @@ export async function bootstrap(): Promise<void> {
   // Server Instance
 
   const server = fastify<Server, IncomingMessage, ServerResponse>({
-    bodyLimit: 1048576,
-    logger: loggerService.logger,
+    bodyLimit: 1048576, // 1MiB
+    connectionTimeout: 60 * 1000, // 60s
     disableRequestLogging: true,
+    logger: loggerService.logger,
     genReqId: () => uuid(),
   })
 
@@ -45,13 +49,19 @@ export async function bootstrap(): Promise<void> {
 
   await renderService.init(server)
 
+  // Handlers
+
+  useNotFoundHandler(server)
+  useUncaughtErrorHandler(server)
+
+  // Hooks
+
+  useRequestLoggingHook(server, { asyncStorageService, loggerService, uuid })
+  useRequestTimeoutHook(server, { loggerService })
+
   // Routes
 
   useRenderController(server, { configService, renderService })
-
-  // Request Interceptors
-
-  useAllRequestsInterceptor(server, { asyncStorageService, loggerService, uuid })
 
   // Listen
 
