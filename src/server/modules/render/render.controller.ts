@@ -1,6 +1,5 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
-import { PageRoutes } from 'server/common/constants'
 import { PAGES_CONFIG } from 'server/config/pages.config'
 import { ConfigService } from '../config/config.service'
 import { RenderService } from './render.service'
@@ -16,7 +15,7 @@ export function useRenderController(
 ): void {
   const { configService, renderService } = options
 
-  async function sendHtml(req: FastifyRequest, res: FastifyReply, route: PageRoutes) {
+  async function sendHtml(req: FastifyRequest, res: FastifyReply, route: string) {
     try {
       if (configService.env.isProd) {
         const { name } = PAGES_CONFIG[route]
@@ -32,7 +31,7 @@ export function useRenderController(
     }
   }
 
-  server.get(PageRoutes.HOME, async (req, res) => sendHtml(req, res, PageRoutes.HOME))
-  server.get(PageRoutes.ABOUT, async (req, res) => sendHtml(req, res, PageRoutes.ABOUT))
-  server.get(PageRoutes.MARKETPLACE, async (req, res) => sendHtml(req, res, PageRoutes.MARKETPLACE))
+  for (const route in PAGES_CONFIG) {
+    server.get(route, async (req, res) => sendHtml(req, res, route))
+  }
 }
