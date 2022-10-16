@@ -1,5 +1,6 @@
 import { assignVars, globalStyle, keyframes } from '@vanilla-extract/css'
 
+import { pxToRem } from '../helpers/pxToRem'
 import { FONT_SIZE_DEFAULT } from './constants/font'
 import { dt } from './designTokens'
 import {
@@ -64,7 +65,8 @@ globalStyle(':focus', {
 })
 
 globalStyle(':focus-visible', {
-  outlineWidth: 0,
+  outline: `${pxToRem(3)} solid ${dt.ref.palette.accent}`,
+  outlineOffset: dt.sys.space.s1,
 })
 
 const autofill = keyframes({

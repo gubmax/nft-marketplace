@@ -16,11 +16,16 @@ export const wrapper = style({
   padding: `0 ${dt.sys.space.s5}`,
 })
 
+export const logo = style({
+  marginLeft: `calc(-1 * ${dt.sys.space.s2})`,
+})
+
 export const link = style([
   dt.comp.typography.subtitle1,
   {
-    padding: `${dt.sys.space.s2} ${dt.sys.space.s3}`,
+    padding: `${dt.sys.space.s1} ${dt.sys.space.s3}`,
+    borderRadius: dt.sys.border.radius.s2,
 
-    ':focus': { color: dt.ref.palette.accent },
+    ':active': { color: dt.ref.palette.accent },
   },
 ])

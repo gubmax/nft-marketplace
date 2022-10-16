@@ -9,8 +9,8 @@ export const system = createGlobalTheme(':root', {
       s1: pxToRem(1.2),
     },
     radius: {
-      s1: pxToRem(4),
-      s2: pxToRem(8),
+      s1: pxToRem(3),
+      s2: pxToRem(6),
     },
   },
   color: {

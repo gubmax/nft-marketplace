@@ -7,6 +7,7 @@ export const link = style({
   borderBottomWidth: dt.sys.border.width.s1,
   borderStyle: 'dashed',
   borderColor: 'currentColor',
+  borderRadius: dt.sys.border.radius.s1,
   transition: 'color 100ms ease-out, borderColor 100ms ease-out',
 
   ':focus': {

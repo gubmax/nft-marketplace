@@ -20,7 +20,7 @@ function Header({ className, style }: StyledProps) {
   return (
     <header className={cn(s.header, className)} style={style}>
       <nav className={cn(s.wrapper, a.flex, a.itemsCenter, a.gap4, a.mxAuto)}>
-        <Logo />
+        <Logo className={s.logo} />
         <div className={cn(a.flex, a.mlAuto)}>
           <Link className={s.link} to={PageRoutes.HOME}>
             Discover
