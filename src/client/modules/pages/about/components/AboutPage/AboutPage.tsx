@@ -8,6 +8,7 @@ import { cn } from 'client/common/helpers/classNames'
 import { useDocumentTitle } from 'client/common/hooks/useDocumentTitle'
 import * as a from 'client/common/styles/atomic.css'
 import { dt } from 'client/common/styles/designTokens'
+import { BasePageWrapper } from 'client/modules/layout/components/BasePageWrapper'
 
 const PAGE_TITLE = 'About'
 
@@ -15,7 +16,7 @@ function About() {
   useDocumentTitle(PAGE_TITLE)
 
   return (
-    <>
+    <BasePageWrapper>
       <PageTitle>{PAGE_TITLE}</PageTitle>
       <div className={dt.comp.surface}>
         <p className={a.mb4}>The quick brown fox jumps over the lazy dog.</p>
@@ -43,7 +44,7 @@ function About() {
           Link
         </Button>
       </div>
-    </>
+    </BasePageWrapper>
   )
 }
 

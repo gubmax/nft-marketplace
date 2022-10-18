@@ -15,10 +15,7 @@ export const header = style({
 })
 
 export const wrapper = style({
-  position: 'relative',
-  maxWidth: SCREEN_SIZES.desktop,
   minHeight: '100vh',
-  padding: `${pxToRem(100)} ${dt.sys.space.s5} ${pxToRem(64)} ${dt.sys.space.s5}`,
 })
 
 export const aside = style({

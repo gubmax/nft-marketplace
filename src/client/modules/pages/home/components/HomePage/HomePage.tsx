@@ -1,15 +1,16 @@
 import { memo } from 'react'
 
-import { Tip } from 'client/common/components/surfaces/Tip'
 import { useDocumentTitle } from 'client/common/hooks/useDocumentTitle'
+import { Discover } from 'client/modules/features/discover'
+import { BasePageWrapper } from 'client/modules/layout/components/BasePageWrapper'
 
 function Home() {
   useDocumentTitle()
 
   return (
-    <Tip>
-      Edit <code>HomePage.tsx</code> and save to test HMR
-    </Tip>
+    <BasePageWrapper>
+      <Discover />
+    </BasePageWrapper>
   )
 }
 

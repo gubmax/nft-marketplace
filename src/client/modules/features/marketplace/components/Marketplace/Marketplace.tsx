@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { Sidebar } from './components/Sidebar'
+import { Sidebar } from '../Sidebar'
 import * as s from './Marketplace.css'
 
 function Marketplace() {
@@ -9,7 +9,7 @@ function Marketplace() {
       <div className={s.aside}>
         <Sidebar className={s.sidebar} />
       </div>
-      <div></div>
+      <div>CONTENT</div>
     </>
   )
 }

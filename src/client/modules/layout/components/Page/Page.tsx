@@ -15,7 +15,7 @@ function Page() {
   return (
     <>
       <Header className={s.header} />
-      <main className={cn(s.wrapper, a.wFull, a.mxAuto)}>{routeEl}</main>
+      <main className={cn(s.wrapper, a.mxAuto)}>{routeEl}</main>
       <Footer />
     </>
   )

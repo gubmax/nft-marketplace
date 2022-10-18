@@ -18,7 +18,7 @@ import { NavigationItemProps } from './components/NavigationItem'
 import { NavigationList } from './components/NavigationList'
 
 export const OVERVIEW_ROUTES: NavigationItemProps[] = [
-  { to: PageRoutes.HOME, icon: ShowcaseIcon, text: 'Showcase' },
+  { to: PageRoutes.MARKETPLACE, icon: ShowcaseIcon, text: 'Showcase' },
   { to: PageRoutes.COLLECTION, icon: CollectionIcon, text: 'My Collection' },
   { to: PageRoutes.SALES, icon: SalesIcon, text: 'Sales' },
   { to: PageRoutes.SCHEDULE, icon: ScheduleIcon, text: 'Schedule' },
