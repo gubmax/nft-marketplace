@@ -1,3 +1,5 @@
 import { useEffect, useLayoutEffect } from 'react'
 
-export const useEnhancedEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
+import { isBrowser } from '../helpers/environment'
+
+export const useEnhancedEffect = isBrowser ? useLayoutEffect : useEffect

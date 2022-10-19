@@ -15,6 +15,8 @@ export const selfStart = style({ alignSelf: 'flex-start' })
 export const justifyCenter = style({ justifyContent: 'center' })
 export const justifyAround = style({ justifyContent: 'space-around' })
 export const justifyBetween = style({ justifyContent: 'space-between' })
+export const flexGrow = style({ flexGrow: 1 })
+export const flexGrow0 = style({ flexGrow: 0 })
 export const flexShrink = style({ flexShrink: 1 })
 export const flexShrink0 = style({ flexShrink: 0 })
 
