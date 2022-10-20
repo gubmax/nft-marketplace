@@ -1,8 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/common/helpers/pxToRem'
-import { SCREEN_SIZES } from 'client/common/styles/constants/screen'
-import { dt } from 'client/common/styles/designTokens'
 
 const ASIDE_WIDTH = pxToRem(232)
 

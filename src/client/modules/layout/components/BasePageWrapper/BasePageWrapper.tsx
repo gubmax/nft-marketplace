@@ -9,9 +9,9 @@ type BasePageWrapperProps = ChildrenProp & StyledProps
 
 function BasePageWrapper({ className, style, children }: BasePageWrapperProps) {
   return (
-    <main className={cn(s.wrapper, a.mxAuto, className)} style={style}>
+    <div className={cn(s.wrapper, a.mxAuto, className)} style={style}>
       {children}
-    </main>
+    </div>
   )
 }
 
