@@ -8,7 +8,9 @@ import * as s from './Button.css'
 
 const loaderVariantByButtonVariant: Record<ButtonVariant, LoaderVariant> = {
   primary: 'light',
+  primaryLight: 'primary',
   outline: 'primary',
+  outlineLight: 'primary',
 }
 
 export type ButtonSize = 'sm' | 'md'

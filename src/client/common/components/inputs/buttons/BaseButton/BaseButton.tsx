@@ -4,7 +4,7 @@ import { cn } from 'client/common/helpers/classNames'
 import { AsProp, ChildrenProp, StyledProps } from 'client/common/typings'
 import * as s from './BaseButton.css'
 
-export type ButtonVariant = 'primary' | 'outline'
+export type ButtonVariant = 'primary' | 'primaryLight' | 'outline' | 'outlineLight'
 
 export type BaseButtonProps<T extends keyof JSX.IntrinsicElements> = {
   innerClassName?: string

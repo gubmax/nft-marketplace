@@ -22,14 +22,24 @@ export const tag = style([
 ])
 
 export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRule>>({
+  primary: {
+    border: 0,
+    background: dt.ref.gradients.accent,
+    color: dt.sys.color.dark.primary,
+  },
+  primaryLight: {
+    border: 0,
+    background: dt.sys.color.light.bg,
+    color: dt.sys.color.light.primary,
+  },
   outline: {
     border: `${dt.sys.border.width.s1} solid ${dt.ref.palette.accentLight}`,
     background: 'transparent',
     color: dt.ref.palette.accentLight,
   },
-  primary: {
-    border: 0,
-    background: dt.ref.gradients.accent,
+  outlineLight: {
+    border: `${dt.sys.border.width.s1} solid ${dt.sys.color.dark.primary}`,
+    background: 'transparent',
     color: dt.sys.color.dark.primary,
   },
 })

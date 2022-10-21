@@ -30,7 +30,7 @@ function AuthBanner({ className, style }: StyledProps) {
           <div className={cn(a.flex, a.mtAuto, a.gap4)}>
             <Button
               className={cn(s.button, a.wFull)}
-              variant="outline"
+              variant="outlineLight"
               onClick={navigateToSignInPage}
               onKeyPress={navigateToSignInPage}
             >
@@ -38,7 +38,7 @@ function AuthBanner({ className, style }: StyledProps) {
             </Button>
             <Button
               className={cn(s.button, a.wFull)}
-              variant="outline"
+              variant="primaryLight"
               onClick={navigateToSignUpPage}
               onKeyPress={navigateToSignUpPage}
             >
