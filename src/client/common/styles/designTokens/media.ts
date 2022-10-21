@@ -1,4 +1,4 @@
-import { SCREEN_SIZES } from '../constants/screen'
+import { SCREEN_SIZES } from './screen'
 
 export const media = {
   minWidth: {

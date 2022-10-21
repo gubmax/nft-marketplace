@@ -1,7 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/common/helpers/pxToRem'
-import { SCREEN_SIZES } from 'client/common/styles/constants/screen'
 import { dt } from 'client/common/styles/designTokens'
 
 export const header = style({
@@ -10,8 +9,8 @@ export const header = style({
 })
 
 export const wrapper = style({
-  minWidth: SCREEN_SIZES.tablet,
-  maxWidth: SCREEN_SIZES.desktop,
+  minWidth: dt.sys.screen.tablet,
+  maxWidth: dt.sys.screen.desktop,
   height: pxToRem(56),
   padding: `0 ${dt.sys.space.s5}`,
 })

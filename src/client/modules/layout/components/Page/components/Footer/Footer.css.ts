@@ -1,7 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/common/helpers/pxToRem'
-import { SCREEN_SIZES } from 'client/common/styles/constants/screen'
 import { dt } from 'client/common/styles/designTokens'
 
 const PADDING_HEIGHT = pxToRem(40)
@@ -18,8 +17,8 @@ export const footer = style({
 })
 
 export const wrapper = style({
-  minWidth: SCREEN_SIZES.tablet,
-  maxWidth: SCREEN_SIZES.desktop,
+  minWidth: dt.sys.screen.tablet,
+  maxWidth: dt.sys.screen.desktop,
   padding: `${PADDING_HEIGHT} ${dt.sys.space.s5} 0`,
 })
 

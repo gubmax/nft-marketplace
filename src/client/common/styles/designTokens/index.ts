@@ -1,4 +1,5 @@
 import { media } from './media'
+import { SCREEN_SIZES } from './screen'
 import * as comp from './components.css'
 import { gradients, palette } from './reference.css'
 import { system } from './system.css'
@@ -18,7 +19,7 @@ export const dt = {
    * Decisions and roles that give the design system its character,
    * from color and font, to elevation and shape.
    */
-  sys: { ...system, media },
+  sys: { ...system, media, screen: SCREEN_SIZES },
   /**
    * Component tokens.
    * The design attributes assigned to elements in a component.

@@ -1,7 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/common/helpers/pxToRem'
-import { SCREEN_SIZES } from 'client/common/styles/constants/screen'
 import { dt } from 'client/common/styles/designTokens'
 
 const PADDINT_TOP = pxToRem(100)
@@ -9,7 +8,7 @@ const PADDINT_TOP = pxToRem(100)
 export const wrapper = style({
   position: 'relative',
   minHeight: '100vh',
-  maxWidth: SCREEN_SIZES.desktop,
+  maxWidth: dt.sys.screen.desktop,
   padding: `0 ${dt.sys.space.s5} ${pxToRem(64)}`,
 })
 
