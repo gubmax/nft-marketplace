@@ -38,7 +38,7 @@ function AuthBanner({ className, style }: StyledProps) {
             </Button>
             <Button
               className={cn(s.button, a.wFull)}
-              variant="primaryLight"
+              variant="containedLight"
               onClick={navigateToSignUpPage}
               onKeyPress={navigateToSignUpPage}
             >

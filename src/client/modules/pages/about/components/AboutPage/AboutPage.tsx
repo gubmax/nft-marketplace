@@ -21,13 +21,19 @@ function About() {
       <div className={dt.comp.surface}>
         <p className={a.mb4}>The quick brown fox jumps over the lazy dog.</p>
         <div className={cn(a.flex, a.gap3, a.mb3)}>
-          <Button variant="primary">Primary</Button>
-          <Button variant="primary" loading>
+          <Button>Base</Button>
+          <Button loading>Loading</Button>
+          <IconButton>B</IconButton>
+          <Button className={a.wFull}>Base</Button>
+        </div>
+        <div className={cn(a.flex, a.gap3, a.mb3)}>
+          <Button variant="contained">Contained</Button>
+          <Button variant="contained" loading>
             Loading
           </Button>
-          <IconButton variant="primary">P</IconButton>
-          <Button className={a.wFull} variant="primary">
-            Primary
+          <IconButton variant="contained">C</IconButton>
+          <Button className={a.wFull} variant="contained">
+            Contained
           </Button>
         </div>
         <div className={cn(a.flex, a.gap3, a.mb4)}>

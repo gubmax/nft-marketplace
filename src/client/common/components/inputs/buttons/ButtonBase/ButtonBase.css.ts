@@ -1,7 +1,7 @@
 import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css'
 
 import { dt } from 'client/common/styles/designTokens'
-import { ButtonVariant } from './BaseButton'
+import { ButtonVariant } from './ButtonBase'
 
 export const wrapper = style({
   display: 'inline-block',
@@ -9,25 +9,32 @@ export const wrapper = style({
 
 export const tag = style([
   {
+    all: 'inherit',
     alignItems: 'center',
+    borderRadius: 'inherit',
     cursor: 'pointer',
     display: 'flex',
     fontFamily: 'inherit',
     fontSize: dt.sys.fontSize.body1,
     fontWeight: 500,
     justifyContent: 'center',
-    padding: `0 ${dt.sys.space.s3}`,
     width: '100%',
   },
 ])
 
+export const base = style({
+  transition: 'background 100ms ease',
+
+  ':active': { background: dt.ref.palette.accentDimm },
+})
+
 export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRule>>({
-  primary: {
+  contained: {
     border: 0,
     background: dt.ref.gradients.accent,
     color: dt.sys.color.dark.primary,
   },
-  primaryLight: {
+  containedLight: {
     border: 0,
     background: dt.sys.color.light.bg,
     color: dt.sys.color.light.primary,

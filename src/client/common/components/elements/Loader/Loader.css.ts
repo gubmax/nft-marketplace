@@ -25,7 +25,7 @@ export const loader = style({
 })
 
 export const loaderVariants = styleVariants<Record<LoaderVariant, ComplexStyleRule>>({
-  primary: {},
+  accent: {},
   light: {
     borderRightColor: dt.sys.color.dark.primary,
     borderLeftColor: dt.sys.color.dark.primary,

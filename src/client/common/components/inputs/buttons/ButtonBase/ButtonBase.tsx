@@ -2,11 +2,11 @@ import { ElementType, KeyboardEventHandler, MouseEventHandler } from 'react'
 
 import { cn } from 'client/common/helpers/classNames'
 import { AsProp, ChildrenProp, StyledProps } from 'client/common/typings'
-import * as s from './BaseButton.css'
+import * as s from './ButtonBase.css'
 
-export type ButtonVariant = 'primary' | 'primaryLight' | 'outline' | 'outlineLight'
+export type ButtonVariant = 'contained' | 'containedLight' | 'outline' | 'outlineLight'
 
-export type BaseButtonProps<T extends keyof JSX.IntrinsicElements> = {
+export type ButtonBaseProps<T extends keyof JSX.IntrinsicElements> = {
   innerClassName?: string
   variant?: ButtonVariant
   onClick?: MouseEventHandler
@@ -15,28 +15,25 @@ export type BaseButtonProps<T extends keyof JSX.IntrinsicElements> = {
   StyledProps &
   AsProp<T>
 
-function BaseButton<T extends keyof JSX.IntrinsicElements>({
+function ButtonBase<T extends keyof JSX.IntrinsicElements>({
   as: asProp,
   children,
   className,
   innerClassName,
   style,
-  variant = 'primary',
+  variant,
   ...rest
-}: BaseButtonProps<T>) {
+}: ButtonBaseProps<T>) {
   const Tag = (asProp as ElementType | undefined) ?? 'button'
+  const tagClassName = cn(s.tag, variant ? s.buttonVariants[variant] : s.base, innerClassName)
 
   return (
     <div className={cn(s.wrapper, className)} style={style}>
-      <Tag
-        className={cn(s.tag, s.buttonVariants[variant], innerClassName)}
-        tabIndex={asProp === 'a' ? 0 : undefined}
-        {...rest}
-      >
+      <Tag className={tagClassName} {...rest}>
         {children}
       </Tag>
     </div>
   )
 }
 
-export default BaseButton
+export default ButtonBase

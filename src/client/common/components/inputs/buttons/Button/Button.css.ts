@@ -21,5 +21,5 @@ export const loaderSizes = styleVariants<Record<ButtonSize, ComplexStyleRule>>({
 })
 
 export const inner = style({
-  borderRadius: dt.sys.border.radius.s2,
+  padding: `0 ${dt.sys.space.s3}`,
 })
