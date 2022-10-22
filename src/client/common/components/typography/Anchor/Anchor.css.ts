@@ -10,7 +10,7 @@ export const link = style({
   borderRadius: dt.sys.border.radius.s1,
   transition: 'color 100ms ease-out, borderColor 100ms ease-out',
 
-  ':focus': {
+  ':active': {
     color: dt.ref.palette.accent,
     borderColor: dt.ref.palette.accent,
   },

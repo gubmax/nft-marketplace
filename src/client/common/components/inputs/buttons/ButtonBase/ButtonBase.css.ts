@@ -38,6 +38,8 @@ export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRu
     border: 0,
     background: dt.sys.color.light.bg,
     color: dt.sys.color.light.primary,
+
+    ':focus-visible': { outlineColor: dt.sys.color.dark.primary },
   },
   outline: {
     border: `${dt.sys.border.width.s1} solid ${dt.ref.palette.accentLight}`,
@@ -48,5 +50,7 @@ export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRu
     border: `${dt.sys.border.width.s1} solid ${dt.sys.color.dark.primary}`,
     background: 'transparent',
     color: dt.sys.color.dark.primary,
+
+    ':focus-visible': { outlineColor: dt.sys.color.dark.primary },
   },
 })
