@@ -14,8 +14,7 @@ function Logo({ className, style }: StyledProps) {
       to={PageRoutes.HOME}
       style={style}
     >
-      <span className={s.highlight}>NFT</span>
-      <span>PLATFORM</span>
+      NFT PLATFORM
     </Link>
   )
 }
