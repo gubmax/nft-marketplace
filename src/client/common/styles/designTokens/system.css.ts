@@ -23,7 +23,7 @@ export const system = createGlobalTheme(':root', {
     h3: pxToRem(20),
     subtitle1: pxToRem(16),
     body1: pxToRem(14),
-    body2: pxToRem(13),
+    body2: pxToRem(12),
   },
   gradients: {
     light: lightGradients,

@@ -22,7 +22,8 @@ export const logo = style({
 export const link = style([
   dt.comp.typography.subtitle1,
   {
-    padding: `${dt.sys.space.s1} ${dt.sys.space.s3}`,
+    padding: `0 ${dt.sys.space.s3}`,
+    lineHeight: pxToRem(32),
     borderRadius: dt.sys.border.radius.s2,
 
     ':active': { color: dt.ref.palette.accent },

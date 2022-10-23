@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
 
 export const link = style([
@@ -11,6 +12,7 @@ export const link = style([
     backgroundImage: dt.ref.gradients.primary,
     borderRadius: dt.sys.border.radius.s2,
     fontWeight: 700,
-    padding: dt.sys.space.s2,
+    lineHeight: pxToRem(32),
+    padding: `0 ${dt.sys.space.s2}`,
   },
 ])

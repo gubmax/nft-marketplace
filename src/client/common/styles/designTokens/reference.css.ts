@@ -28,7 +28,7 @@ export const lightPalette = {
 
 export const darkPalette = {
   primary: '#f2f2f3',
-  secondary: '#919191',
+  secondary: '#858585',
   accent: '#646cff',
   accentLight: '#bcc0ff',
   accentDimm: '#646cff26',
