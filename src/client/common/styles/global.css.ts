@@ -1,8 +1,8 @@
 import { assignVars, globalStyle, keyframes } from '@vanilla-extract/css'
 
-import { pxToRem } from '../helpers/pxToRem'
-import { FONT_SIZE_DEFAULT } from './constants/font'
+import { FONT_SIZE_DEFAULT } from './constants'
 import { dt } from './designTokens'
+import { join, pxToRem } from './helpers'
 import {
   darkGradients,
   darkPalette,
@@ -65,7 +65,7 @@ globalStyle(':focus', {
 })
 
 globalStyle(':focus-visible', {
-  outline: `${pxToRem(3)} solid ${dt.ref.palette.accent}`,
+  outline: join(pxToRem(3), 'solid', dt.ref.palette.accent),
   outlineOffset: dt.sys.space.s1,
 })
 

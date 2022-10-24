@@ -1,12 +1,12 @@
 import { style } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
+import { join, pxToRem } from 'client/common/styles/helpers'
 
 export const wrapper = style({
   backgroundColor: '#7f53ac',
   backgroundImage: 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
-  padding: `${dt.sys.space.s4} ${dt.sys.space.s5}`,
+  padding: join(dt.sys.space.s4, dt.sys.space.s5),
   borderRadius: dt.sys.border.radius.s2,
 })
 

@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
+import { pxToRem } from 'client/common/styles/helpers'
 
 export const counter = style({
   background: dt.ref.gradients.accent,

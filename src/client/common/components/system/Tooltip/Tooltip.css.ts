@@ -1,6 +1,7 @@
 import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css'
 
 import { dt } from 'client/common/styles/designTokens'
+import { join } from 'client/common/styles/helpers'
 import { TooltipPositions } from './Tooltip'
 
 export const wrapper = style({ position: 'relative' })
@@ -13,7 +14,7 @@ export const tooltip = style([
     background: dt.ref.palette.secondary,
     borderRadius: dt.sys.border.radius.s1,
     color: dt.sys.color.dark.primary,
-    padding: `${dt.sys.space.s2} ${dt.sys.space.s3}`,
+    padding: join(dt.sys.space.s2, dt.sys.space.s3),
     pointerEvents: 'none',
     position: 'absolute',
     visibility: 'hidden',

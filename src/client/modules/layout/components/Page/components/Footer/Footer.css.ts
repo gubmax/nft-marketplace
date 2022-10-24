@@ -1,17 +1,17 @@
 import { style } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
+import { join, pxToRem } from 'client/common/styles/helpers'
 
 const PADDING_HEIGHT = pxToRem(40)
 
 export const footer = style({
   background: dt.ref.palette.surface,
-  borderTop: `${dt.sys.border.width.s1} solid ${dt.ref.palette.borderLight}`,
+  borderTop: join(dt.sys.border.width.s1, 'solid', dt.ref.palette.borderLight),
 
   '@media': {
     [dt.sys.media.maxWidth.mobile]: {
-      padding: `${PADDING_HEIGHT} ${dt.sys.space.s5}`,
+      padding: join(PADDING_HEIGHT, dt.sys.space.s5),
     },
   },
 })
@@ -19,7 +19,7 @@ export const footer = style({
 export const wrapper = style({
   minWidth: dt.sys.screen.tablet,
   maxWidth: dt.sys.screen.desktop,
-  padding: `${PADDING_HEIGHT} ${dt.sys.space.s5} 0`,
+  padding: join(PADDING_HEIGHT, dt.sys.space.s5, 0),
 })
 
 export const topSection = style({
@@ -47,7 +47,7 @@ export const description = style({
 export const bottomSection = style({
   marginTop: PADDING_HEIGHT,
   paddingTop: dt.sys.space.s4,
-  borderTop: `${dt.sys.border.width.s1} solid ${dt.ref.palette.border}`,
+  borderTop: join(dt.sys.border.width.s1, 'solid', dt.ref.palette.border),
 
   '@media': {
     [dt.sys.media.maxWidth.mobile]: {

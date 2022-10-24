@@ -1,7 +1,7 @@
 import { ElementType } from 'react'
 
 import { cn } from 'client/common/helpers/classNames'
-import { pxToRem } from 'client/common/helpers/pxToRem'
+import { pxToRem } from 'client/common/styles/helpers'
 import { StyledProps } from 'client/common/typings'
 import { iconSizeStyles, iconStateStyles } from './withIcon.css'
 

@@ -1,7 +1,7 @@
 import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
+import { join, pxToRem } from 'client/common/styles/helpers'
 import { ButtonSize } from './Button'
 
 export const wrapper = style({
@@ -21,5 +21,5 @@ export const loaderSizes = styleVariants<Record<ButtonSize, ComplexStyleRule>>({
 })
 
 export const inner = style({
-  padding: `0 ${dt.sys.space.s3}`,
+  padding: join(0, dt.sys.space.s3),
 })

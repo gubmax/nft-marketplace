@@ -1,6 +1,6 @@
 import { createGlobalTheme } from '@vanilla-extract/css'
 
-import { pxToRem } from '../../helpers/pxToRem'
+import { pxToRem } from '../helpers'
 import { darkGradients, darkPalette, lightGradients, lightPalette } from './reference.css'
 
 export const system = createGlobalTheme(':root', {

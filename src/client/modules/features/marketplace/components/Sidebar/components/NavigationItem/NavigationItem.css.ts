@@ -1,13 +1,13 @@
 import { style } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
+import { join, pxToRem } from 'client/common/styles/helpers'
 
 export const wrapper = style({
   display: 'flex',
   alignItems: 'center',
   height: pxToRem(40),
-  padding: `0 ${dt.sys.space.s2}`,
+  padding: join(0, dt.sys.space.s2),
   whiteSpace: 'nowrap',
   color: dt.ref.palette.secondary,
   fontWeight: 500,

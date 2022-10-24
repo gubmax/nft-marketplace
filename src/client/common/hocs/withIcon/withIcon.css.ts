@@ -1,7 +1,7 @@
 import { ComplexStyleRule, styleVariants } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
+import { pxToRem } from 'client/common/styles/helpers'
 import { IconVariant } from './withIcon'
 
 // State

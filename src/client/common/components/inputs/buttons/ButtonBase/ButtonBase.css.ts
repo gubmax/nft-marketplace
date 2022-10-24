@@ -1,6 +1,7 @@
 import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css'
 
 import { dt } from 'client/common/styles/designTokens'
+import { join } from 'client/common/styles/helpers'
 import { ButtonVariant } from './ButtonBase'
 
 export const wrapper = style({
@@ -42,12 +43,12 @@ export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRu
     ':focus-visible': { outlineColor: dt.sys.color.dark.primary },
   },
   outline: {
-    border: `${dt.sys.border.width.s1} solid ${dt.ref.palette.accentLight}`,
+    border: join(dt.sys.border.width.s1, 'solid', dt.ref.palette.accentLight),
     background: 'transparent',
     color: dt.ref.palette.accentLight,
   },
   outlineLight: {
-    border: `${dt.sys.border.width.s1} solid ${dt.sys.color.dark.primary}`,
+    border: join(dt.sys.border.width.s1, 'solid', dt.sys.color.dark.primary),
     background: 'transparent',
     color: dt.sys.color.dark.primary,
 

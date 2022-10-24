@@ -1,7 +1,7 @@
 import { ComplexStyleRule, keyframes, style, styleVariants } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
 import { dt } from 'client/common/styles/designTokens'
+import { join, pxToRem } from 'client/common/styles/helpers'
 import { LoaderSize, LoaderVariant } from './Loader'
 
 const spin = keyframes({
@@ -13,9 +13,9 @@ export const spinner = style({
   boxSizing: 'border-box',
   margin: 'auto',
   borderStyle: 'solid',
-  borderColor: `transparent ${dt.ref.palette.accentLight}`,
+  borderColor: join('transparent', dt.ref.palette.accentLight),
   borderRadius: '50%',
-  animation: `${spin} 0.65s infinite linear`,
+  animation: join(spin, '0.65s', 'infinite', 'linear'),
 })
 
 export const loader = style({

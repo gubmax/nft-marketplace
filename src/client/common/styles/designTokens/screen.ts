@@ -1,4 +1,4 @@
-import { pxToRem } from 'client/common/helpers/pxToRem'
+import { pxToRem } from 'client/common/styles/helpers'
 
 export const SCREEN_SIZES = {
   min: pxToRem(320),

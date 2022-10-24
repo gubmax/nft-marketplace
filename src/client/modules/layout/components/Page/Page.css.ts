@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
+import { pxToRem } from 'client/common/styles/helpers'
 
 const ASIDE_WIDTH = pxToRem(232)
 

@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
+import { pxToRem } from 'client/common/styles/helpers'
 
 export const rounded = style({
   borderRadius: '50%',

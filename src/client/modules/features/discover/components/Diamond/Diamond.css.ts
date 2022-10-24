@@ -1,6 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css'
 
-import { pxToRem } from 'client/common/helpers/pxToRem'
+import { join, pxToRem } from 'client/common/styles/helpers'
 
 const WIDTH_PYRAMID = pxToRem(120)
 const WIDTH_TRANSFORM = pxToRem(60)
@@ -32,7 +32,7 @@ export const pyramid = style([
   pyramidBase,
   {
     top: pxToRem(-16),
-    animation: `${pyramidRotate} ${ANIMATION_DURATION} linear infinite`,
+    animation: join(pyramidRotate, ANIMATION_DURATION, 'inear', 'infinite'),
   },
 ])
 
@@ -45,7 +45,7 @@ export const pyramidBottom = style([
   pyramidBase,
   {
     top: pxToRem(20),
-    animation: `${pyramidBottomRotate} ${ANIMATION_DURATION} linear infinite`,
+    animation: join(pyramidBottomRotate, ANIMATION_DURATION, 'linear', 'infinite'),
   },
 ])
 
