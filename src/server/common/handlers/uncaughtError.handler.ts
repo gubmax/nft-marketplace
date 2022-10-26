@@ -1,7 +1,19 @@
 import { FastifyInstance } from 'fastify'
 
-export function useUncaughtErrorHandler(server: FastifyInstance): void {
+import { LoggerService } from 'server/modules/logger/logger.service'
+
+interface UncaughtErrorHandlerOptions {
+  loggerService: LoggerService
+}
+
+export function useUncaughtErrorHandler(
+  server: FastifyInstance,
+  options: UncaughtErrorHandlerOptions,
+): void {
+  const { logger } = options.loggerService
+
   server.setErrorHandler((error, req, res) => {
-    void res.status(500).header('Content-Type', 'text/html').send('<div>UNCAUGHT_ERROR</div>')
+    logger.error(error, 'Uncaught error')
+    void res.status(500).type('text/html').send('<div>UNCAUGHT_ERROR</div>')
   })
 }

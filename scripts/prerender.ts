@@ -20,7 +20,6 @@ console.log(`${pc.cyan('pre-render script')} ${pc.green('generating HTML files..
 const read = (path: string) => readFileSync(new URL(path, import.meta.url), 'utf-8')
 const write = (path: string, data: string) => writeFileSync(new URL(path, import.meta.url), data)
 
-const prerenderedHtml: string[] = []
 const template = read('../dist/client/src/client/index.html')
 const manifest = JSON.parse(read('../dist/client/manifest.json')) as Manifest
 
@@ -28,9 +27,11 @@ const manifest = JSON.parse(read('../dist/client/manifest.json')) as Manifest
 // @ts-expect-error
 const { render } = (await import('../dist/server/server.entry.js')) as { render: RenderFn }
 
+const pages: typeof PAGES_CONFIG = { ...PAGES_CONFIG, '*': { name: 'not-found' } }
+
 // Pre-render each app page...
-for (const url in PAGES_CONFIG) {
-  const pageConfig = PAGES_CONFIG[url]
+for (const url in pages) {
+  const pageConfig = pages[url]
 
   assert(pageConfig, `Page config for url "${url}" not found`)
 
@@ -48,8 +49,6 @@ for (const url in PAGES_CONFIG) {
 
   const fileName = `${pageConfig.name}.html`
   write(`../dist/client/${fileName}`, html)
-
-  prerenderedHtml.push(fileName)
 
   console.log(`${pc.dim('dist/client/')}${pc.green(`${fileName}`)}`)
 }

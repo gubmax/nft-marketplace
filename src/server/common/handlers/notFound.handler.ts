@@ -1,7 +1,23 @@
+import { createReadStream } from 'node:fs'
+
 import { FastifyInstance } from 'fastify'
 
-export function useNotFoundHandler(server: FastifyInstance) {
+import { ConfigService } from 'server/modules/config/config.service'
+import { RenderService } from 'server/modules/render/render.service'
+
+interface NotFoundHandlerOptions {
+  configService: ConfigService
+  renderService: RenderService
+}
+
+export function useNotFoundHandler(server: FastifyInstance, options: NotFoundHandlerOptions) {
+  const { configService, renderService } = options
+
   server.setNotFoundHandler(async (req, res) => {
-    void res.status(404).header('Content-Type', 'text/html').send('<div>NOT_FOUND</div>')
+    const payload = configService.env.isProd
+      ? createReadStream(new URL('../client/not-found.html', import.meta.url), 'utf-8')
+      : await renderService.render({ url: req.url })
+
+    return res.status(404).type('text/html').send(payload)
   })
 }

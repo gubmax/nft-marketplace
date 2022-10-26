@@ -24,7 +24,7 @@ export function useRenderController(
 
       const html = await renderService.render({ url: req.url })
 
-      return res.status(200).header('Content-Type', 'text/html').send(html)
+      return res.status(200).type('text/html').send(html)
     } catch (error) {
       console.error(error)
       return res.status(500).send(error)
