@@ -32,7 +32,7 @@ export const pyramid = style([
   pyramidBase,
   {
     top: pxToRem(-16),
-    animation: join(pyramidRotate, ANIMATION_DURATION, 'inear', 'infinite'),
+    animation: join(pyramidRotate, ANIMATION_DURATION, 'linear', 'infinite'),
   },
 ])
 
