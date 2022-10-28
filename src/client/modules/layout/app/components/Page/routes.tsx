@@ -2,7 +2,7 @@ import { RouteObject } from 'react-router-dom'
 
 import { PageRoutes } from 'client/common/constants'
 import { AboutPage } from 'client/modules/pages/about'
-import { CollectionPage } from 'client/modules/pages/collections'
+import { CollectionPage } from 'client/modules/pages/collection'
 import { HomePage } from 'client/modules/pages/home'
 import { MarketplacePage } from 'client/modules/pages/marketplace'
 import { NotFoundPage } from 'client/modules/pages/notFound'

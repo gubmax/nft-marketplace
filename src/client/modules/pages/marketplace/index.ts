@@ -1,1 +1,1 @@
-export * from './components/MarketplacePage'
+export { default as MarketplacePage } from './Marketplace.page'

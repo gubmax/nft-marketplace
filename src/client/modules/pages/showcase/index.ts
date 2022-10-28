@@ -1,1 +1,1 @@
-export { default as ShowcasePage } from './components/ShowcasePage'
+export { default as ShowcasePage } from './Showcase.page'
