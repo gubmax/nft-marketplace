@@ -1,14 +1,17 @@
 import { memo } from 'react'
 
-import { useDocumentTitle } from 'client/common/hooks/useDocumentTitle'
 import { Marketplace } from 'client/modules/features/marketplace'
-
-const PAGE_TITLE = 'Marketplace'
+import { Head, Title } from 'client/modules/head'
 
 function MarketplacePage() {
-  useDocumentTitle(PAGE_TITLE)
-
-  return <Marketplace />
+  return (
+    <>
+      <Head>
+        <Title prefix="Marketplace" />
+      </Head>
+      <Marketplace />
+    </>
+  )
 }
 
 export default memo(MarketplacePage)

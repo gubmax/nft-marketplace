@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import pc from 'picocolors'
 import { Manifest } from 'vite'
 
+import { HeadExtractor } from 'server/common/utils/headExtractor'
 import { PAGES_CONFIG } from '../src/server/config/pages.config'
 import { AssetCollectorService } from '../src/server/modules/assetCollector/assetCollector.service'
 import { RenderFn } from '../src/server/modules/render/render.service'
@@ -23,11 +24,11 @@ const write = (path: string, data: string) => writeFileSync(new URL(path, import
 const template = read('../dist/client/src/client/index.html')
 const manifest = JSON.parse(read('../dist/client/manifest.json')) as Manifest
 
+const pages: typeof PAGES_CONFIG = { ...PAGES_CONFIG, '/*': { name: 'not-found' } }
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 const { render } = (await import('../dist/server/server.entry.js')) as { render: RenderFn }
-
-const pages: typeof PAGES_CONFIG = { ...PAGES_CONFIG, '*': { name: 'not-found' } }
 
 // Pre-render each app page...
 for (const url in pages) {
@@ -35,7 +36,9 @@ for (const url in pages) {
 
   assert(pageConfig, `Page config for url "${url}" not found`)
 
-  const appHtml = await render({ url })
+  const headExtractor = new HeadExtractor()
+  const appHtml = await render({ url, headExtractor })
+  const headTags = headExtractor.renderStatic()
 
   const assetCollectorService = new AssetCollectorService()
   const preloadLinks = assetCollectorService.collectPreloadLinksByManifest(
@@ -44,7 +47,7 @@ for (const url in pages) {
   )
 
   const html = template
-    .replace('<!--preload-links-->', preloadLinks)
+    .replace('<!--head-->', `${headTags}${preloadLinks}`)
     .replace('<!--app-html-->', appHtml)
 
   const fileName = `${pageConfig.name}.html`

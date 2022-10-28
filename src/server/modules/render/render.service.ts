@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs'
 import { FastifyInstance } from 'fastify'
 import { Manifest, ViteDevServer } from 'vite'
 
+import { HeadExtractor } from 'server/common/utils/headExtractor'
 import { PAGES_CONFIG } from 'server/config/pages.config'
 import { VITE_DEV_SERVER_CONFIG } from 'server/config/viteDevServer.config'
 import { AssetCollectorService } from '../assetCollector/assetCollector.service'
@@ -11,6 +12,7 @@ import { ConfigService } from '../config/config.service'
 
 interface RenderOptions {
   url: string
+  headExtractor: HeadExtractor
 }
 
 export type RenderFn = (options: RenderOptions) => Promise<string>
@@ -38,7 +40,7 @@ export class RenderService {
 
   // Public
 
-  async render({ url }: RenderOptions): Promise<string> {
+  async render({ url }: { url: string }): Promise<string> {
     const { isProd } = this.configService.env
     let preloadLinks: string
 
@@ -79,9 +81,12 @@ export class RenderService {
         preloadLinks = this.assetCollectorService.collectPreloadLinksByModule(mod)
       }
 
-      const appHtml = await render({ url })
+      const headExtractor = new HeadExtractor()
+      const appHtml = await render({ url, headExtractor })
+      const headTags = headExtractor.renderStatic()
+
       const html = template
-        .replace('<!--preload-links-->', preloadLinks)
+        .replace('<!--head-->', `${headTags}${preloadLinks}`)
         .replace('<!--app-html-->', appHtml)
 
       return html

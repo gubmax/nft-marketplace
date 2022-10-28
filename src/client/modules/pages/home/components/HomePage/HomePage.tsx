@@ -1,17 +1,20 @@
 import { memo } from 'react'
 
-import { useDocumentTitle } from 'client/common/hooks/useDocumentTitle'
 import { Discover } from 'client/modules/features/discover'
+import { Head, Title } from 'client/modules/head'
 import { BasePageWrapper } from 'client/modules/layout/components/BasePageWrapper'
 
-function Home() {
-  useDocumentTitle()
-
+function HomePage() {
   return (
-    <BasePageWrapper>
-      <Discover />
-    </BasePageWrapper>
+    <>
+      <Head>
+        <Title />
+      </Head>
+      <BasePageWrapper>
+        <Discover />
+      </BasePageWrapper>
+    </>
   )
 }
 
-export default memo(Home)
+export default memo(HomePage)
