@@ -14,7 +14,7 @@ function Marketplace() {
       <div className={s.aside}>
         <Sidebar className={cn(s.sidebar, a.flexShrink0)} />
       </div>
-      <div className={a.wFull}>{element}</div>
+      <div className={cn(s.content, a.wFull)}>{element}</div>
     </div>
   )
 }

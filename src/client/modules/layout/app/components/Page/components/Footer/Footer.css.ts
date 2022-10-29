@@ -32,7 +32,7 @@ export const topSection = style({
 
 export const description = style({
   width: pxToRem(480),
-  paddingRight: dt.sys.space.s4,
+  paddingRight: dt.sys.space.s5,
 
   '@media': {
     [dt.sys.media.maxWidth.tablet]: {

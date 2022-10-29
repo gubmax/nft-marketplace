@@ -1,99 +1,118 @@
 import { keyframes, style } from '@vanilla-extract/css'
 
+import { dt } from 'client/common/styles/designTokens'
 import { join, pxToRem } from 'client/common/styles/helpers'
 
-const WIDTH_PYRAMID = pxToRem(120)
-const WIDTH_TRANSFORM = pxToRem(60)
-const ANIMATION_DURATION = '8s'
+const ANIMATION_DURATION = 4000
 
 export const container = style({
-  width: pxToRem(180),
-  height: pxToRem(204),
-  display: 'flex',
   alignItems: 'center',
+  display: 'flex',
   flexDirection: 'column',
-  perspective: '400px',
-  perspectiveOrigin: 'top',
-})
-
-const pyramidBase = style({
+  justifyContent: 'center',
   position: 'relative',
-  width: WIDTH_PYRAMID,
-  height: WIDTH_PYRAMID,
-  transformStyle: 'preserve-3d',
+  width: pxToRem(100),
+  perspective: pxToRem(400),
+  perspectiveOrigin: '50% 40%',
 })
 
-const pyramidRotate = keyframes({
-  from: { transform: 'rotateY(0deg)' },
-  to: { transform: 'rotateY(360deg)' },
+export const pyramid = style({
+  position: 'relative',
+  width: pxToRem(100),
+  height: pxToRem(200),
 })
 
-export const pyramid = style([
-  pyramidBase,
-  {
-    top: pxToRem(-16),
-    animation: join(pyramidRotate, ANIMATION_DURATION, 'linear', 'infinite'),
+const spin = keyframes({
+  '0%': { transform: 'rotateY(0deg) rotateX(30deg)', borderBottomColor: '#7a90f0' },
+  // borderBottomColor: 'lighten($color, 5%)',
+  '25%': { transform: 'rotateY(90deg) rotateX(30deg)', borderBottomColor: '#4c69eb', opacity: 1 },
+  // borderBottomColor: 'darken($color, 5%)',
+  '25.1%': { opacity: 0 },
+  '50%': { transform: 'rotateY(180deg) rotateX(30deg)', borderBottomColor: '#3e5eea' },
+  // borderBottomColor: 'darken($color, 12%)',
+  '74.9%': { opacity: 0 },
+  '75%': { transform: 'rotateY(270deg) rotateX(30deg)', borderBottomColor: '#3e5eea', opacity: 1 },
+  // borderBottomColor: 'darken($color, 15%)',
+  '100%': { transform: 'rotateY(360deg) rotateX(30deg)', borderBottomColor: '#7a90f0' },
+  // borderBottomColor: 'lighten($color, 5%)',
+})
+
+const spinBottom = keyframes({
+  '0%': {
+    transform: 'rotateZ(-180deg) rotateY(0deg) rotateX(30deg)',
+    borderBottomColor: '#7a90f0',
   },
-])
-
-const pyramidBottomRotate = keyframes({
-  from: { transform: 'rotateZ(180deg) rotateY(360deg)' },
-  to: { transform: 'rotateZ(180deg) rotateY(0deg)' },
+  // borderBottomColor: 'lighten($color, 5%)',
+  '25%': {
+    transform: 'rotateZ(-180deg) rotateY(90deg) rotateX(30deg)',
+    borderBottomColor: '#4c69eb',
+    opacity: 1,
+  },
+  // borderBottomColor: 'darken($color, 5%)',
+  '25.1%': { opacity: 0 },
+  '50%': {
+    transform: 'rotateZ(-180deg) rotateY(180deg) rotateX(30deg)',
+    borderBottomColor: '#3e5eea',
+  },
+  // borderBottomColor: 'darken($color, 12%)',
+  '74.9%': { opacity: 0 },
+  '75%': {
+    transform: 'rotateZ(-180deg) rotateY(270deg) rotateX(30deg)',
+    borderBottomColor: '#3e5eea',
+    opacity: 1,
+  },
+  // borderBottomColor: 'darken($color, 15%)',
+  '100%': {
+    transform: 'rotateZ(-180deg) rotateY(360deg) rotateX(30deg)',
+    borderBottomColor: '#7a90f0',
+  },
+  // borderBottomColor: 'lighten($color, 5%)',
 })
 
-export const pyramidBottom = style([
-  pyramidBase,
-  {
-    top: pxToRem(20),
-    animation: join(pyramidBottomRotate, ANIMATION_DURATION, 'linear', 'infinite'),
-  },
-])
-
-const side = style({
+export const side = style({
   position: 'absolute',
-  borderLeft: `${WIDTH_TRANSFORM} solid transparent`,
-  borderRight: `${WIDTH_TRANSFORM} solid transparent`,
-  borderBottom: `${WIDTH_PYRAMID} solid #647dee`,
-  opacity: '0.3',
+  left: 0,
+  width: 0,
+  height: 0,
+  borderLeft: join(pxToRem(58), 'solid', 'transparent'),
+  borderRight: join(pxToRem(58), 'solid', 'transparent'),
+  borderBottom: join(pxToRem(110), 'solid', '#647dee'),
+  transformOrigin: '50% 0',
 })
 
-export const front = style([
+export const sideTop = style([
   side,
   {
-    transform: `translateZ(${WIDTH_TRANSFORM}) rotateX(30deg)`,
-    transformOrigin: '0 100%',
-    borderBottomColor: '#7f53ac',
+    top: 0,
+    animation: join(spin, `${ANIMATION_DURATION}ms`, 'infinite', 'linear'),
   },
 ])
 
-export const back = style([
+export const sideBottom = style([
   side,
   {
-    transform: `translateZ(-${WIDTH_TRANSFORM}) rotateX(-30deg)`,
-    transformOrigin: '0 100%',
+    bottom: '-50%',
+    animation: join(spinBottom, `${ANIMATION_DURATION}ms`, 'infinite', 'linear', 'reverse'),
   },
 ])
 
-export const left = style([
-  side,
-  {
-    transform: `translateX(-${WIDTH_TRANSFORM}) rotateZ(30deg) rotateY(90deg)`,
-    transformOrigin: '50% 100%',
-  },
-])
+export const left = style({ animationDelay: `${-Math.floor(ANIMATION_DURATION * 0.75)}ms` })
+export const back = style({ animationDelay: `${-Math.floor(ANIMATION_DURATION / 2)}ms` })
+export const right = style({ animationDelay: `${-Math.floor(ANIMATION_DURATION / 4)}ms` })
 
-export const right = style([
-  side,
-  {
-    transform: `translateX(${WIDTH_TRANSFORM}) rotateZ(-30deg) rotateY(90deg)`,
-    transformOrigin: '50% 100%',
-  },
-])
+export const highlight = style({
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  background: dt.ref.gradients.accent,
+  transform: 'rotate(45deg)',
+  filter: `blur(${pxToRem(50)})`,
 
-export const bottom = style({
-  width: WIDTH_PYRAMID,
-  height: WIDTH_PYRAMID,
-  transform: `translateX(-${WIDTH_TRANSFORM}) rotateZ(90deg) rotateY(90deg)`,
-  transformOrigin: '50% 100%',
-  background: '#7f53ac',
+  '@media': {
+    [dt.sys.media.prefersColorScheme.dark]: {
+      width: '150%',
+      height: '150%',
+      filter: `blur(${pxToRem(150)})`,
+    },
+  },
 })

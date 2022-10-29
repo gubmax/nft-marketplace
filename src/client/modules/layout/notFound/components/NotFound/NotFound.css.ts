@@ -28,11 +28,8 @@ export const bgText = style({
 
 export const title = style([
   dt.comp.typography.h1,
+  dt.comp.highlight,
   {
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-    backgroundImage: dt.ref.gradients.primary,
     display: 'block',
     fontWeight: 700,
   },

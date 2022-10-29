@@ -15,5 +15,6 @@ export const wrapper = style({
 
 export const wrapperActive = style({
   background: dt.ref.palette.surface,
+  boxShadow: join('inset', 0, 0, 0, dt.sys.border.width.s1, dt.ref.palette.borderLight),
   color: dt.ref.palette.primary,
 })

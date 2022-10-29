@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css'
 import { dt } from 'client/common/styles/designTokens'
 import { join, pxToRem } from 'client/common/styles/helpers'
 
-const PADDINT_TOP = pxToRem(100)
+const PADDINT_TOP = pxToRem(112)
 
 export const wrapper = style({
   position: 'relative',
@@ -22,4 +22,8 @@ export const sidebar = style({
   position: 'sticky',
   top: PADDINT_TOP,
   width: pxToRem(232),
+})
+
+export const content = style({
+  paddingTop: PADDINT_TOP,
 })

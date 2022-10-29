@@ -8,9 +8,9 @@ import * as s from './LinkGroup.css'
 
 function LinkGroup() {
   return (
-    <div className={cn(a.flex, a.justifyAround, a.flexWrap, a.wFull)}>
+    <div className={cn(a.flex, a.justifyAround, a.flexWrap, a.gap5, a.wFull)}>
       {links.map(({ title, items }, i) => (
-        <ul key={i} className={cn(s.column, a.flex, a.flexCol, a.gap5, a.mr5, a.mb5)}>
+        <ul key={i} className={cn(s.column, a.flex, a.flexCol, a.gap5)}>
           <span className={s.title}>{title}</span>
           {items.map(({ text, link }, j) => (
             <li key={j} className={s.link}>

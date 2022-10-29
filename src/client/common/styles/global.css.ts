@@ -66,7 +66,7 @@ globalStyle(':focus', {
 
 globalStyle(':focus-visible', {
   outline: join(pxToRem(3), 'solid', dt.ref.palette.accent),
-  outlineOffset: dt.sys.space.s1,
+  outlineOffset: pxToRem(3),
 })
 
 const autofill = keyframes({

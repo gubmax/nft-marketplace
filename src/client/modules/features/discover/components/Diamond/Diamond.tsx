@@ -7,18 +7,16 @@ import * as s from './Diamond.css'
 function Diamond({ className, style }: StyledProps) {
   return (
     <div className={cn(s.container, className)} style={style}>
+      <div className={s.highlight} />
       <div className={s.pyramid}>
-        <div className={s.front} />
-        <div className={s.back} />
-        <div className={s.left} />
-        <div className={s.right} />
-        <div className={s.bottom} />
-      </div>
-      <div className={s.pyramidBottom}>
-        <div className={s.front} />
-        <div className={s.back} />
-        <div className={s.left} />
-        <div className={s.right} />
+        <div className={cn(s.sideTop, s.left)} />
+        <div className={s.sideTop} />
+        <div className={cn(s.sideTop, s.right)} />
+        <div className={cn(s.sideTop, s.back)} />
+        <div className={cn(s.sideBottom, s.left)} />
+        <div className={cn(s.sideBottom)} />
+        <div className={cn(s.sideBottom, s.right)} />
+        <div className={cn(s.sideBottom, s.back)} />
       </div>
     </div>
   )

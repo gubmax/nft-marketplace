@@ -17,7 +17,7 @@ export const content = style({
 })
 
 export const title = style({
-  fontSize: pxToRem(40),
+  fontSize: pxToRem(38),
   color: dt.sys.color.dark.primary,
 })
 

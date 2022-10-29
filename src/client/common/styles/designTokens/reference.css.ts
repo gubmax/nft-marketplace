@@ -23,7 +23,7 @@ export const lightPalette = {
   bg: '#f7f7f7',
   surface: '#ffffff',
   border: '#ededed',
-  borderLight: '#f2f2f2',
+  borderLight: '#f0f0f0',
 }
 
 export const darkPalette = {
