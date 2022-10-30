@@ -1,5 +1,6 @@
 import { media } from './media'
 import { SCREEN_SIZES } from './screen'
+import { glass } from './components/glass.css'
 import { surface } from './components/surface.css'
 import * as typography from './components/typography.css'
 import { gradients, palette } from './reference.css'
@@ -25,5 +26,5 @@ export const dt = {
    * Component tokens.
    * The design attributes assigned to elements in a component.
    */
-  comp: { surface, typography },
+  comp: { glass, surface, typography },
 } as const

@@ -3,10 +3,12 @@ import { style } from '@vanilla-extract/css'
 import { dt } from 'client/common/styles/designTokens'
 import { join, negative, pxToRem } from 'client/common/styles/helpers'
 
-export const header = style({
-  background: dt.ref.palette.surface,
-  borderBottom: join(dt.sys.border.width.s1, 'solid', dt.ref.palette.borderLight),
-})
+export const header = style([
+  dt.comp.glass,
+  {
+    borderBottom: join(dt.sys.border.width.s1, 'solid', dt.ref.palette.borderLight),
+  },
+])
 
 export const wrapper = style({
   minWidth: dt.sys.screen.tablet,
