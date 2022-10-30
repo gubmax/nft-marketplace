@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
 import { dt } from 'client/common/styles/designTokens'
+import { pxToRem } from 'client/common/styles/helpers'
 
 export const wrapper = style({
   height: '100vh',
@@ -9,28 +10,38 @@ export const wrapper = style({
   overflow: 'hidden',
 })
 
-export const bgText = style({
+export const bgText = style([
+  dt.comp.typography.highlight,
+  {
+    fontSize: '20vw',
+    marginBottom: pxToRem(64),
+    position: 'relative',
+    transform: 'rotate(4deg)',
+    fontWeight: 700,
+    zIndex: -1,
+  },
+])
+
+export const highlight = style({
   position: 'absolute',
-  top: '50%',
-  fontSize: '45vw',
-  fontWeight: 900,
-  color: dt.ref.palette.borderLight,
+  width: '40vw',
+  height: pxToRem(100),
+  background: dt.ref.gradients.primary,
+  filter: `blur(${pxToRem(100)})`,
   zIndex: -1,
-  transform: 'rotate(4deg) translateY(-50%)',
 
   '@media': {
-    [dt.sys.media.maxWidth.tablet]: {
-      position: 'unset',
-      transform: 'rotate(4deg)',
+    [dt.sys.media.prefersColorScheme.dark]: {
+      height: pxToRem(100),
+      filter: `blur(${pxToRem(140)})`,
     },
   },
 })
 
-export const title = style([
-  dt.comp.typography.h1,
-  dt.comp.highlight,
+export const description = style([
+  dt.comp.typography.h3,
   {
-    display: 'block',
-    fontWeight: 700,
+    textAlign: 'center',
+    color: dt.ref.palette.secondary,
   },
 ])

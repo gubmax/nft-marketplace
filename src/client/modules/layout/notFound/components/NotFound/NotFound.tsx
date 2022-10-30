@@ -13,9 +13,14 @@ function NotFound() {
 
   return (
     <section className={cn(s.wrapper, a.flex, a.flexCol, a.justifyCenter, a.itemsCenter)}>
-      <span className={s.bgText}>404</span>
-      <span className={cn(s.title, a.mb2)}>Ooops...</span>
-      <h1 className={cn(dt.comp.typography.h1, a.mb5)}>Page Not Found</h1>
+      <div className={cn(s.bgText, a.flex, a.justifyCenter, a.itemsCenter)}>
+        <div className={s.highlight} />
+        <span>404</span>
+      </div>
+      <h1 className={cn(dt.comp.typography.h1, a.mb4)}>Whoops! Page Not Found.</h1>
+      <span className={cn(s.description, a.mb5)}>
+        The link you followed may be broken, or the page may have been removed.
+      </span>
       <Button as="a" variant="contained" href={PageRoutes.HOME} onClick={navigateToHome}>
         Go home
       </Button>
