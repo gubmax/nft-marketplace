@@ -3,18 +3,15 @@ import { style } from '@vanilla-extract/css'
 import { dt } from 'client/common/styles/designTokens'
 import { join, negative, pxToRem } from 'client/common/styles/helpers'
 
-export const header = style([
-  dt.comp.glass,
-  {
-    borderBottom: join(dt.sys.border.width.s1, 'solid', dt.ref.palette.borderLight),
-  },
-])
-
 export const wrapper = style({
   minWidth: dt.sys.screen.tablet,
   maxWidth: dt.sys.screen.desktop,
-  height: pxToRem(56),
   padding: join(0, dt.sys.space.s5),
+})
+
+export const nav = style({
+  height: pxToRem(56),
+  borderBottom: join(dt.sys.border.width.s1, 'solid', dt.ref.palette.borderLight),
 })
 
 export const logo = style({
