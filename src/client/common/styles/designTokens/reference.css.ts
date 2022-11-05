@@ -16,16 +16,16 @@ export const palette = createThemeContract({
 })
 
 export const lightPalette = {
-  primary: '#0c0c0d',
+  primary: '#1c1b1f',
   secondary: '#666666',
   accent: '#646cff',
   accentLight: '#454ce1',
   accentDimm: '#646cff26',
-  bg: '#f7f7f7',
-  glass: '#f7f7f7d9',
-  surface: '#ffffff',
-  border: '#ededed',
-  borderLight: '#f0f0f0',
+  bg: '#ffffff',
+  glass: '#ffffffd9',
+  surface: '#f3f2f8',
+  border: '#e4e1ef',
+  borderLight: '#f0eef6',
 }
 
 export const darkPalette = {
@@ -34,11 +34,11 @@ export const darkPalette = {
   accent: '#646cff',
   accentLight: '#bcc0ff',
   accentDimm: '#646cff26',
-  bg: '#171819',
-  glass: '#171819d9',
-  surface: '#202123',
-  border: '#2c2e30',
-  borderLight: '#252628',
+  bg: '#1c1b1f',
+  glass: '#1c1b1fd9',
+  surface: '#24232a',
+  border: '#33313a',
+  borderLight: '#27252c',
 }
 
 // Gradients
