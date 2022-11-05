@@ -11,6 +11,17 @@ export const wrapper = style({
   whiteSpace: 'nowrap',
   color: dt.ref.palette.secondary,
   fontWeight: 500,
+  transition: 'background 100ms ease-out, boxShadow 100ms ease-out',
+
+  ':hover': {
+    background: dt.ref.palette.surface,
+    boxShadow: join('inset', 0, 0, 0, dt.sys.border.width.s1, dt.ref.palette.borderLight),
+  },
+
+  ':active': {
+    background: dt.ref.palette.accentDimm,
+    boxShadow: join('inset', 0, 0, 0, dt.sys.border.width.s1, dt.ref.palette.accentDimm),
+  },
 })
 
 export const wrapperActive = style({

@@ -25,13 +25,14 @@ export const bgText = style([
 export const highlight = style({
   position: 'absolute',
   width: '40vw',
-  height: pxToRem(100),
-  background: dt.ref.gradients.primary,
-  filter: `blur(${pxToRem(100)})`,
+  height: pxToRem(40),
+  background: dt.ref.palette.accentLight,
+  filter: `blur(${pxToRem(80)})`,
   zIndex: -1,
 
   '@media': {
     [dt.sys.media.prefersColorScheme.dark]: {
+      background: dt.ref.gradients.primary,
       height: pxToRem(100),
       filter: `blur(${pxToRem(140)})`,
     },

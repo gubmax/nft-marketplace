@@ -24,9 +24,17 @@ export const tag = style([
 ])
 
 export const base = style({
-  transition: 'background 100ms ease',
+  transition: 'background 100ms ease-out, boxShadow 100ms ease-out',
 
-  ':active': { background: dt.ref.palette.accentDimm },
+  ':hover': {
+    background: dt.ref.palette.surface,
+    boxShadow: join('inset', 0, 0, 0, dt.sys.border.width.s1, dt.ref.palette.border),
+  },
+
+  ':active': {
+    background: dt.ref.palette.accentDimm,
+    boxShadow: join('inset', 0, 0, 0, dt.sys.border.width.s1, dt.ref.palette.accentDimm),
+  },
 })
 
 export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRule>>({
@@ -34,6 +42,7 @@ export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRu
     border: 0,
     background: dt.ref.gradients.accent,
     color: dt.sys.color.dark.primary,
+    boxShadow: join('inset', 0, 0, 0, dt.sys.border.width.s1, dt.ref.palette.accent),
   },
   containedLight: {
     border: 0,
@@ -46,6 +55,9 @@ export const buttonVariants = styleVariants<Record<ButtonVariant, ComplexStyleRu
     border: join(dt.sys.border.width.s1, 'solid', dt.ref.palette.accentLight),
     background: 'transparent',
     color: dt.ref.palette.accentLight,
+    transition: 'background 100ms ease-out',
+
+    ':active': { background: dt.ref.palette.accentDimm },
   },
   outlineLight: {
     border: join(dt.sys.border.width.s1, 'solid', dt.sys.color.dark.primary),

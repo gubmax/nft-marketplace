@@ -9,9 +9,7 @@ import {
   SettingsIcon,
   ShowcaseIcon,
 } from 'client/common/components/icons'
-import { Divider } from 'client/common/components/surfaces/Divider'
 import { PageRoutes } from 'client/common/constants'
-import { cn } from 'client/common/helpers/classNames'
 import * as a from 'client/common/styles/atomic.css'
 import { StyledProps } from 'client/common/typings'
 import { NavigationItemProps } from './components/NavigationItem'
@@ -33,8 +31,7 @@ export const OTHER_ROUTES: NavigationItemProps[] = [
 function Sidebar({ className, style }: StyledProps) {
   return (
     <div className={className} style={style}>
-      <NavigationList title="OVERVIEW" routes={OVERVIEW_ROUTES} />
-      <Divider className={cn(a.mx2, a.mt3, a.mb5)} />
+      <NavigationList className={a.mb5} title="OVERVIEW" routes={OVERVIEW_ROUTES} />
       <NavigationList title="OTHER" routes={OTHER_ROUTES} />
     </div>
   )

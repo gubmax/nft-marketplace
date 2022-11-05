@@ -102,14 +102,15 @@ export const right = style({ animationDelay: `${-Math.floor(ANIMATION_DURATION /
 
 export const highlight = style({
   position: 'absolute',
-  width: '100%',
-  height: '100%',
-  background: dt.ref.gradients.accent,
+  width: '70%',
+  height: '70%',
+  background: dt.ref.palette.accentLight,
   transform: 'rotate(45deg)',
-  filter: `blur(${pxToRem(50)})`,
+  filter: `blur(${pxToRem(80)})`,
 
   '@media': {
     [dt.sys.media.prefersColorScheme.dark]: {
+      background: dt.ref.gradients.accent,
       width: '150%',
       height: '150%',
       filter: `blur(${pxToRem(150)})`,

@@ -9,7 +9,7 @@ export const link = style([
   {
     borderRadius: dt.sys.border.radius.s2,
     fontWeight: 700,
-    lineHeight: pxToRem(32),
+    lineHeight: pxToRem(36),
     padding: join(0, dt.sys.space.s2),
   },
 ])
