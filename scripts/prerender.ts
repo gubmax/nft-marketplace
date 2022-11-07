@@ -1,57 +1,40 @@
 /**
  * Pre-render the app into static HTML.
- * run `pnpm generate` and then `dist/static` can be served as a static site.
+ * run `pnpm prerender` and then `dist/client` can be served as a static site.
  */
 
 import assert from 'node:assert'
-import { readFileSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 
 import pc from 'picocolors'
-import { Manifest } from 'vite'
 
-import { HeadExtractor } from 'server/common/utils/headExtractor'
+import { resolvePath } from 'server/common/helpers/paths'
 import { PAGES_CONFIG } from '../src/server/config/pages.config'
 import { AssetCollectorService } from '../src/server/modules/assetCollector/assetCollector.service'
-import { RenderFn } from '../src/server/modules/render/render.service'
+import { RenderService } from '../src/server/modules/render/render.service'
 
 process.env.NODE_ENV = 'production'
 
 console.log(`${pc.cyan('pre-render script')} ${pc.green('generating HTML files...')}`)
 
-const read = (path: string) => readFileSync(new URL(path, import.meta.url), 'utf-8')
-const write = (path: string, data: string) => writeFileSync(new URL(path, import.meta.url), data)
+const assetCollectorService = new AssetCollectorService()
+const renderService = new RenderService(assetCollectorService)
 
-const template = read('../dist/client/src/client/index.html')
-const manifest = JSON.parse(read('../dist/client/manifest.json')) as Manifest
+await renderService.init()
+
+// Pre-render each app page...
 
 const pages: typeof PAGES_CONFIG = { ...PAGES_CONFIG, '/*': { name: 'not-found' } }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-const { render } = (await import('../dist/server/server.entry.js')) as { render: RenderFn }
-
-// Pre-render each app page...
 for (const url in pages) {
   const pageConfig = pages[url]
 
   assert(pageConfig, `Page config for url "${url}" not found`)
 
-  const headExtractor = new HeadExtractor()
-  const appHtml = await render({ url, headExtractor })
-  const headTags = headExtractor.renderStatic()
-
-  const assetCollectorService = new AssetCollectorService()
-  const preloadLinks = assetCollectorService.collectPreloadLinksByManifest(
-    manifest,
-    'src/client/index.html',
-  )
-
-  const html = template
-    .replace('<!--head-->', `${headTags}${preloadLinks}`)
-    .replace('<!--app-html-->', appHtml)
+  const html = await renderService.render({ url })
 
   const fileName = `${pageConfig.name}.html`
-  write(`../dist/client/${fileName}`, html)
+  writeFileSync(resolvePath(`dist/client/${fileName}`), html)
 
   console.log(`${pc.dim('dist/client/')}${pc.green(`${fileName}`)}`)
 }

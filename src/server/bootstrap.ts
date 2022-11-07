@@ -5,6 +5,7 @@ import hyperid from 'hyperid'
 
 import { useNotFoundHandler } from './common/handlers/notFound.handler'
 import { useUncaughtErrorHandler } from './common/handlers/uncaughtError.handler'
+import { resolvePath } from './common/helpers/paths'
 import { useRequestLoggingHook } from './common/hooks/requestLogging.hook'
 import { useRequestTimeoutHook } from './common/hooks/requestTimeout.hook'
 import { AssetCollectorService } from './modules/assetCollector/assetCollector.service'
@@ -13,20 +14,24 @@ import { ConfigService } from './modules/config/config.service'
 import { LoggerService } from './modules/logger/logger.service'
 import { useRenderController } from './modules/render/render.controller'
 import { RenderService } from './modules/render/render.service'
+import { DevelopmentRenderService } from './modules/render/render.service.development'
 
 export async function bootstrap(): Promise<void> {
-  const uuid = hyperid()
-
   // Services
 
   const configService = new ConfigService()
+  const { isProd } = configService.env
+
   const asyncStorageService = new AsyncStorageService()
   const loggerService = new LoggerService(configService)
   const assetCollectorService = new AssetCollectorService()
-  const renderService = new RenderService(configService, assetCollectorService)
+  const renderService = isProd
+    ? new RenderService(assetCollectorService)
+    : new DevelopmentRenderService(assetCollectorService)
 
   // Server Instance
 
+  const uuid = hyperid()
   const server = fastify<Server, IncomingMessage, ServerResponse>({
     bodyLimit: 1048576, // 1MiB
     connectionTimeout: 60 * 1000, // 60s
@@ -35,10 +40,10 @@ export async function bootstrap(): Promise<void> {
     genReqId: () => uuid(),
   })
 
-  if (configService.env.isProd) {
+  if (isProd) {
     await server.register(import('@fastify/compress'))
     await server.register(import('@fastify/static'), {
-      root: new URL('../client', import.meta.url).pathname,
+      root: resolvePath('dist/client'),
       index: false,
     })
   } else {

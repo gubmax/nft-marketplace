@@ -4,6 +4,7 @@ import { FastifyInstance } from 'fastify'
 
 import { ConfigService } from 'server/modules/config/config.service'
 import { RenderService } from 'server/modules/render/render.service'
+import { resolvePath } from '../helpers/paths'
 
 interface NotFoundHandlerOptions {
   configService: ConfigService
@@ -15,7 +16,7 @@ export function useNotFoundHandler(server: FastifyInstance, options: NotFoundHan
 
   server.setNotFoundHandler(async (req, res) => {
     const payload = configService.env.isProd
-      ? createReadStream(new URL('../client/not-found.html', import.meta.url), 'utf-8')
+      ? createReadStream(resolvePath('dist/client/not-found.html'), 'utf-8')
       : await renderService.render({ url: req.url })
 
     return res.status(404).type('text/html').send(payload)
