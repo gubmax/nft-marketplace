@@ -2,15 +2,14 @@ import { memo } from 'react'
 
 import { A } from 'client/common/components/typography/Anchor'
 import { cn } from 'client/common/helpers/classNames'
-import * as a from 'client/common/styles/atomic.css'
 import { links } from './links'
-import * as s from './LinkGroup.css'
+import s from './LinkGroup.module.css'
 
 function LinkGroup() {
   return (
-    <div className={cn(a.flex, a.justifyAround, a.flexWrap, a.gap5, a.wFull)}>
+    <div className="flex justify-around flex-wrap gap-5 w-full">
       {links.map(({ title, items }, i) => (
-        <ul key={i} className={cn(s.column, a.flex, a.flexCol, a.gap5)}>
+        <ul key={i} className={cn(s.column, 'flex flex-col gap-5')}>
           <span className={s.title}>{title}</span>
           {items.map(({ text, link }, j) => (
             <li key={j} className={s.link}>

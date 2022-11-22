@@ -4,9 +4,9 @@ import { Button } from 'client/common/components/inputs/buttons/Button'
 import { PageRoutes } from 'client/common/constants'
 import { cn } from 'client/common/helpers/classNames'
 import { useLink } from 'client/common/hooks/useLink'
-import * as a from 'client/common/styles/atomic.css'
+import e from 'client/common/styles/elements.module.css'
 import { StyledProps } from 'client/common/typings'
-import * as s from './AuthBanner.css'
+import s from './AuthBanner.module.css'
 
 const TEXT_SIGN_IN = 'Sign In'
 const TEXT_SIGN_UP = 'Sign Up'
@@ -17,15 +17,17 @@ function AuthBanner({ className, style }: StyledProps) {
 
   return (
     <div className={cn(s.wrapper, className)} style={style}>
-      <div className={a.flex}>
-        <div className={cn(s.content, a.flex, a.flexCol, a.flexGrow)}>
-          <h1 className={cn(s.title, a.mb3)}>
+      <div className="flex">
+        <div className={cn(s.content, 'flex flex-col flex-grow')}>
+          <h1 className={cn(s.title, 'mb-3')}>
             Discover the exciting world of&nbsp;crypto&nbsp;art!
           </h1>
-          <h2 className={cn(s.subtitle, a.mb5)}>Start collect digital artwork now.</h2>
-          <div className={cn(a.flex, a.mtAuto, a.gap4)}>
+          <h2 className={cn(s.subtitle, e.typography_h1, 'mb-5')}>
+            Start collect digital artwork now.
+          </h2>
+          <div className="flex mt-auto gap-4">
             <Button
-              className={cn(s.button, a.wFull)}
+              className={s.button}
               variant="outlineLight"
               onClick={navigateToSignInPage}
               onKeyPress={navigateToSignInPage}
@@ -33,7 +35,7 @@ function AuthBanner({ className, style }: StyledProps) {
               {TEXT_SIGN_IN}
             </Button>
             <Button
-              className={cn(s.button, a.wFull)}
+              className={s.button}
               variant="containedLight"
               onClick={navigateToSignUpPage}
               onKeyPress={navigateToSignUpPage}

@@ -14,7 +14,7 @@ export class HeadExtractor {
     return markup
   }
 
-  private enchanceEl = (el: ReactElement) => cloneElement(el, { 'data-head': '' })
+  private enchanceEl = (el: ReactElement) => cloneElement(el, { 'data-ssr': '' })
 
   addServerTag = (el: ReactElement | ReactElement[] | undefined): void => {
     if (!el) return

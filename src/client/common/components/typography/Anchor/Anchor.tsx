@@ -3,7 +3,7 @@ import { AnchorHTMLAttributes } from 'react'
 import { cn } from 'client/common/helpers/classNames'
 import { RefProp } from 'client/common/typings/refProp'
 import { StyledProps } from 'client/common/typings/styledProps'
-import { link } from './Anchor.css'
+import s from './Anchor.module.css'
 
 export type AnchorProps = StyledProps &
   RefProp<HTMLAnchorElement> &
@@ -11,7 +11,7 @@ export type AnchorProps = StyledProps &
 
 function Anchor({ className, innerRef, children, ...rest }: AnchorProps) {
   return (
-    <a className={cn(link, className)} ref={innerRef} {...rest}>
+    <a className={cn(s.link, className)} ref={innerRef} {...rest}>
       {children}
     </a>
   )

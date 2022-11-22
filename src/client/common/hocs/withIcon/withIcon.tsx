@@ -3,12 +3,24 @@ import { ElementType } from 'react'
 import { cn } from 'client/common/helpers/classNames'
 import { pxToRem } from 'client/common/styles/helpers'
 import { StyledProps } from 'client/common/typings'
-import { iconSizeStyles, iconStateStyles } from './withIcon.css'
+import s from './withIcon.module.css'
 
 const DEFAULT_SIZE = pxToRem(24)
 
-export type IconVariant = 'primary' | 'accent' | 'active' | 'secondary' | 'white'
-export type IconSize = 'sm' | 'xl'
+export type IconVariant = 'primary' | 'background' | 'outline'
+export type IconSize = 'sm' | 'md' | 'xl'
+
+const classNameByVariant: Record<IconVariant, string> = {
+  primary: s.variant_primary,
+  background: s.variant_background,
+  outline: s.variant_outline,
+}
+
+const classNameBySize: Record<IconSize, string> = {
+  sm: s.size_sm,
+  md: s.size_md,
+  xl: s.size_xl,
+}
 
 export interface IconProps extends StyledProps {
   variant?: IconVariant
@@ -16,8 +28,8 @@ export interface IconProps extends StyledProps {
 }
 
 export function withIcon(Component: ElementType<IconProps>): ElementType<IconProps> {
-  function Icon({ variant = 'primary', size, className, ...rest }: IconProps) {
-    const classNames = cn(iconStateStyles[variant], iconSizeStyles[size ?? 'sm'], className)
+  function Icon({ variant = 'outline', size = 'sm', className, ...rest }: IconProps) {
+    const classNames = cn(classNameByVariant[variant], classNameBySize[size], className)
 
     return (
       <Component

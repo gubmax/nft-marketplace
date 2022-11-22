@@ -1,8 +1,7 @@
 import { memo } from 'react'
 
 import { cn } from 'client/common/helpers/classNames'
-import * as a from 'client/common/styles/atomic.css'
-import { dt } from 'client/common/styles/designTokens'
+import e from 'client/common/styles/elements.module.css'
 
 interface StatisticCardProps {
   title: string
@@ -11,9 +10,9 @@ interface StatisticCardProps {
 
 function StatisticCard({ title, text }: StatisticCardProps) {
   return (
-    <div className={cn(a.flex, a.flexCol, a.itemsCenter)}>
-      <span className={cn(dt.comp.typography.h1, a.mb2)}>{title}</span>
-      <span className={dt.comp.typography.subtitle1}>{text}</span>
+    <div className="flex flex-col items-center">
+      <span className={cn(e.typography_h1, 'mb-2')}>{title}</span>
+      <span className={e.typography_subtitle}>{text}</span>
     </div>
   )
 }

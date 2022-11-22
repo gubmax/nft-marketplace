@@ -1,0 +1,25 @@
+@import '/src/client/common/styles/media.css';
+
+.column {
+  &:last-of-type {
+    margin-right: unset;
+  }
+
+  @media (--media-screen-max-mobile) {
+    width: 50%;
+    margin-right: unset;
+    align-items: center;
+  }
+}
+
+.title {
+  font-weight: 500;
+}
+
+.link {
+  color: var(--color-on-outline);
+
+  &:last-of-type {
+    margin-bottom: unset;
+  }
+}

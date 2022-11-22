@@ -1,0 +1,10 @@
+.rounded {
+  border-radius: var(--border-radius-2);
+  width: 36px;
+  min-width: 36px;
+}
+
+.inner {
+  height: 36px;
+  padding: 0;
+}

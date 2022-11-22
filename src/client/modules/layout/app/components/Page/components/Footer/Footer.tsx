@@ -3,10 +3,9 @@ import { memo } from 'react'
 import { A } from 'client/common/components/typography/Anchor'
 import { PageRoutes } from 'client/common/constants'
 import { cn } from 'client/common/helpers/classNames'
-import * as a from 'client/common/styles/atomic.css'
-import { dt } from 'client/common/styles/designTokens'
+import e from 'client/common/styles/elements.module.css'
 import { LinkGroup } from './components/LinkGroup'
-import * as s from './Footer.css'
+import s from './Footer.module.css'
 
 export const TEXT_TITLE = 'NFT PLATFORM'
 export const TEXT_DESCRIPTION =
@@ -18,19 +17,19 @@ export const TEXT_TERMS_OF_SERVICE = 'Terms of Service'
 
 function Footer() {
   return (
-    <footer className={cn(s.footer, a.wFull)}>
-      <div className={cn(s.wrapper, a.mxAuto)}>
-        <div className={cn(s.topSection, a.flex)}>
+    <footer className={cn(s.footer, 'w-full')}>
+      <div className={cn(s.wrapper, 'mx-auto')}>
+        <div className={cn(s.topSection, 'flex')}>
           <div className={s.description}>
-            <span className={cn(dt.comp.typography.h3, a.mb5)}>{TEXT_TITLE}</span>
-            <p className={dt.comp.typography.subtitle1}>{TEXT_DESCRIPTION}</p>
+            <span className={cn(e.typography_h3, 'mb-5')}>{TEXT_TITLE}</span>
+            <p className={e.typography_subtitle}>{TEXT_DESCRIPTION}</p>
           </div>
           <LinkGroup />
         </div>
-        <div className={cn(s.bottomSection, a.flex, a.justifyBetween, a.flexShrink0)}>
-          <span className={a.mb4}>{TEXT_COPYRIGHT}</span>
-          <div className={cn(s.bottomLinks, a.mb4)}>
-            <A href={PageRoutes.HOME} className={a.mr5}>
+        <div className={cn(s.bottomSection, 'flex justify-between flex-shrink-0')}>
+          <span className="mb-4">{TEXT_COPYRIGHT}</span>
+          <div className={cn(s.bottomLinks, 'mb-4')}>
+            <A href={PageRoutes.HOME} className="mr-5">
               {TEXT_PRIVACY_POLICY}
             </A>
             <A href={PageRoutes.HOME}>{TEXT_TERMS_OF_SERVICE}</A>

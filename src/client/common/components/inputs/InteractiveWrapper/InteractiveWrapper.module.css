@@ -1,0 +1,8 @@
+.wrapper {
+  cursor: pointer;
+  border-radius: var(--border-radius-2);
+}
+
+.active {
+  background: var(--color-tertiary);
+}

@@ -1,4 +1,3 @@
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import react from '@vitejs/plugin-react'
 import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -6,11 +5,16 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 /**
  * @link https://vitejs.dev/config/
  */
-export default defineConfig(({ ssrBuild }) => {
-  const plugins = [tsconfigPaths(), react(), vanillaExtractPlugin(), splitVendorChunkPlugin()]
+export default defineConfig(({ ssrBuild, mode }) => {
+  const plugins = [tsconfigPaths(), react(), splitVendorChunkPlugin()]
+
+  const generateScopedName =
+    mode === 'production' ? '[hash:base64:5]' : '[folder]__[local]-[hash:base64:5]'
+  const css = { modules: { generateScopedName } }
 
   return ssrBuild
     ? {
+        css,
         plugins,
         publicDir: false,
         build: {
@@ -19,6 +23,7 @@ export default defineConfig(({ ssrBuild }) => {
         },
       }
     : {
+        css,
         plugins,
         publicDir: './src/client/public',
         build: {

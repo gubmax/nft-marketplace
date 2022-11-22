@@ -1,33 +1,36 @@
 import { memo } from 'react'
 
+import { InfoIcon } from 'client/common/components/icons'
+import { A } from 'client/common/components/typography/Anchor'
+import { PageRoutes } from 'client/common/constants'
 import { cn } from 'client/common/helpers/classNames'
-import * as a from 'client/common/styles/atomic.css'
-import { dt } from 'client/common/styles/designTokens'
+import e from 'client/common/styles/elements.module.css'
 import { Diamond } from '../../../Diamond'
+import { HelpBlock } from '../HelpBlock'
 import { SectionTitle } from '../SectionTitle'
 import { StatisticCard } from '../StatisticCard'
-import * as s from './Discover.css'
+import s from './Discover.module.css'
 
 function Discover() {
   return (
     <>
-      <h1 className={cn(s.header, a.mb5)}>Buy, sell, and discover exclusive digital items.</h1>
-      <span className={cn(s.subtitle, a.mb5)}>
+      <h1 className={cn(s.header, 'mb-5')}>Buy, sell, and discover exclusive digital items.</h1>
+      <span className={cn(s.subtitle, e.typography_h2, 'mb-5')}>
         The largest trading platform for crypto collectibles and{' '}
-        <span className={dt.comp.typography.highlight}>non-fungible tokens (NFTs)</span>.
+        <span className={e.typography_textHighlight}>non-fungible tokens (NFTs)</span>.
       </span>
-      <div className={cn(s.statistics, a.flex, a.justifyAround, a.mx5)}>
+      <div className={cn(s.statistics, 'flex justify-around gap-5 mx-5')}>
         <StatisticCard title="$70 billion" text="24h trading volume" />
         <StatisticCard title="250+" text="Cryptocurrencies listed" />
         <StatisticCard title="90 million" text="Registered users" />
         <StatisticCard title="<0.10%" text="Lowest transaction fees" />
       </div>
-      <Diamond className={cn(s.diamond, a.mxAuto)} />
+      <Diamond className={cn(s.diamond, 'mx-auto')} />
       <SectionTitle>
         Explore all possibilities of{' '}
-        <span className={dt.comp.typography.highlight}>NFT Platform</span>
+        <span className={e.typography_textHighlight}>NFT Platform</span>
       </SectionTitle>
-      <p className={cn(dt.comp.typography.p, a.mb5)}>
+      <p className={cn(e.typography_p, 'mb-5')}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum placerat tortor, eget
         volutpat tortor imperdiet sed. Aliquam non vehicula mi. Integer et purus viverra magna
         fringilla malesuada. Aenean cursus nisl arcu, ac commodo neque vulputate ut. Nam luctus
@@ -40,7 +43,7 @@ function Discover() {
         nibh. Duis tellus justo, rutrum nec augue eget, dignissim condimentum nunc.
       </p>
       <SectionTitle>Your trusted crypto exchange</SectionTitle>
-      <p className={cn(dt.comp.typography.p, a.mb5)}>
+      <p className={cn(e.typography_p, 'mb-5')}>
         Sed fermentum sem in est maximus, vel fringilla erat convallis. Curabitur eu hendrerit
         augue. Aenean pulvinar sem eget purus rhoncus pellentesque. Cras convallis leo ligula, quis
         auctor orci semper sit amet. Donec mauris magna, pharetra sit amet feugiat ut, eleifend non
@@ -54,14 +57,26 @@ function Discover() {
         faucibus. Donec fringilla pretium purus id scelerisque.
       </p>
       <SectionTitle>Need help?</SectionTitle>
-      <p className={cn(dt.comp.typography.p, a.mb5)}>
-        Etiam ut dignissim lorem, nec accumsan eros. Donec id nulla libero. Vestibulum quam diam,
-        faucibus quis rutrum ut, eleifend ut ante. Quisque ut velit et nunc tempus interdum. Sed
-        eget nisl eu augue condimentum consectetur. Ut porttitor, urna efficitur tempor molestie,
-        eros enim mattis augue, eget sagittis sapien ipsum a nisl. Nullam tempor dui eros. Sed sit
-        amet ante id elit aliquet congue. Aliquam magna sapien, semper id mollis ac, scelerisque a
-        nisi. Vestibulum ut felis maximus, dapibus metus eget, molestie diam.
-      </p>
+      <div className="flex justify-around gap-5">
+        <HelpBlock
+          icon={<InfoIcon size="md" />}
+          title="24/7 Chat Support"
+          text="Get 24/7 chat support with our friendly customer service agents at your service."
+          link={<A href={PageRoutes.HOME}>Chat now</A>}
+        />
+        <HelpBlock
+          icon={<InfoIcon size="md" />}
+          title="FAQs"
+          text="View FAQs for detailed instructions on specific features."
+          link={<A href={PageRoutes.HOME}>Learn more</A>}
+        />
+        <HelpBlock
+          icon={<InfoIcon size="md" />}
+          title="Blog"
+          text="Stay up to date with the latest stories and commentary."
+          link={<A href={PageRoutes.HOME}>Learn more</A>}
+        />
+      </div>
     </>
   )
 }

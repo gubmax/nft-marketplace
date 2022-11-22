@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 import { cn } from 'client/common/helpers/classNames'
 import { StyledProps } from 'client/common/typings'
-import * as s from './Diamond.css'
+import s from './Diamond.module.css'
 
 function Diamond({ className, style }: StyledProps) {
   return (

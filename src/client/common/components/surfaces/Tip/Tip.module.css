@@ -1,0 +1,7 @@
+.wrapper {
+  padding: var(--space-4);
+  background: var(--color-tertiary);
+  color: var(--color-secondary);
+  border: var(--border-width-1) solid var(--color-primary);
+  border-radius: var(--border-radius-2);
+}

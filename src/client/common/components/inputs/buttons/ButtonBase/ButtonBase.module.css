@@ -1,0 +1,70 @@
+.wrapper {
+  display: inline-block;
+}
+
+.tag {
+  all: inherit;
+  align-items: center;
+  border-radius: inherit;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  justify-content: center;
+  width: 100%;
+}
+
+.base {
+  transition: background 100ms ease-out, box-shadow 100ms ease-out;
+
+  &:hover {
+    background: var(--color-surface);
+    box-shadow: inset 0 0 0 var(--border-width-1) var(--color-outline);
+  }
+
+  &:active {
+    background: var(--color-tertiary);
+    box-shadow: inset 0 0 0 var(--border-width-1) var(--color-tertiary);
+  }
+}
+
+.variant {
+  &_contained {
+    border: 0;
+    background: var(--gradient-secondary);
+    color: var(--color-on-primary);
+    box-shadow: inset 0 0 0 var(--border-width-1) var(--color-primary);
+  }
+
+  &_containedLight {
+    border: 0;
+    background: var(--color-light-background);
+    color: var(--color-light-on-background);
+
+    &:focus-visible {
+      outline-color: var(--color-light-background);
+    }
+  }
+
+  &_outline {
+    border: var(--border-width-1) solid var(--color-secondary);
+    background: transparent;
+    color: var(--color-secondary);
+    transition: background 100ms ease-out;
+
+    &:active {
+      background: var(--color-tertiary);
+    }
+  }
+
+  &_outlineLight {
+    border:  var(--border-width-1) solid var(--color-dark-on-background);
+    background: transparent;
+    color: var(--color-dark-on-background);
+
+    &:focus-visible {
+      outline-color: var(--color-light-background);
+    }
+  }
+}

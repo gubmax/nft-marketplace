@@ -6,8 +6,7 @@ import { PageRoutes } from 'client/common/constants'
 import { cn } from 'client/common/helpers/classNames'
 import { IconProps } from 'client/common/hocs/withIcon'
 import { useEvent } from 'client/common/hooks/useEvent'
-import * as a from 'client/common/styles/atomic.css'
-import * as s from './NavigationItem.css'
+import s from './NavigationItem.module.css'
 
 export interface NavigationItemProps {
   icon: ElementType<IconProps>
@@ -22,7 +21,7 @@ function NavigationItem({ icon: Icon, text, to }: NavigationItemProps) {
   const handleClick = useEvent(() => navigate(to))
 
   const isActive = to === pathname
-  const iconVariant = isActive ? 'active' : 'secondary'
+  const iconVariant = isActive ? 'primary' : 'outline'
 
   return (
     <IW
@@ -30,8 +29,8 @@ function NavigationItem({ icon: Icon, text, to }: NavigationItemProps) {
       onClick={handleClick}
       onKeyPress={handleClick}
     >
-      <Icon className={a.flexShrink} variant={iconVariant} />
-      <span className={a.ml2}>{text}</span>
+      <Icon className="flex-shrink" variant={iconVariant} />
+      <span className="ml-2">{text}</span>
     </IW>
   )
 }

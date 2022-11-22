@@ -9,11 +9,10 @@ import { Tooltip } from 'client/common/components/system/Tooltip'
 import { PageRoutes } from 'client/common/constants'
 import { cn } from 'client/common/helpers/classNames'
 import { useLink } from 'client/common/hooks/useLink'
-import * as a from 'client/common/styles/atomic.css'
-import { dt } from 'client/common/styles/designTokens'
+import e from 'client/common/styles/elements.module.css'
 import { StyledProps } from 'client/common/typings'
 import { Logo } from '../Logo'
-import * as s from './Header.css'
+import s from './Header.module.css'
 
 const TEXT_SIGN_IN = 'Sign In'
 const TEXT_DISCOVER = 'Discover'
@@ -26,10 +25,10 @@ function Header({ className, style }: StyledProps) {
   const navigateToSignIn = useLink(PageRoutes.SIGN_IN)
 
   return (
-    <header className={cn(s.header, className)} style={style}>
-      <nav className={cn(s.wrapper, a.flex, a.itemsCenter, a.mAuto, a.gap4)}>
+    <header className={cn(s.header, e.glass, className)} style={style}>
+      <nav className={cn(s.wrapper, 'flex items-center m-auto gap-4')}>
         <Logo className={s.logo} />
-        <div className={cn(a.flex, a.mlAuto)}>
+        <div className="flex ml-auto">
           <Link className={s.link} to={PageRoutes.HOME}>
             {TEXT_DISCOVER}
           </Link>
@@ -40,18 +39,18 @@ function Header({ className, style }: StyledProps) {
             {TEXT_GAMING}
           </Link>
         </div>
-        <Tooltip className={a.mlAuto} position="bottom" content={TEXT_NOTIFICATIONS}>
+        <Tooltip className="ml-auto" position="bottom" content={TEXT_NOTIFICATIONS}>
           {(activator) => (
             <IconButton className={activator}>
               <IconCounter amount={9} />
-              <NotificationIcon variant="secondary" />
+              <NotificationIcon variant="outline" />
             </IconButton>
           )}
         </Tooltip>
         <Tooltip position="bottom" content={TEXT_LOCALE}>
           {(activator) => (
             <IconButton className={activator}>
-              <LanguageIcon variant="secondary" />
+              <LanguageIcon variant="outline" />
             </IconButton>
           )}
         </Tooltip>

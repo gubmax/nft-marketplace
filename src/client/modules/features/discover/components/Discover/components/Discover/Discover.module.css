@@ -1,0 +1,19 @@
+.statistics {
+  margin: 64px 0;
+}
+
+.diamond {
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+.header {
+  font-size: 56px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--color-on-outline);
+}

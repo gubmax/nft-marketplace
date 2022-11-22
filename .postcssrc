@@ -1,5 +1,13 @@
 {
   "plugins": {
-    "autoprefixer": {}
+    "autoprefixer": {},
+    "postcss-custom-media": {},
+    "postcss-nested": {},
+    "postcss-pxtorem": {
+      "mediaQuery": true,
+      "propList": ["*"],
+      "rootValue": 16
+    },
+    "postcss-simple-vars": {}
   }
 }

@@ -1,0 +1,35 @@
+.wrapper {
+  height: 100vh;
+  padding: var(--space-3);
+  text-align: center;
+  overflow: hidden;
+}
+
+.bgText {
+  font-size: 20vw;
+  margin-bottom: 64px;
+  position: relative;
+  transform: rotate(4deg);
+  font-weight: 700;
+  z-index: -1;
+}
+
+.highlight {
+  position: absolute;
+  width: 40vw;
+  height: pxToRem(40);
+  background: var(--gradient-secondary);
+  filter: blur(80px);
+  z-index: -1;
+
+  @media (prefers-color-scheme: dark) {
+    background: var(--gradient-primary);
+    height: 100px;
+    filter: blur(140px);
+  }
+}
+
+.description  {
+  text-align: center;
+  color: var(--color-on-outline);
+}

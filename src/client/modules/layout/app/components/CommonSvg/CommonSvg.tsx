@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import * as s from './CommonSvg.css'
+import s from './CommonSvg.module.css'
 
 function CommonSvg() {
   return (

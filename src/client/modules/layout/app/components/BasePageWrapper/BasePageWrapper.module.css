@@ -1,0 +1,5 @@
+.wrapper {
+  position: relative;
+  max-width: var(--screen-desktop);
+  padding: 112px var(--space-5) 100px;
+}

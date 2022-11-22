@@ -1,0 +1,66 @@
+@import './atomic.css';
+@import './media.css';
+@import './reset.css';
+@import './vars.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-body);
+  text-size-adjust: 100%;
+}
+
+:root,
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+:root {
+  color-scheme: light;
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
+body {
+  color: var(--color-on-background);
+  background: var(--color-background);
+  overscroll-behavior: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: unset;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+:focus {
+  outline: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+@keyframes autofill {
+  to {
+    color: inherit;
+    background: inherit;
+  }
+}
+
+input:-webkit-autofill {
+  animation-name: autofill;
+  animation-fill-mode: both;
+}

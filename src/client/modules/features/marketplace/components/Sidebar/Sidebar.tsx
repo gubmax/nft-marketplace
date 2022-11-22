@@ -10,7 +10,6 @@ import {
   ShowcaseIcon,
 } from 'client/common/components/icons'
 import { PageRoutes } from 'client/common/constants'
-import * as a from 'client/common/styles/atomic.css'
 import { StyledProps } from 'client/common/typings'
 import { NavigationItemProps } from './components/NavigationItem'
 import { NavigationList } from './components/NavigationList'
@@ -31,7 +30,7 @@ export const OTHER_ROUTES: NavigationItemProps[] = [
 function Sidebar({ className, style }: StyledProps) {
   return (
     <div className={className} style={style}>
-      <NavigationList className={a.mb5} title="OVERVIEW" routes={OVERVIEW_ROUTES} />
+      <NavigationList className="mb-5" title="OVERVIEW" routes={OVERVIEW_ROUTES} />
       <NavigationList title="OTHER" routes={OTHER_ROUTES} />
     </div>
   )

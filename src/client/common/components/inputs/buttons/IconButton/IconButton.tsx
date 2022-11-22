@@ -1,6 +1,6 @@
 import { cn } from 'client/common/helpers/classNames'
 import { ButtonBase, ButtonBaseProps } from '../ButtonBase'
-import * as s from './IconButton.css'
+import s from './IconButton.module.css'
 
 function IconButton<T extends 'button' | 'a' | 'i'>({
   className,

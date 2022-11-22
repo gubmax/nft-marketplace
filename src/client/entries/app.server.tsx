@@ -3,7 +3,6 @@ import { StaticRouter } from 'react-router-dom/server'
 
 import { HeadExtractor, HeadProvider } from '../modules/head'
 import { App } from '../modules/layout/app'
-import '../common/styles/reset.css'
 import '../common/styles/global.css'
 
 interface RenderOptions {

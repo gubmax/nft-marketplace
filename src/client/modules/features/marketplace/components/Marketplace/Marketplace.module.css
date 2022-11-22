@@ -1,0 +1,27 @@
+$paddingTop: 112px;
+$paddingBottom: 64px;
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  max-width: var(--screen-desktop);
+  padding: 0 var(--space-5);
+}
+
+.aside {
+  padding: $paddingTop var(--space-3) $paddingBottom 0;
+  margin-right: 40px;
+  border-right: var(--border-width-1) solid var(--color-outline-variant);
+  z-index: 0;
+}
+
+.sidebar {
+  position: sticky;
+  top: $paddingTop;
+  width: 232px;
+}
+
+.content {
+  padding-top: $paddingTop;
+  padding-bottom: $paddingBottom;
+}

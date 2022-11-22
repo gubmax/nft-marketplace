@@ -1,10 +1,9 @@
 import { memo, useMemo } from 'react'
 
 import { cn } from 'client/common/helpers/classNames'
-import * as a from 'client/common/styles/atomic.css'
 import { StyledProps } from 'client/common/typings'
 import { NavigationItem, NavigationItemProps } from '../NavigationItem'
-import * as s from './NavigationList.css'
+import s from './NavigationList.module.css'
 
 interface NavigationListProps extends StyledProps {
   title: string
@@ -19,7 +18,7 @@ function NavigationList({ className, style, title, routes }: NavigationListProps
 
   return (
     <div className={className} style={style}>
-      <span className={cn(s.title, a.mb2, a.ml2)}>{title}</span>
+      <span className={cn(s.title, 'mb-2 ml-2')}>{title}</span>
       {routesTemplate}
     </div>
   )

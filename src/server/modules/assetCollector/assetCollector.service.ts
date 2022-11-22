@@ -1,23 +1,33 @@
 import { Manifest, ModuleNode } from 'vite'
 
-export class AssetCollectorService {
-  private getPreloadLink(file: string, isEntry = false): string {
-    const link = `/${file}`
+interface GetPreloadLinkOptions {
+  file: string
+  isEntry?: boolean
+  withSsrTag?: boolean
+}
 
-    if (link.endsWith('.js')) {
-      if (isEntry) return `<script type="module" crossorigin src="${link}"></script>`
-      else return `<link rel="modulepreload" crossorigin href="${link}">`
-    } else if (link.endsWith('.css')) return `<link rel="stylesheet" href="${link}">`
-    else if (link.endsWith('.woff'))
-      return `<link rel="preload" href="${link}" as="font" type="font/woff" crossorigin>`
-    else if (link.endsWith('.woff2'))
-      return `<link rel="preload" href="${link}" as="font" type="font/woff2" crossorigin>`
-    else if (link.endsWith('.gif'))
-      return `<link rel="preload" href="${link}" as="image" type="image/gif">`
-    else if (link.endsWith('.jpg') || link.endsWith('.jpeg'))
-      return `<link rel="preload" href="${link}" as="image" type="image/jpeg">`
-    else if (link.endsWith('.png'))
-      return `<link rel="preload" href="${link}" as="image" type="image/png">`
+export class AssetCollectorService {
+  private getPreloadLink({
+    file,
+    isEntry = false,
+    withSsrTag = false,
+  }: GetPreloadLinkOptions): string {
+    const ssrTag = withSsrTag ? 'data-ssr="" ' : ''
+
+    if (file.endsWith('.js')) {
+      if (isEntry) return `<script ${ssrTag}type="module" crossorigin src="${file}"></script>`
+      else return `<link ${ssrTag}rel="modulepreload" crossorigin href="${file}">`
+    } else if (file.endsWith('.css')) return `<link ${ssrTag}rel="stylesheet" href="${file}">`
+    else if (file.endsWith('.woff'))
+      return `<link rel="preload" href="${file}" as="font" type="font/woff" crossorigin>`
+    else if (file.endsWith('.woff2'))
+      return `<link rel="preload" href="${file}" as="font" type="font/woff2" crossorigin>`
+    else if (file.endsWith('.gif'))
+      return `<link rel="preload" href="${file}" as="image" type="image/gif">`
+    else if (file.endsWith('.jpg') || file.endsWith('.jpeg'))
+      return `<link rel="preload" href="${file}" as="image" type="image/jpeg">`
+    else if (file.endsWith('.png'))
+      return `<link rel="preload" href="${file}" as="image" type="image/png">`
     else return ''
   }
 
@@ -32,7 +42,7 @@ export class AssetCollectorService {
 
       seen.add(m.id)
 
-      links += this.getPreloadLink(m.url)
+      links += this.getPreloadLink({ file: m.id, isEntry: false, withSsrTag: true })
 
       m.importedModules.forEach((importedMod) => {
         collect(importedMod)
@@ -56,11 +66,11 @@ export class AssetCollectorService {
       seen.add(p)
 
       if (file) {
-        links += this.getPreloadLink(file, isEntry)
+        links += this.getPreloadLink({ file: `/${file}`, isEntry })
       }
 
       if (css.length) {
-        css.forEach((url) => (links += this.getPreloadLink(url, isEntry)))
+        css.forEach((url) => (links += this.getPreloadLink({ file: `/${url}`, isEntry })))
       }
 
       for (const assetPath of imports) {

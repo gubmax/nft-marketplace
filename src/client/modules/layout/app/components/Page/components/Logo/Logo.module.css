@@ -1,0 +1,6 @@
+.link {
+  border-radius: var(--border-radius-2);
+  font-weight: 700;
+  line-height: pxToRem(36);
+  padding: 0 var(--space-2);
+}

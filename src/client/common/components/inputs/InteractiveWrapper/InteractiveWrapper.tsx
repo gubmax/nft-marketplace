@@ -2,7 +2,7 @@ import { ElementType, FC, KeyboardEventHandler, MouseEventHandler } from 'react'
 
 import { cn } from 'client/common/helpers/classNames'
 import { AsProp, ChildrenProp, StyledProps } from 'client/common/typings'
-import * as s from './InteractiveWrapper.css'
+import s from './InteractiveWrapper.module.css'
 
 export type InteractiveWrapperProps = {
   active?: boolean

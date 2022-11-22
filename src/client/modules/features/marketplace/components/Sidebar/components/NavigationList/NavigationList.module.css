@@ -1,0 +1,6 @@
+.title {
+  display: block;
+  color: var(--color-on-outline);
+  font-weight: 500;
+  text-transform: uppercase;
+}

@@ -32,7 +32,7 @@ export class DevelopmentRenderService extends RenderService {
       )) as { render: RenderFn }
 
       // Collect preload links
-      const id = resolvePath('client/entries/app.server.tsx')
+      const id = resolvePath('src/client/entries/app.server.tsx')
       const mod = this.viteDevServer.moduleGraph.getModuleById(id)
       const preloadLinks = this.assetCollectorService.collectPreloadLinksByModule(mod)
 

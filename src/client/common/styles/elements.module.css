@@ -1,0 +1,61 @@
+.surface {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width-1) solid var(--color-outline-variant);
+  border-radius: var(--border-radius-2)
+}
+
+.glass {
+  background: var(--color-glass);
+  backdrop-filter: blur(12px);
+}
+
+/* Typography */
+
+.typography_h1,
+.typography_h2,
+.typography_h3,
+.typography_h4 {
+  display: block;
+  line-height: 1;
+}
+
+.typography {
+  &_p {
+    line-height: 1.5;
+  }
+
+  &_h1 {
+    font-size: var(--font-size-h1);
+    font-weight: 500;
+    letter-spacing: 0.25;
+  }
+
+  &_h2 {
+    font-size: var(--font-size-h2);
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  &_h3 {
+    font-size: var(--font-size-h3);
+    letter-spacing: 0.15;
+  }
+
+  &_subtitle {
+    display: block;
+    font-size: var(--font-size-subtitle);
+    line-height: 1.5;
+  }
+
+  &_body {
+    font-size: var(--font-size-body);
+    line-height: 1.5;
+  }
+
+  &_textHighlight {
+    background-clip: text;
+    background-image: var(--gradient-primary);
+    -webkit-text-fill-color: transparent;
+  }
+}

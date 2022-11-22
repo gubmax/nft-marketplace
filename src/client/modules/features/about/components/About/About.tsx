@@ -3,37 +3,35 @@ import { memo } from 'react'
 import { Button } from 'client/common/components/inputs/buttons/Button'
 import { IconButton } from 'client/common/components/inputs/buttons/IconButton'
 import { PageRoutes } from 'client/common/constants'
-import { cn } from 'client/common/helpers/classNames'
-import * as a from 'client/common/styles/atomic.css'
-import { dt } from 'client/common/styles/designTokens'
+import e from 'client/common/styles/elements.module.css'
 
 function About() {
   return (
-    <div className={dt.comp.surface}>
-      <p className={a.mb4}>The quick brown fox jumps over the lazy dog.</p>
-      <div className={cn(a.flex, a.gap3, a.mb3)}>
+    <div className={e.surface}>
+      <p className="mb-4">The quick brown fox jumps over the lazy dog.</p>
+      <div className="flex gap-3 mb-3">
         <Button>Base</Button>
         <Button loading>Loading</Button>
         <IconButton>B</IconButton>
-        <Button className={a.wFull}>Base</Button>
+        <Button className="w-full">Base</Button>
       </div>
-      <div className={cn(a.flex, a.gap3, a.mb3)}>
+      <div className="flex gap-3 mb-3">
         <Button variant="contained">Contained</Button>
         <Button variant="contained" loading>
           Loading
         </Button>
         <IconButton variant="contained">C</IconButton>
-        <Button className={a.wFull} variant="contained">
+        <Button className="w-full" variant="contained">
           Contained
         </Button>
       </div>
-      <div className={cn(a.flex, a.gap3, a.mb4)}>
+      <div className="flex gap-3 mb-4">
         <Button variant="outline">Outline</Button>
         <Button variant="outline" loading>
           Loading
         </Button>
         <IconButton variant="outline">O</IconButton>
-        <Button className={a.wFull} variant="outline">
+        <Button className="w-full" variant="outline">
           Outline
         </Button>
       </div>

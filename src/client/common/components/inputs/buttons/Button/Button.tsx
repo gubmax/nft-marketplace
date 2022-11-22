@@ -4,13 +4,13 @@ import { Loader, LoaderVariant } from 'client/common/components/elements/Loader'
 import { cn } from 'client/common/helpers/classNames'
 import { noop } from 'client/common/helpers/noop'
 import { ButtonBase, ButtonBaseProps, ButtonVariant } from '../ButtonBase'
-import * as s from './Button.css'
+import s from './Button.module.css'
 
 const loaderVariantByButtonVariant: Record<ButtonVariant, LoaderVariant> = {
-  contained: 'light',
-  containedLight: 'accent',
-  outline: 'accent',
-  outlineLight: 'accent',
+  contained: 'body',
+  containedLight: 'primary',
+  outline: 'primary',
+  outlineLight: 'primary',
 }
 
 export type ButtonSize = 'sm' | 'md'
@@ -18,6 +18,11 @@ export type ButtonProps<T extends keyof JSX.IntrinsicElements> = {
   loading?: boolean
   size?: ButtonSize
 } & ButtonBaseProps<T>
+
+const classNameBySize: Record<ButtonSize, string> = {
+  sm: s.loaderSizes_sm,
+  md: s.loaderSizes_md,
+}
 
 function Button<T extends 'button' | 'a'>({
   children,
@@ -36,7 +41,7 @@ function Button<T extends 'button' | 'a'>({
   return (
     <ButtonBase
       className={cn(s.wrapper, className)}
-      innerClassName={cn(s.inner, s.loaderSizes[size])}
+      innerClassName={cn(s.inner, classNameBySize[size])}
       variant={variant}
       onClick={handleClick}
       {...rest}
