@@ -11,6 +11,7 @@
     "baseUrl": "src"
   },
   "include": [
+    ".storybook",
     "package.json",
     "scripts",
     "src/server",

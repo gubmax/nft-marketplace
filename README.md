@@ -1,4 +1,4 @@
-# 💎 NFT Marketplace
+# 💎 NFT Platform
 
 This project is a demonstration of what a modern React web application can be.
 
