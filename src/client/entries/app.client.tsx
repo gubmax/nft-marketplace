@@ -1,15 +1,10 @@
 import { hydrateRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 
-import { HeadProvider } from '../modules/head'
-import { App } from '../modules/layout/app'
-import '../common/styles/global.css'
+import { App } from 'client/modules/layout/app'
+import { ROUTES } from 'client/routes'
+import 'client/common/styles/global.css'
 
-hydrateRoot(
-  document.getElementById('app') ?? document.body,
-  <BrowserRouter>
-    <HeadProvider>
-      <App />
-    </HeadProvider>
-  </BrowserRouter>,
-)
+const router = createBrowserRouter(ROUTES)
+
+hydrateRoot(document.getElementById('app') ?? document.body, <App router={router} />)

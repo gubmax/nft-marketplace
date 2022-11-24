@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
-import { PAGES_CONFIG } from 'server/config/pages.config'
+import { ROUTES } from 'server/routes'
 import { ConfigService } from '../config/config.service'
 import { RenderService } from './render.service'
 
@@ -18,7 +18,7 @@ export function useRenderController(
   async function sendHtml(req: FastifyRequest, res: FastifyReply, route: string) {
     try {
       if (configService.env.isProd) {
-        const { name } = PAGES_CONFIG[route]
+        const { name } = ROUTES[route]
         return res.sendFile(`${name}.html`)
       }
 
@@ -31,7 +31,7 @@ export function useRenderController(
     }
   }
 
-  for (const route in PAGES_CONFIG) {
+  for (const route in ROUTES) {
     server.get(route, async (req, res) => sendHtml(req, res, route))
   }
 }

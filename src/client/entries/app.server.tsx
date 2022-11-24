@@ -1,9 +1,10 @@
 import { renderToString } from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom/server'
+import { createMemoryRouter } from 'react-router-dom'
 
-import { HeadExtractor, HeadProvider } from '../modules/head'
-import { App } from '../modules/layout/app'
-import '../common/styles/global.css'
+import { HeadExtractor } from 'client/modules/head'
+import { App } from 'client/modules/layout/app'
+import { ROUTES } from 'client/routes'
+import 'client/common/styles/global.css'
 
 interface RenderOptions {
   url: string
@@ -11,11 +12,7 @@ interface RenderOptions {
 }
 
 export function render({ url, headExtractor }: RenderOptions): string {
-  return renderToString(
-    <StaticRouter location={url}>
-      <HeadProvider extractor={headExtractor}>
-        <App />
-      </HeadProvider>
-    </StaticRouter>,
-  )
+  const router = createMemoryRouter(ROUTES, { initialEntries: [url] })
+
+  return renderToString(<App router={router} headExtractor={headExtractor} />)
 }

@@ -9,9 +9,9 @@ import { writeFileSync } from 'node:fs'
 import pc from 'picocolors'
 
 import { resolvePath } from 'server/common/helpers/paths'
-import { PAGES_CONFIG } from '../src/server/config/pages.config'
-import { AssetCollectorService } from '../src/server/modules/assetCollector/assetCollector.service'
-import { RenderService } from '../src/server/modules/render/render.service'
+import { AssetCollectorService } from 'server/modules/assetCollector/assetCollector.service'
+import { RenderService } from 'server/modules/render/render.service'
+import { ROUTES } from 'server/routes'
 
 process.env.NODE_ENV = 'production'
 
@@ -24,7 +24,7 @@ await renderService.init()
 
 // Pre-render each app page...
 
-const pages: typeof PAGES_CONFIG = { ...PAGES_CONFIG, '/*': { name: 'not-found' } }
+const pages: typeof ROUTES = { ...ROUTES, '/*': { name: 'not-found' } }
 
 for (const url in pages) {
   const pageConfig = pages[url]
