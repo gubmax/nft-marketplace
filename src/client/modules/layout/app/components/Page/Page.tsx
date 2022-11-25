@@ -1,12 +1,18 @@
 import { memo } from 'react'
-import { useOutlet } from 'react-router-dom'
+import { useLocation, useOutlet } from 'react-router-dom'
 
+import { useEnhancedEffect } from 'client/common/hooks/useEnhancedEffect'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import s from './Page.module.css'
 
 function Page() {
   const routeEl = useOutlet()
+  const { pathname } = useLocation()
+
+  useEnhancedEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   return (
     <>
