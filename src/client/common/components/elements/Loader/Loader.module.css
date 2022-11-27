@@ -25,8 +25,8 @@
   }
 
   &_body {
-    border-right-color: var(--color-on-background);
-    border-left-color: var(--color-on-background);
+    border-right-color: var(--color-dark-on-background);
+    border-left-color: var(--color-dark-on-background);
   }
 }
 

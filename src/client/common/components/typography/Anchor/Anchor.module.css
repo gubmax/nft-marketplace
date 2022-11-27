@@ -7,7 +7,7 @@
   transition: color 100ms ease-out, border-color 100ms ease-out;
 
   &:active {
-    color: var(--colot-primary);
-    border-color: var(--colot-primary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }

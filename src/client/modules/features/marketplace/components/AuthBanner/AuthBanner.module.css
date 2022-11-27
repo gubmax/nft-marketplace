@@ -4,19 +4,11 @@
   background: var(--gradient-primary);
   padding: var(--space-4) var(--space-5);
   border-radius: var(--border-radius-2);
+  color: var(--color-dark-on-background);
 }
 
 .title {
   font-size: 38px;
-  color: var(--color-on-background);
-}
-
-.subtitle {
-  color: var(--color-on-background);
-}
-
-.diamond {
-  position: relative;
 }
 
 .button {

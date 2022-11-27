@@ -9,7 +9,7 @@ $positionValue: calc(100% + var(--space-2));
 }
 
 .tooltip {
-  background: var(--color-outline);
+  background: var(--color-on-outline);
   border-radius: var(--border-radius-1);
   color: var(--color-dark-on-background);
   padding: var(--space-2) var(--space-3);

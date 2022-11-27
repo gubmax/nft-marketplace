@@ -17,7 +17,7 @@
 .highlight {
   position: absolute;
   width: 40vw;
-  height: pxToRem(40);
+  height: 40px;
   background: var(--gradient-secondary);
   filter: blur(80px);
   z-index: -1;
