@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useEffect } from 'react'
+import { createContext, ReactElement } from 'react'
 
 import { ChildrenProp } from 'client/common/typings'
 

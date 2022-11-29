@@ -20,8 +20,8 @@ export type ButtonProps<T extends keyof JSX.IntrinsicElements> = {
 } & ButtonBaseProps<T>
 
 const classNameBySize: Record<ButtonSize, string> = {
-  sm: s.loaderSizes_sm,
-  md: s.loaderSizes_md,
+  sm: s.loaderSizesSm,
+  md: s.loaderSizesMd,
 }
 
 function Button<T extends 'button' | 'a'>({

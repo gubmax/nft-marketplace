@@ -11,15 +11,15 @@ export type IconVariant = 'primary' | 'background' | 'outline'
 export type IconSize = 'sm' | 'md' | 'xl'
 
 const classNameByVariant: Record<IconVariant, string> = {
-  primary: s.variant_primary,
-  background: s.variant_background,
-  outline: s.variant_outline,
+  primary: s.variantPrimary,
+  background: s.variantBackground,
+  outline: s.variantOutline,
 }
 
 const classNameBySize: Record<IconSize, string> = {
-  sm: s.size_sm,
-  md: s.size_md,
-  xl: s.size_xl,
+  sm: s.sizeSm,
+  md: s.sizeMd,
+  xl: s.sizeXl,
 }
 
 export interface IconProps extends StyledProps {

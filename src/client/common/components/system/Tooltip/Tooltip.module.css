@@ -4,10 +4,6 @@ $positionValue: calc(100% + var(--space-2));
   position: relative;
 }
 
-.activator:hover + .tooltip {
-  visibility: visible;
-}
-
 .tooltip {
   background: var(--color-on-outline);
   border-radius: var(--border-radius-1);
@@ -19,6 +15,10 @@ $positionValue: calc(100% + var(--space-2));
   visibility: hidden;
   white-space: nowrap;
   z-index: 1;
+}
+
+.activator:hover + .tooltip {
+  visibility: visible;
 }
 
 .variant {

@@ -2,7 +2,7 @@
   color: inherit;
   border-bottom-width: var(--border-width-1);
   border-style: dashed;
-  border-color: currentColor;
+  border-color: currentcolor;
   border-radius: var(--border-radius-1);
   transition: color 100ms ease-out, border-color 100ms ease-out;
 

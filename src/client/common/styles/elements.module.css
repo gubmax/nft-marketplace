@@ -2,7 +2,7 @@
   padding: var(--space-4);
   background: var(--color-surface);
   border: var(--border-width-1) solid var(--color-outline-variant);
-  border-radius: var(--border-radius-2)
+  border-radius: var(--border-radius-2);
 }
 
 .glass {
@@ -12,17 +12,17 @@
 
 /* Typography */
 
-.typography_h1,
-.typography_h2,
-.typography_h3,
-.typography_h4 {
-  display: block;
-  line-height: 1;
-}
-
 .typography {
   &_p {
     line-height: 1.5;
+  }
+
+  &_h1,
+  &_h2,
+  &_h3,
+  &_h4 {
+    display: block;
+    line-height: 1;
   }
 
   &_h1 {

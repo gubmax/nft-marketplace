@@ -12,8 +12,8 @@ function Logo({ className, style }: StyledProps) {
     <Link
       className={cn(
         s.link,
-        e.typography_h3,
-        e.typography_textHighlight,
+        e.typographyH3,
+        e.typographyTextHighlight,
         'flex items-center gap-1',
         className,
       )}

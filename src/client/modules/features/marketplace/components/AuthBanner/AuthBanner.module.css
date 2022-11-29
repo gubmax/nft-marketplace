@@ -1,4 +1,4 @@
-@import '/src/client/common/styles/media.css';
+@import url('/src/client/common/styles/media.css');
 
 .wrapper {
   background: var(--gradient-primary);

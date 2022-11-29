@@ -15,11 +15,11 @@ function Discover() {
   return (
     <>
       <h1 className={cn(s.header, 'mb-5')}>Buy, sell, and discover exclusive digital items.</h1>
-      <span className={cn(s.subtitle, e.typography_h2, 'mb-5')}>
+      <span className={cn(s.subtitle, e.typographyH2)}>
         The largest trading platform for crypto collectibles and{' '}
-        <span className={e.typography_textHighlight}>non-fungible tokens (NFTs)</span>.
+        <span className={e.typographyTextHighlight}>non-fungible tokens (NFTs)</span>.
       </span>
-      <div className={cn(s.statistics, 'flex justify-around gap-5 mx-5')}>
+      <div className={cn(s.statistics, 'flex justify-around gap-5')}>
         <StatisticCard title="$70 billion" text="24h trading volume" />
         <StatisticCard title="250+" text="Cryptocurrencies listed" />
         <StatisticCard title="90 million" text="Registered users" />
@@ -27,10 +27,9 @@ function Discover() {
       </div>
       <Diamond className={cn(s.diamond, 'mx-auto')} />
       <SectionTitle>
-        Explore all possibilities of{' '}
-        <span className={e.typography_textHighlight}>NFT Platform</span>
+        Explore all possibilities of <span className={e.typographyTextHighlight}>NFT Platform</span>
       </SectionTitle>
-      <p className={cn(e.typography_p, 'mb-5')}>
+      <p className={cn(e.typographyP, 'mb-5')}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum placerat tortor, eget
         volutpat tortor imperdiet sed. Aliquam non vehicula mi. Integer et purus viverra magna
         fringilla malesuada. Aenean cursus nisl arcu, ac commodo neque vulputate ut. Nam luctus
@@ -43,7 +42,7 @@ function Discover() {
         nibh. Duis tellus justo, rutrum nec augue eget, dignissim condimentum nunc.
       </p>
       <SectionTitle>Your trusted crypto exchange</SectionTitle>
-      <p className={cn(e.typography_p, 'mb-5')}>
+      <p className={cn(e.typographyP, 'mb-5')}>
         Sed fermentum sem in est maximus, vel fringilla erat convallis. Curabitur eu hendrerit
         augue. Aenean pulvinar sem eget purus rhoncus pellentesque. Cras convallis leo ligula, quis
         auctor orci semper sit amet. Donec mauris magna, pharetra sit amet feugiat ut, eleifend non

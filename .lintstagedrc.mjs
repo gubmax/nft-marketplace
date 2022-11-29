@@ -1,3 +1,4 @@
 export default {
-  '*.ts?(x)': [() => 'npm run typecheck', 'npm run lint'],
+  '*.ts?(x)': ['pnpm eslint', () => 'pnpm typecheck'],
+  '*.css': 'pnpm stylelint',
 }

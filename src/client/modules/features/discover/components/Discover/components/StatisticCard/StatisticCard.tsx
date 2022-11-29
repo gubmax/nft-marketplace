@@ -10,9 +10,9 @@ interface StatisticCardProps {
 
 function StatisticCard({ title, text }: StatisticCardProps) {
   return (
-    <div className="flex flex-col items-center">
-      <span className={cn(e.typography_h1, 'mb-2')}>{title}</span>
-      <span className={e.typography_subtitle}>{text}</span>
+    <div className={cn(e.surface, 'w-full flex flex-col items-center')}>
+      <span className={cn(e.typographyH1, 'mb-2')}>{title}</span>
+      <span className={e.typographySubtitle}>{text}</span>
     </div>
   )
 }

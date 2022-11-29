@@ -16,10 +16,10 @@ export type ButtonBaseProps<T extends keyof JSX.IntrinsicElements> = {
   AsProp<T>
 
 const classNameByVariant: Record<ButtonVariant, string> = {
-  contained: s.variant_contained,
-  containedLight: s.variant_containedLight,
-  outline: s.variant_outline,
-  outlineLight: s.variant_outlineLight,
+  contained: s.variantContained,
+  containedLight: s.variantContainedLight,
+  outline: s.variantOutline,
+  outlineLight: s.variantOutlineLight,
 }
 
 function ButtonBase<T extends keyof JSX.IntrinsicElements>({

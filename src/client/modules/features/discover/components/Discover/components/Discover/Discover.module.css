@@ -3,8 +3,8 @@
 }
 
 .diamond {
-  margin-top: 64px;
-  margin-bottom: 64px;
+  margin-top: 48px;
+  margin-bottom: 48px;
 }
 
 .header {
@@ -14,6 +14,7 @@
 }
 
 .subtitle {
+  display: block;
   text-align: center;
   color: var(--color-on-outline);
 }

@@ -21,8 +21,8 @@ function Footer() {
       <div className={cn(s.wrapper, 'mx-auto')}>
         <div className={cn(s.topSection, 'flex')}>
           <div className={s.description}>
-            <span className={cn(e.typography_h3, 'mb-5')}>{TEXT_TITLE}</span>
-            <p className={e.typography_subtitle}>{TEXT_DESCRIPTION}</p>
+            <span className={cn(e.typographyH3, 'mb-5')}>{TEXT_TITLE}</span>
+            <p className={e.typographySubtitle}>{TEXT_DESCRIPTION}</p>
           </div>
           <LinkGroup />
         </div>

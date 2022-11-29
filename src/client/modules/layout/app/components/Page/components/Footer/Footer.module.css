@@ -1,4 +1,4 @@
-@import '/src/client/common/styles/media.css';
+@import url("/src/client/common/styles/media.css");
 
 $paddingHeight: 40px;
 
@@ -17,7 +17,7 @@ $paddingHeight: 40px;
   padding: $paddingHeight var(--space-5) 0;
 }
 
-.topSection {
+.top-section {
   @media (--media-screen-max-tablet) {
     flex-direction: column;
   }
@@ -35,7 +35,7 @@ $paddingHeight: 40px;
   }
 }
 
-.bottomSection {
+.bottom-section {
   margin-top: $paddingHeight;
   padding-top: var(--space-4);
   border-top: var(--border-width-1) solid var(--color-outline);
@@ -46,6 +46,6 @@ $paddingHeight: 40px;
   }
 }
 
-.bottomLinks {
-  color: var(--color-on-outline)
+.bottom-links {
+  color: var(--color-on-outline);
 }

@@ -1,7 +1,7 @@
-@import './atomic.css';
-@import './media.css';
-@import './reset.css';
-@import './vars.css';
+@import url('./atomic.css');
+@import url('./media.css');
+@import url('./reset.css');
+@import url('./vars.css');
 
 *,
 *::before,

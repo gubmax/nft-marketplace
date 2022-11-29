@@ -8,13 +8,13 @@ export type LoaderVariant = 'primary' | 'body'
 export type LoaderSize = 'sm' | 'md'
 
 const classNameByVariant: Record<LoaderVariant, string> = {
-  primary: s.variant_primary,
-  body: s.variant_body,
+  primary: s.variantPrimary,
+  body: s.variantBody,
 }
 
 const classNameBySize: Record<LoaderSize, string> = {
-  sm: s.size_sm,
-  md: s.size_md,
+  sm: s.sizeSm,
+  md: s.sizeMd,
 }
 
 export interface LoaderProps extends StyledProps {

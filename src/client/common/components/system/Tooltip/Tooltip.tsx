@@ -14,17 +14,17 @@ export interface TooltipProps extends StyledProps {
 }
 
 const classNameVariantByPosition: Record<TooltipPositions, string> = {
-  top: s.variant_top,
-  right: s.variant_right,
-  bottom: s.variant_bottom,
-  left: s.variant_left,
+  top: s.variantTop,
+  right: s.variantRight,
+  bottom: s.variantBottom,
+  left: s.variantLeft,
 }
 
 const Tooltip = ({ children, className, content, position = 'top', style }: TooltipProps) => {
   return (
     <div className={cn(s.wrapper, className)} style={style}>
       {children(s.activator)}
-      <div className={cn(s.tooltip, classNameVariantByPosition[position], e.typography_subtitle)}>
+      <div className={cn(s.tooltip, classNameVariantByPosition[position], e.typographySubtitle)}>
         {content}
       </div>
     </div>
