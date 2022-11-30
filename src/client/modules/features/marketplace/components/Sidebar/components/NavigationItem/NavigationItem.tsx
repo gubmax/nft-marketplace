@@ -21,7 +21,7 @@ function NavigationItem({ icon: Icon, text, to }: NavigationItemProps) {
   const handleClick = useEvent(() => navigate(to))
 
   const isActive = to === pathname
-  const iconVariant = isActive ? 'primary' : 'outline'
+  const iconVariant = isActive ? 'primary' : 'inherit'
 
   return (
     <IW

@@ -1,23 +1,20 @@
-import { memo, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
-interface HelpBlockProps {
+import { cn } from 'client/common/helpers/classNames'
+import e from 'client/common/styles/elements.module.css'
+import { ChildrenProp } from 'client/common/typings'
+
+interface HelpBlockProps extends ChildrenProp {
   icon: ReactNode
-  title: string
-  text: string
-  link: ReactNode
 }
 
-function HelpBlock({ icon, title, text, link }: HelpBlockProps) {
+function HelpBlock({ icon, children }: HelpBlockProps) {
   return (
-    <div className="flex">
+    <div className={cn(e.surface, 'flex w-full')}>
       <div className="flex-shrink-0">{icon}</div>
-      <div className="ml-5">
-        <span>{title}</span>
-        <span>{text}</span>
-        {link}
-      </div>
+      <div className="ml-4">{children}</div>
     </div>
   )
 }
 
-export default memo(HelpBlock)
+export default HelpBlock

@@ -1,13 +1,13 @@
 .variant {
+  &_inherit {
+    fill: currentcolor;
+  }
+
   &_primary {
     fill: url("#lg-accent-light");
     @media (prefers-color-scheme: dark) {
       fill: url("#lg-accent-dark");
     }
-  }
-
-  &_background {
-    fill: var(--color-on-background);
   }
 
   &_outline {
@@ -17,16 +17,21 @@
 
 .size {
   &_sm {
+    width: 16px;
+    height: 16px;
+  }
+
+  &_md {
     width: 24px;
     height: 24px;
   }
 
-  &_md {
+  &_xl {
     width: 48px;
     height: 48px;
   }
 
-  &_xl {
+  &_xxl {
     width: 112px;
     height: 112px;
   }
