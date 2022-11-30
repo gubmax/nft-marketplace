@@ -1,13 +1,9 @@
 .link {
-  color: inherit;
-  border-bottom-width: var(--border-width-1);
-  border-style: dashed;
-  border-color: currentcolor;
+  color: var(--color-secondary);
   border-radius: var(--border-radius-1);
   transition: color 100ms ease-out, border-color 100ms ease-out;
 
   &:active {
     color: var(--color-primary);
-    border-color: var(--color-primary);
   }
 }

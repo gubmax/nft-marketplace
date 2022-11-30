@@ -10,7 +10,6 @@ export default {
 const Template: StoryFn<typeof Button> = (args) => <Button {...args} />
 
 export const Contained = Template.bind({})
-
 Contained.args = {
   variant: 'contained',
   children: 'Label',
