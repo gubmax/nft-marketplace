@@ -17,7 +17,7 @@ export function useNotFoundHandler(server: FastifyInstance, options: NotFoundHan
   server.setNotFoundHandler(async (req, res) => {
     const payload = configService.env.isProd
       ? createReadStream(resolvePath('dist/client/not-found.html'), 'utf-8')
-      : await renderService.render({ url: req.url })
+      : await renderService.renderPage({ url: req.url })
 
     return res.status(404).type('text/html').send(payload)
   })

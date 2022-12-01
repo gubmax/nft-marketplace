@@ -16,19 +16,13 @@ export function useRenderController(
   const { configService, renderService } = options
 
   async function sendHtml(req: FastifyRequest, res: FastifyReply, route: string) {
-    try {
-      if (configService.env.isProd) {
-        const { name } = ROUTES[route]
-        return res.sendFile(`${name}.html`)
-      }
-
-      const html = await renderService.render({ url: req.url })
-
-      return res.status(200).type('text/html').send(html)
-    } catch (error) {
-      console.error(error)
-      return res.status(500).send(error)
+    if (configService.env.isProd) {
+      const { name } = ROUTES[route]
+      return res.sendFile(`${name}.html`)
     }
+
+    const html = await renderService.renderPage({ url: req.url })
+    return res.status(200).type('text/html').send(html)
   }
 
   for (const route in ROUTES) {

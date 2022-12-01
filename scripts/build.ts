@@ -20,6 +20,7 @@ build({
     ...builtinModules,
     ...Object.keys(pkg.dependencies),
     ...Object.keys(pkg.devDependencies),
+    ...Object.keys(pkg.optionalDependencies),
   ],
   entryPoints: ['./src/server/main.ts'],
   outfile: `./dist/server/${OUTFILE}`,

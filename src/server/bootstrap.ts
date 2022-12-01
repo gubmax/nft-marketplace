@@ -57,7 +57,7 @@ export async function bootstrap(): Promise<void> {
   // Handlers
 
   useNotFoundHandler(server, { configService, renderService })
-  useUncaughtErrorHandler(server, { loggerService })
+  useUncaughtErrorHandler(server, { configService, loggerService, renderService })
 
   // Hooks
 

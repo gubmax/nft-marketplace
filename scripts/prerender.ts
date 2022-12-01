@@ -22,19 +22,25 @@ const renderService = new RenderService(assetCollectorService)
 
 await renderService.init()
 
-// Pre-render each app page...
+function writePageFile(name: string, html: string) {
+  const fileName = `${name}.html`
+  writeFileSync(resolvePath(`dist/client/${fileName}`), html)
+  console.log(`${pc.dim('dist/client/')}${pc.green(`${fileName}`)}`)
+}
+
+// Pre-render app pages
 
 const pages: typeof ROUTES = { ...ROUTES, '/*': { name: 'not-found' } }
 
 for (const url in pages) {
   const pageConfig = pages[url]
-
   assert(pageConfig, `Page config for url "${url}" not found`)
 
-  const html = await renderService.render({ url })
-
-  const fileName = `${pageConfig.name}.html`
-  writeFileSync(resolvePath(`dist/client/${fileName}`), html)
-
-  console.log(`${pc.dim('dist/client/')}${pc.green(`${fileName}`)}`)
+  const html = await renderService.renderPage({ url })
+  writePageFile(pageConfig.name, html)
 }
+
+// Pre-render error page
+
+const html = await renderService.renderError()
+writePageFile('error', html)

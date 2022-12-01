@@ -23,7 +23,9 @@ export default defineConfig(({ ssrBuild, mode }) => {
         publicDir: false,
         build: {
           outDir: './dist/server',
-          rollupOptions: { input: './src/client/entries/app.server' },
+          rollupOptions: {
+            input: ['./src/client/entries/app.server', './src/client/entries/error.server'],
+          },
         },
       }
     : {
@@ -33,7 +35,9 @@ export default defineConfig(({ ssrBuild, mode }) => {
         build: {
           manifest: true,
           outDir: './dist/client',
-          rollupOptions: { input: './src/client/entries/app.client' },
+          rollupOptions: {
+            input: ['./src/client/entries/app.client', './src/client/entries/error.client'],
+          },
         },
       }
 })

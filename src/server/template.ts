@@ -4,7 +4,7 @@ interface AppTemplateOptions {
   body?: string
 }
 
-export function getAppTemplate({ head = '', appHtml, body = '' }: AppTemplateOptions): string {
+export function generateTemplate({ head = '', appHtml, body = '' }: AppTemplateOptions): string {
   return `
 <!DOCTYPE html>
 <html lang="en">
