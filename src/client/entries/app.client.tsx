@@ -1,8 +1,8 @@
 import { hydrateRoot } from 'react-dom/client'
 import { createBrowserRouter } from 'react-router-dom'
 
-import { reportWebVitals } from 'client/common/utils/reportWebVitals'
-import { App } from 'client/modules/layout/app'
+import { App } from 'client/modules/app'
+import { reportWebVitals } from 'client/modules/webVitals'
 import { ROUTES } from 'client/routes'
 import 'client/common/styles/global.css'
 

@@ -1,8 +1,8 @@
 import { renderToString } from 'react-dom/server'
 import { createMemoryRouter } from 'react-router-dom'
 
+import { App } from 'client/modules/app'
 import { HeadExtractor } from 'client/modules/head'
-import { App } from 'client/modules/layout/app'
 import { ROUTES } from 'client/routes'
 import 'client/common/styles/global.css'
 

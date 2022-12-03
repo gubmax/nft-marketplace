@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom'
 
 import { PageRoutes } from 'client/common/constants'
-import { Page } from 'client/modules/layout/app'
+import { Page } from 'client/modules/app'
 import { AboutPage } from 'client/modules/pages/about'
 import { CollectionPage } from 'client/modules/pages/collection'
 import { HomePage } from 'client/modules/pages/home'
