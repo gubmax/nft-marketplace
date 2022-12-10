@@ -28,7 +28,7 @@
   &_h1 {
     font-size: var(--font-size-h1);
     font-weight: 500;
-    letter-spacing: 0.25;
+    letter-spacing: 0.25px;
   }
 
   &_h2 {
@@ -39,7 +39,7 @@
 
   &_h3 {
     font-size: var(--font-size-h3);
-    letter-spacing: 0.15;
+    letter-spacing: 0.15px;
   }
 
   &_subtitle {

@@ -1,14 +1,13 @@
 import assert from 'node:assert'
+import { PassThrough } from 'node:stream'
 
-import { FastifyInstance } from 'fastify'
+import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { ViteDevServer } from 'vite'
 
 import { resolvePath } from 'server/common/helpers/paths'
-import { HeadExtractor } from 'server/common/utils/headExtractor'
 import { VITE_DEV_SERVER_CONFIG } from 'server/config/viteDevServer.config'
-import { generateTemplate } from 'server/template'
 import { AssetCollectorService } from '../assetCollector/assetCollector.service'
-import { RenderErrorFn, RenderPageFn, RenderService } from './render.service'
+import { EntryModule, RenderService } from './render.service'
 
 const INIT_ERROR_MSG = 'Vite dev server has not been initialized'
 
@@ -19,12 +18,12 @@ export class DevelopmentRenderService extends RenderService {
     super(assetCollectorService)
   }
 
-  protected getEntryModule<T>(path: string): Promise<{ render: T }> {
+  protected getEntryModule(path: string): Promise<EntryModule> {
     assert(this.viteDevServer, INIT_ERROR_MSG)
-    return this.viteDevServer.ssrLoadModule(path) as Promise<{ render: T }>
+    return this.viteDevServer.ssrLoadModule(path) as Promise<EntryModule>
   }
 
-  protected collectPreloadLinks(path: string): string {
+  protected collectPreloadLinks(path: string): Array<Record<string, unknown>> {
     assert(this.viteDevServer, INIT_ERROR_MSG)
     const id = resolvePath(path)
     const mod = this.viteDevServer.moduleGraph.getModuleById(id)
@@ -39,49 +38,19 @@ export class DevelopmentRenderService extends RenderService {
     server.use(this.viteDevServer.middlewares)
   }
 
-  async renderPage({ url }: { url: string }): Promise<string> {
-    try {
-      assert(this.viteDevServer, INIT_ERROR_MSG)
-
-      const entryMod = await this.getEntryModule<RenderPageFn>('/src/client/entries/app.server.tsx')
-      const preloadLinks = this.collectPreloadLinks('src/client/entries/app.server.tsx')
-
-      const headExtractor = new HeadExtractor()
-      const appHtml = await entryMod.render({ url, headExtractor })
-      const headTags = headExtractor.renderStatic()
-
-      const html = generateTemplate({
-        head: `${headTags}${preloadLinks}`,
-        appHtml,
-        body: '<script type="module" src="/src/client/entries/app.client.tsx"></script>',
-      })
-
-      return this.viteDevServer.transformIndexHtml(url, html)
-    } catch (error) {
-      if (error instanceof Error) {
-        this.viteDevServer?.ssrFixStacktrace(error)
-      }
-
-      throw error
-    }
+  async renderApp(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
+    const entryMod = await this.getEntryModule('/src/client/entries/app.server.tsx')
+    const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.server.tsx')
+    const entryRouteContext = { prefetchLinks }
+    const bootstrapModules = ['/src/client/entries/app.client.tsx']
+    return this.renderBase(req, res, { entryMod, entryRouteContext, bootstrapModules })
   }
 
-  async renderError(): Promise<string> {
-    assert(this.viteDevServer, INIT_ERROR_MSG)
-
-    const entryMod = await this.getEntryModule<RenderErrorFn>(
-      '/src/client/entries/error.server.tsx',
-    )
-    const preloadLinks = this.collectPreloadLinks('src/client/entries/error.server.tsx')
-
-    const appHtml = await entryMod.render()
-
-    const html = generateTemplate({
-      head: preloadLinks,
-      appHtml,
-      body: '<script type="module" src="/src/client/entries/error.client.tsx"></script>',
-    })
-
-    return this.viteDevServer.transformIndexHtml('', html)
+  async renderError(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
+    const entryMod = await this.getEntryModule('/src/client/entries/error.server.tsx')
+    const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.server.tsx')
+    const entryRouteContext = { prefetchLinks }
+    const bootstrapModules = ['/src/client/entries/error.client.tsx']
+    return this.renderBase(req, res, { entryMod, entryRouteContext, bootstrapModules })
   }
 }

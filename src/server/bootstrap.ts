@@ -1,6 +1,6 @@
 import { IncomingMessage, Server, ServerResponse } from 'node:http'
 
-import fastify from 'fastify'
+import fastify, { FastifyInstance } from 'fastify'
 import hyperid from 'hyperid'
 
 import { useNotFoundHandler } from './common/handlers/notFound.handler'
@@ -10,13 +10,19 @@ import { useRequestLoggingHook } from './common/hooks/requestLogging.hook'
 import { useRequestTimeoutHook } from './common/hooks/requestTimeout.hook'
 import { AssetCollectorService } from './modules/assetCollector/assetCollector.service'
 import { AsyncStorageService } from './modules/asyncStorage/asyncStorage.service'
+import { useAuxiliaryController } from './modules/auxiliary/auxiliary.controller'
 import { ConfigService } from './modules/config/config.service'
 import { LoggerService } from './modules/logger/logger.service'
 import { useRenderController } from './modules/render/render.controller'
 import { RenderService } from './modules/render/render.service'
 import { DevelopmentRenderService } from './modules/render/render.service.development'
 
-export async function bootstrap(): Promise<void> {
+export interface BootstrapResult {
+  server: FastifyInstance
+  config: { host: string; port: number }
+}
+
+export async function bootstrap(): Promise<BootstrapResult> {
   // Services
 
   const configService = new ConfigService()
@@ -66,10 +72,11 @@ export async function bootstrap(): Promise<void> {
 
   // Routes
 
+  useAuxiliaryController(server, { configService, renderService })
   useRenderController(server, { configService, renderService })
 
-  // Listen
+  // Result
 
   const { host, port } = configService.env
-  await server.listen({ host, port })
+  return { server, config: { host, port } }
 }

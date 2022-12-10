@@ -1,0 +1,35 @@
+$loading_transition_delay: 500ms;
+
+.wrapper {
+  position: fixed;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  user-select: none;
+  z-index: 2;
+}
+
+@keyframes loading-animation {
+  10% { width: 50% }
+  100% { width: 90% }
+}
+
+.loading {
+  animation-name: loading-animation;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+  transition: width loading_transition_delay ease-in;
+}
+
+@keyframes loading-end-animation {
+  from { opacity: 1 }
+  to { opacity: 0 }
+}
+
+.loading-end {
+  width: 100%;
+  animation-name: loading-end-animation;
+  animation-duration: $loading_transition_delay;
+  animation-fill-mode: forwards;
+  transition: width $loading_transition_delay ease-in, opacity $loading_transition_delay ease-in;
+}

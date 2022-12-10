@@ -1,32 +1,52 @@
 import assert from 'node:assert'
 import { readFileSync } from 'node:fs'
+import { PassThrough } from 'node:stream'
 
-import { FastifyInstance } from 'fastify'
+import { ReactNode } from 'react'
+import { renderToPipeableStream } from 'react-dom/server'
+import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
+import isbot from 'isbot'
 import type { Manifest } from 'vite'
 
 import { resolvePath } from 'server/common/helpers/paths'
-import { HeadExtractor } from 'server/common/utils/headExtractor'
-import { generateTemplate } from 'server/template'
 import { AssetCollectorService } from '../assetCollector/assetCollector.service'
 
-interface RenderOptions {
-  url: string
-  headExtractor: HeadExtractor
+const ABORT_RENDER_DELAY = 5000
+
+export interface EntryRouteContextType {
+  prefetchLinks: Array<Record<string, unknown>>
+  // matches: any[]
+  // routeModules: any[]
+  // manifest: Manifest
 }
 
-export type RenderPageFn = (options: RenderOptions) => Promise<string>
-export type RenderErrorFn = () => Promise<string>
+export interface RenderOptions {
+  url: string
+  entryRouteContext: EntryRouteContextType
+}
+
+export type RenderFn = (options: RenderOptions) => ReactNode
+
+export interface EntryModule {
+  render: RenderFn
+}
+
+export interface BaseRenderOpts {
+  entryMod: EntryModule
+  entryRouteContext: EntryRouteContextType
+  bootstrapModules?: string[]
+}
 
 export class RenderService {
   manifest?: Manifest
 
   constructor(protected readonly assetCollectorService: AssetCollectorService) {}
 
-  protected getEntryModule<T>(path: string): Promise<{ render: T }> {
-    return import(resolvePath(path)) as Promise<{ render: T }>
+  protected getEntryModule(path: string): Promise<EntryModule> {
+    return import(resolvePath(path)) as Promise<EntryModule>
   }
 
-  protected collectPreloadLinks(path: string): string {
+  protected collectPreloadLinks(path: string): Array<Record<string, unknown>> {
     assert(this.manifest, 'Manifest not found')
     return this.assetCollectorService.collectPreloadLinksByManifest(this.manifest, path)
   }
@@ -42,23 +62,59 @@ export class RenderService {
     return Promise.resolve()
   }
 
-  async renderPage({ url }: { url: string }): Promise<string> {
-    const entryMod = await this.getEntryModule<RenderPageFn>('dist/server/app.server.js')
-    const preloadLinks = this.collectPreloadLinks('src/client/entries/app.client.tsx')
+  protected renderBase(
+    req: FastifyRequest,
+    res: FastifyReply,
+    opts: BaseRenderOpts,
+  ): Promise<PassThrough> {
+    const { entryMod, entryRouteContext, bootstrapModules } = opts
 
-    const headExtractor = new HeadExtractor()
-    const appHtml = await entryMod.render({ url, headExtractor })
-    const headTags = headExtractor.renderStatic()
+    // Inject entry context like script for client side
+    entryRouteContext.prefetchLinks.push({
+      id: '__ENTRY_ROUTE_CONTEXT__',
+      type: 'application/json',
+      content: JSON.stringify(entryRouteContext),
+    })
 
-    return generateTemplate({ head: `${headTags}${preloadLinks}`, appHtml })
+    const node = entryMod.render({ url: req.url, entryRouteContext })
+
+    const ua = typeof req.headers === 'object' ? req.headers['user-agent'] : null
+    const callbackName = !ua || isbot(ua) ? 'onAllReady' : 'onShellReady'
+
+    let didError = false
+    return new Promise((resolve, reject) => {
+      const stream = renderToPipeableStream(node, {
+        bootstrapModules,
+        [callbackName]() {
+          const body = new PassThrough()
+          void res.status(didError ? 500 : 200).type('text/html')
+          resolve(body)
+          stream.pipe(body)
+        },
+        onShellError(err) {
+          reject(err)
+        },
+        onError(err) {
+          didError = true
+          console.error(err)
+        },
+      })
+
+      setTimeout(() => stream.abort(), ABORT_RENDER_DELAY)
+    })
   }
 
-  async renderError(): Promise<string> {
-    const entryMod = await this.getEntryModule<RenderErrorFn>('dist/server/error.server.js')
-    const preloadLinks = this.collectPreloadLinks('src/client/entries/error.client.tsx')
+  async renderApp(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
+    const entryMod = await this.getEntryModule('dist/server/app.server.js')
+    const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.client.tsx')
+    const entryRouteContext = { prefetchLinks }
+    return this.renderBase(req, res, { entryMod, entryRouteContext })
+  }
 
-    const appHtml = await entryMod.render()
-
-    return generateTemplate({ head: preloadLinks, appHtml })
+  async renderError(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
+    const entryMod = await this.getEntryModule('dist/server/error.server.js')
+    const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.client.tsx')
+    const entryRouteContext = { prefetchLinks }
+    return this.renderBase(req, res, { entryMod, entryRouteContext })
   }
 }

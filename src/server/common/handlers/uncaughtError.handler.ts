@@ -18,15 +18,17 @@ export function useUncaughtErrorHandler(
   options: UncaughtErrorHandlerOptions,
 ): void {
   const { configService, loggerService, renderService } = options
+  const { isProd, buildEnv } = configService.env
   const { logger } = loggerService
 
   server.setErrorHandler(async (error, req, res) => {
     logger.error(error, 'Uncaught error')
 
-    const payload = configService.env.isProd
-      ? createReadStream(resolvePath('dist/client/error.html'), 'utf-8')
-      : await renderService.renderError()
+    if (isProd && buildEnv !== 'prerender') {
+      const stream = createReadStream(resolvePath('dist/client/error.html'), 'utf-8')
+      return res.status(500).type('text/html').send(stream)
+    }
 
-    return res.status(500).type('text/html').send(payload)
+    return renderService.renderError(req, res)
   })
 }

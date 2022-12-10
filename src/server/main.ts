@@ -1,11 +1,12 @@
 import { bootstrap } from './bootstrap'
 import { ENV_CONFIG } from './config/env.config'
 
-const { isTest } = ENV_CONFIG
+const { isTest, buildEnv } = ENV_CONFIG
 
 // Bootstrap
-if (!isTest) {
-  void bootstrap()
+if (!isTest && buildEnv !== 'prerender') {
+  const { server, config } = await bootstrap()
+  await server.listen(config)
 }
 
 // For tests

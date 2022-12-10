@@ -2,7 +2,6 @@ import { PageRoutes } from 'server/common/constants'
 
 interface PageOptions {
   name: string
-  // getServerSideProps: Function
 }
 
 export const ROUTES: Record<string, PageOptions> = {

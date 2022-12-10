@@ -13,12 +13,14 @@ interface NotFoundHandlerOptions {
 
 export function useNotFoundHandler(server: FastifyInstance, options: NotFoundHandlerOptions) {
   const { configService, renderService } = options
+  const { isProd, buildEnv } = configService.env
 
   server.setNotFoundHandler(async (req, res) => {
-    const payload = configService.env.isProd
-      ? createReadStream(resolvePath('dist/client/not-found.html'), 'utf-8')
-      : await renderService.renderPage({ url: req.url })
+    if (isProd && buildEnv !== 'prerender') {
+      const stream = createReadStream(resolvePath('dist/client/not-found.html'), 'utf-8')
+      return res.status(404).type('text/html').send(stream)
+    }
 
-    return res.status(404).type('text/html').send(payload)
+    return renderService.renderApp(req, res)
   })
 }

@@ -1,3 +1,3 @@
 export * from './components/App'
 export * from './components/BasePageWrapper'
-export * from './components/Page'
+export * from './components/Layout'

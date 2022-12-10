@@ -1,26 +1,20 @@
-import { StrictMode } from 'react'
-import { RouterProvider, RouterProviderProps } from 'react-router-dom'
+import { memo } from 'react'
+import { useRoutes } from 'react-router-dom'
 
-import { useSsrDataRemoval } from 'client/common/hooks/useSsrDataRemoval'
-import { HeadExtractor, HeadProvider } from 'client/modules/head'
+import { CLIENT_ROUTES } from 'client/clientRoutes'
 import { CommonSvg } from '../CommonSvg'
+import { ProgressBar } from '../ProgressBar'
 
-export interface AppProps {
-  router: RouterProviderProps['router']
-  headExtractor?: HeadExtractor
-}
-
-function App({ headExtractor, router }: AppProps) {
-  useSsrDataRemoval()
+function App() {
+  const route = useRoutes(CLIENT_ROUTES)
 
   return (
-    <StrictMode>
-      <HeadProvider extractor={headExtractor}>
-        <RouterProvider router={router} />
-      </HeadProvider>
+    <>
+      <ProgressBar />
+      {route}
       <CommonSvg />
-    </StrictMode>
+    </>
   )
 }
 
-export default App
+export default memo(App)

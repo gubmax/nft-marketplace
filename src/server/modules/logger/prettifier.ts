@@ -23,6 +23,7 @@ interface InputData {
     url: string
     durationMs: number
   }
+  err?: Error
   msg: string
 }
 
@@ -76,6 +77,13 @@ export const messageFormat: PinoPretty.MessageFormatFunc = (log) => {
       res.url,
       ms,
     )
+  }
+
+  // Error
+  if (input.err) {
+    const { level, err } = input
+    const prettyDesc = baseColor(level, err.message)
+    return joinMsg(prettyDesc, msg).concat('\n', err.stack ?? '')
   }
 
   // Info

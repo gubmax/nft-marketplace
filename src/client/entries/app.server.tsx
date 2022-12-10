@@ -1,18 +1,24 @@
-import { renderToString } from 'react-dom/server'
-import { createMemoryRouter } from 'react-router-dom'
+import { ReactNode, StrictMode } from 'react'
+import { StaticRouter } from 'react-router-dom/server'
 
+import { EntryRouteContextType } from 'client/common/context/entryRouteContext'
+import { Document } from 'client/document'
 import { App } from 'client/modules/app'
-import { HeadExtractor } from 'client/modules/head'
-import { ROUTES } from 'client/routes'
 import 'client/common/styles/global.css'
 
-interface RenderOptions {
+export interface AppRenderOptions {
   url: string
-  headExtractor: HeadExtractor
+  entryRouteContext: EntryRouteContextType
 }
 
-export function render({ url, headExtractor }: RenderOptions): string {
-  const router = createMemoryRouter(ROUTES, { initialEntries: [url] })
-
-  return renderToString(<App router={router} headExtractor={headExtractor} />)
+export function render({ url, entryRouteContext }: AppRenderOptions): ReactNode {
+  return (
+    <StrictMode>
+      <Document entryRouteContext={entryRouteContext}>
+        <StaticRouter location={url}>
+          <App />
+        </StaticRouter>
+      </Document>
+    </StrictMode>
+  )
 }

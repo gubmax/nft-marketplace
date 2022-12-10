@@ -1,5 +1,8 @@
+import { createReadStream } from 'node:fs'
+
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
+import { resolvePath } from 'server/common/helpers/paths'
 import { ROUTES } from 'server/routes'
 import { ConfigService } from '../config/config.service'
 import { RenderService } from './render.service'
@@ -14,15 +17,16 @@ export function useRenderController(
   options: RenderControllerOptions,
 ): void {
   const { configService, renderService } = options
+  const { isProd, buildEnv } = configService.env
 
   async function sendHtml(req: FastifyRequest, res: FastifyReply, route: string) {
-    if (configService.env.isProd) {
+    if (isProd && buildEnv !== 'prerender') {
       const { name } = ROUTES[route]
-      return res.sendFile(`${name}.html`)
+      const stream = createReadStream(resolvePath(`dist/client/${name}.html`), 'utf-8')
+      return res.status(200).type('text/html').send(stream)
     }
 
-    const html = await renderService.renderPage({ url: req.url })
-    return res.status(200).type('text/html').send(html)
+    return renderService.renderApp(req, res)
   }
 
   for (const route in ROUTES) {

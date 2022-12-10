@@ -9,8 +9,10 @@ export class LoggerService {
   readonly logger: FastifyBaseLogger
 
   constructor(private readonly configService: ConfigService) {
-    const optionsOrStream = configService.env.isProd
-      ? undefined
+    const { isProd, buildEnv } = configService.env
+
+    const optionsOrStream = isProd
+      ? { enabled: buildEnv !== 'prerender' }
       : pretty({
           colorize: false,
           hideObject: true,
