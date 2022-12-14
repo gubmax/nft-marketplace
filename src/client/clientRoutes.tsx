@@ -14,7 +14,7 @@ const DynamicCollectionPage = dynamic(() => import('client/routes/collection.rou
 const DynamicSalesPage = dynamic(() => import('client/routes/sales.route'))
 const DynamicSchedulePage = dynamic(() => import('client/routes/schedule.route'))
 
-export type CustomRouteObject = Pick<RouteObject, 'path' | 'element' | 'children'> & {
+export type CustomRouteObject = RouteObject & {
   element: ReactNode | DynamicComponentType
 }
 

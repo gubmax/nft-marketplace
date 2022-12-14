@@ -1,28 +1,22 @@
-let fn: () => JSX.Element | null
+function LiveReload() {
+  if (import.meta.env.PROD) return null
 
-if (import.meta.env.PROD) {
-  fn = function LiveReload() {
-    return null
-  }
-} else {
-  fn = function LiveReload() {
-    const js = String.raw
-    return (
-      <script
-        type="module"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: js`
-              import RefreshRuntime from "/@react-refresh"
-              RefreshRuntime.injectIntoGlobalHook(window)
-              window.$RefreshReg$ = () => {}
-              window.$RefreshSig$ = () => (type) => type
-              window.__vite_plugin_react_preamble_installed__ = true
-            `,
-        }}
-      />
-    )
-  }
+  const js = String.raw
+  return (
+    <script
+      type="module"
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{
+        __html: js`
+          import RefreshRuntime from "/@react-refresh"
+          RefreshRuntime.injectIntoGlobalHook(window)
+          window.$RefreshReg$ = () => {}
+          window.$RefreshSig$ = () => (type) => type
+          window.__vite_plugin_react_preamble_installed__ = true
+        `,
+      }}
+    />
+  )
 }
 
-export default fn
+export default LiveReload

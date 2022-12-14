@@ -14,9 +14,7 @@ interface DynamicModule<P> {
 
 type DynamicFactory<P> = () => Promise<DynamicModule<P>>
 
-export function dynamic<P extends unknown & PropsWithRef<unknown> & JSX.IntrinsicAttributes>(
-  factory: DynamicFactory<P>,
-): DynamicComponentType<P> {
+export function dynamic<P>(factory: DynamicFactory<P>): DynamicComponentType<P> {
   let cache: DynamicModule<P> | null = null
 
   function Dynamic({ fallback, ...rest }: P & DynamicProps) {
