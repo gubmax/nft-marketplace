@@ -27,8 +27,10 @@ function Header({ className, style }: StyledProps) {
   return (
     <header className={cn(s.header, e.glass, className)} style={style}>
       <nav className={cn(s.wrapper, 'flex items-center m-auto gap-4')}>
-        <Logo className={s.logo} />
-        <div className="flex ml-auto">
+        <Link to={PageRoutes.HOME}>
+          <Logo className={s.logo} />
+        </Link>
+        <div className="flex">
           <Link className={s.link} to={PageRoutes.HOME}>
             {TEXT_DISCOVER}
           </Link>

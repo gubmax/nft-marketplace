@@ -26,9 +26,7 @@ function Discover() {
         <StatisticCard title="<0.10%" text="Lowest transaction fees" />
       </div>
       <Diamond className={cn(s.diamond, 'mx-auto')} />
-      <SectionTitle>
-        Explore all possibilities of <span className={e.typographyTextHighlight}>NFT Platform</span>
-      </SectionTitle>
+      <SectionTitle>Explore all possibilities of Acme</SectionTitle>
       <p className={cn(e.typographyP, 'mb-5')}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum placerat tortor, eget
         volutpat tortor imperdiet sed. Aliquam non vehicula mi. Integer et purus viverra magna

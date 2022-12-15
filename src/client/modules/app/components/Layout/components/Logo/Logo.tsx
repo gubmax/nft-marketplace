@@ -1,7 +1,6 @@
 import { memo } from 'react'
 
-import { Link } from 'client/common/components/system/Link'
-import { PageRoutes } from 'client/common/constants'
+import { BoltIcon } from 'client/common/components/icons'
 import { cn } from 'client/common/helpers/classNames'
 import e from 'client/common/styles/elements.module.css'
 import { StyledProps } from 'client/common/typings'
@@ -9,19 +8,10 @@ import s from './Logo.module.css'
 
 function Logo({ className, style }: StyledProps) {
   return (
-    <Link
-      className={cn(
-        s.link,
-        e.typographyH3,
-        e.typographyTextHighlight,
-        'flex items-center gap-1',
-        className,
-      )}
-      to={PageRoutes.HOME}
-      style={style}
-    >
-      NFT PLATFORM
-    </Link>
+    <div className={cn(s.wrapper, e.typographyH3, 'flex items-center', className)} style={style}>
+      <BoltIcon />
+      Acme
+    </div>
   )
 }
 

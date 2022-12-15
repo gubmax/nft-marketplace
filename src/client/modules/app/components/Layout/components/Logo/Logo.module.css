@@ -1,6 +1,5 @@
-.link {
+.wrapper {
   border-radius: var(--border-radius-2);
   font-weight: 700;
   line-height: 36px;
-  padding: 0 var(--space-2);
 }

@@ -4,16 +4,16 @@ import { A } from 'client/common/components/typography/Anchor'
 import { PageRoutes } from 'client/common/constants'
 import { cn } from 'client/common/helpers/classNames'
 import e from 'client/common/styles/elements.module.css'
+import { Logo } from '../Logo'
 import { LinkGroup } from './components/LinkGroup'
 import s from './Footer.module.css'
 
-export const TEXT_TITLE = 'NFT PLATFORM'
-export const TEXT_DESCRIPTION =
+const TEXT_DESCRIPTION =
   'The largest trading platform for crypto collectibles and non-fungible tokens (NFTs). Buy, sell, and discover exclusive digital items.'
 
-export const TEXT_COPYRIGHT = `Site design / logo © ${new Date().getFullYear()} NFT PLATFORM`
-export const TEXT_PRIVACY_POLICY = 'Privacy Policy'
-export const TEXT_TERMS_OF_SERVICE = 'Terms of Service'
+const TEXT_COPYRIGHT = `Site design / logo © ${new Date().getFullYear()} Acme Corporation`
+const TEXT_PRIVACY_POLICY = 'Privacy Policy'
+const TEXT_TERMS_OF_SERVICE = 'Terms of Service'
 
 function Footer() {
   return (
@@ -21,7 +21,7 @@ function Footer() {
       <div className={cn(s.wrapper, 'mx-auto')}>
         <div className={cn(s.topSection, 'flex')}>
           <div className={s.description}>
-            <span className={cn(e.typographyH3, 'mb-5')}>{TEXT_TITLE}</span>
+            <Logo className="mb-3" />
             <p className={e.typographySubtitle}>{TEXT_DESCRIPTION}</p>
           </div>
           <LinkGroup />

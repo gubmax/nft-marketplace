@@ -35,7 +35,7 @@ export const theme = create({
   inputTextColor: '#858585',
   inputBorderRadius: 6,
 
-  brandTitle: 'NFT Platform',
+  brandTitle: 'Acme',
   brandUrl: 'http://localhost:3000',
   brandTarget: '_self',
 })

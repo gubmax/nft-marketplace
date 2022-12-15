@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import { cn } from 'client/common/helpers/classNames'
 import { ChildrenProp, StyledProps } from 'client/common/typings'
 import s from './BasePageWrapper.module.css'
@@ -14,4 +12,4 @@ function BasePageWrapper({ className, style, children }: BasePageWrapperProps) {
   )
 }
 
-export default memo(BasePageWrapper)
+export default BasePageWrapper
