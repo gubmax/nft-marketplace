@@ -1,10 +1,10 @@
 import { memo } from 'react'
-import { Link } from 'react-router-dom'
 
 import { LanguageIcon, NotificationIcon } from 'client/common/components/icons'
 import { Button } from 'client/common/components/inputs/buttons/Button'
 import { IconButton } from 'client/common/components/inputs/buttons/IconButton'
 import { IconCounter } from 'client/common/components/system/IconCounter'
+import { Link } from 'client/common/components/system/Link'
 import { Tooltip } from 'client/common/components/system/Tooltip'
 import { PageRoutes } from 'client/common/constants'
 import { cn } from 'client/common/helpers/classNames'
@@ -27,7 +27,7 @@ function Header({ className, style }: StyledProps) {
   return (
     <header className={cn(s.header, e.glass, className)} style={style}>
       <nav className={cn(s.wrapper, 'flex items-center m-auto gap-4')}>
-        <Link to={PageRoutes.HOME}>
+        <Link className={s.logoLink} to={PageRoutes.HOME}>
           <Logo className={s.logo} />
         </Link>
         <div className="flex">

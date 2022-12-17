@@ -1,6 +1,9 @@
+import { isBrowser } from 'client/common/helpers/environment'
+
 function LiveReload() {
   if (import.meta.env.PROD) return null
 
+  if (isBrowser) return null
   const js = String.raw
   return (
     <script
