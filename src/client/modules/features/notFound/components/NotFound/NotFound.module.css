@@ -7,22 +7,10 @@
 
 .bg-text {
   font-size: 200px;
+  font-weight: 700;
   margin-bottom: 64px;
   position: relative;
   transform: rotate(4deg);
-  font-weight: 700;
-  z-index: -1;
-}
-
-.highlight {
-  @media (prefers-color-scheme: dark) {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    background: var(--gradient-primary);
-    filter: blur(120px);
-    z-index: -1;
-  }
 }
 
 .description {

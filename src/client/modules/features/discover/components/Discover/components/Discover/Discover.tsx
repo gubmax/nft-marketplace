@@ -1,33 +1,17 @@
 import { memo } from 'react'
 
-import { HelpIcon, InfoIcon, SupportIcon } from 'client/common/components/icons'
-import { A } from 'client/common/components/typography/Anchor'
-import { PageRoutes } from 'client/common/constants'
 import { cn } from 'client/common/helpers/classNames'
 import e from 'client/common/styles/elements.module.css'
-import { Diamond } from '../../../Diamond'
-import { HelpBlock } from '../HelpBlock'
+import { HelpSection } from '../HelpSection'
+import { PresentSection } from '../PresentSection'
 import { SectionTitle } from '../SectionTitle'
-import { StatisticCard } from '../StatisticCard'
-import s from './Discover.module.css'
 
 function Discover() {
   return (
     <>
-      <h1 className={cn(s.header, 'mb-5')}>Buy, sell, and discover exclusive digital items.</h1>
-      <span className={cn(s.subtitle, e.typographyH2)}>
-        The largest trading platform for crypto collectibles and{' '}
-        <span className={e.typographyTextHighlight}>non-fungible tokens (NFTs)</span>.
-      </span>
-      <div className={cn(s.statistics, 'flex justify-around gap-5')}>
-        <StatisticCard title="$70 billion" text="24h trading volume" />
-        <StatisticCard title="250+" text="Cryptocurrencies listed" />
-        <StatisticCard title="90 million" text="Registered users" />
-        <StatisticCard title="<0.10%" text="Lowest transaction fees" />
-      </div>
-      <Diamond className={cn(s.diamond, 'mx-auto')} />
+      <PresentSection className="mb-10" />
       <SectionTitle>Explore all possibilities of Acme</SectionTitle>
-      <p className={cn(e.typographyP, 'mb-5')}>
+      <p className={cn(e.typographyP, 'mb-10')}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum placerat tortor, eget
         volutpat tortor imperdiet sed. Aliquam non vehicula mi. Integer et purus viverra magna
         fringilla malesuada. Aenean cursus nisl arcu, ac commodo neque vulputate ut. Nam luctus
@@ -40,7 +24,7 @@ function Discover() {
         nibh. Duis tellus justo, rutrum nec augue eget, dignissim condimentum nunc.
       </p>
       <SectionTitle>Your trusted crypto exchange</SectionTitle>
-      <p className={cn(e.typographyP, 'mb-5')}>
+      <p className={cn(e.typographyP, 'mb-10')}>
         Sed fermentum sem in est maximus, vel fringilla erat convallis. Curabitur eu hendrerit
         augue. Aenean pulvinar sem eget purus rhoncus pellentesque. Cras convallis leo ligula, quis
         auctor orci semper sit amet. Donec mauris magna, pharetra sit amet feugiat ut, eleifend non
@@ -53,30 +37,7 @@ function Discover() {
         ullamcorper augue facilisis tincidunt. Interdum et malesuada fames ac ante ipsum primis in
         faucibus. Donec fringilla pretium purus id scelerisque.
       </p>
-      <SectionTitle>Need help?</SectionTitle>
-      <div className="flex justify-around gap-5">
-        <HelpBlock icon={<SupportIcon size="xl" variant="outline" />}>
-          <span className={cn(e.typographyH2, 'mb-2')}>Chat Support</span>
-          <span className={cn(e.typographySubtitle, 'mb-2')}>
-            Get 24/7 chat support with our customer service agents at your service.
-          </span>
-          <A href={PageRoutes.HOME}>Chat now</A>
-        </HelpBlock>
-        <HelpBlock icon={<HelpIcon size="xl" variant="outline" />}>
-          <span className={cn(e.typographyH2, 'mb-2')}>FAQs</span>
-          <span className={cn(e.typographySubtitle, 'mb-2')}>
-            View FAQs for detailed instructions on specific features.
-          </span>
-          <A href={PageRoutes.HOME}>Learn more</A>
-        </HelpBlock>
-        <HelpBlock icon={<InfoIcon size="xl" variant="outline" />}>
-          <span className={cn(e.typographyH2, 'mb-2')}>Blog</span>
-          <span className={cn(e.typographySubtitle, 'mb-2')}>
-            Stay up to date with the latest stories and commentary.
-          </span>
-          <A href={PageRoutes.HOME}>Learn more</A>
-        </HelpBlock>
-      </div>
+      <HelpSection />
     </>
   )
 }

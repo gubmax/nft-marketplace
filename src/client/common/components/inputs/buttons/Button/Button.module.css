@@ -6,12 +6,12 @@
 .loader-sizes {
   &_sm {
     min-width: 100px;
-    height: 32px;
+    height: 36px;
   }
 
   &_md {
     min-width: 120px;
-    height: 36px;
+    height: 40px;
   }
 }
 

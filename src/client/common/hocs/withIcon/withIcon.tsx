@@ -1,4 +1,4 @@
-import { ElementType } from 'react'
+import { ElementType, memo } from 'react'
 
 import { cn } from 'client/common/helpers/classNames'
 import { pxToRem } from 'client/common/styles/helpers'
@@ -26,22 +26,23 @@ const classNameBySize: Record<IconSize, string> = {
 export interface IconProps extends StyledProps {
   variant?: IconVariant
   size?: IconSize
+  rotate?: number
 }
 
 export function withIcon(Component: ElementType<IconProps>): ElementType<IconProps> {
-  function Icon({ variant = 'inherit', size = 'md', className, ...rest }: IconProps) {
-    const classNames = cn(classNameByVariant[variant], classNameBySize[size], className)
+  function Icon({ variant = 'inherit', size = 'md', rotate, className, style }: IconProps) {
+    const rotateStyle = rotate ? { transform: `rotate(${rotate}deg)` } : {}
 
     return (
       <Component
         width={DEFAULT_SIZE}
         height={DEFAULT_SIZE}
         viewBox="0 0 24 24"
-        className={classNames}
-        {...rest}
+        className={cn(classNameByVariant[variant], classNameBySize[size], className)}
+        style={{ ...style, ...rotateStyle }}
       />
     )
   }
 
-  return Icon
+  return memo(Icon)
 }

@@ -22,6 +22,7 @@
 .link {
   padding: 0 var(--space-3);
   line-height: 36px;
+  font-weight: 500;
   transition: color 100ms ease-out, background 100ms ease-out, box-shadow 100ms ease-out;
 
   &:hover {
