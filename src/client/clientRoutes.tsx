@@ -13,6 +13,7 @@ const DynamicShowcasePage = dynamic(() => import('client/routes/showcase.route')
 const DynamicCollectionPage = dynamic(() => import('client/routes/collection.route'))
 const DynamicSalesPage = dynamic(() => import('client/routes/sales.route'))
 const DynamicSchedulePage = dynamic(() => import('client/routes/schedule.route'))
+const DynamicGamingPage = dynamic(() => import('client/routes/gaming.route'))
 
 export type CustomRouteObject = RouteObject & {
   element: ReactNode | DynamicComponentType
@@ -35,6 +36,7 @@ export const CLIENT_ROUTES: CustomRouteObject[] = [
           { path: PageRoutes.SCHEDULE, element: <DynamicSchedulePage /> },
         ],
       },
+      { path: PageRoutes.GAMING, element: <DynamicGamingPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
