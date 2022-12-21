@@ -1,13 +1,11 @@
-import { memo } from 'react'
-
-import { Diamond } from 'client/common/components/elements/Diamond'
-import { cn } from 'client/common/helpers/classNames'
+import Diamond from 'client/common/components/elements/diamond/diamond.js'
+import PageWrapper from 'client/common/components/elements/page/page-wrapper/page-wrapper.js'
+import { cn } from 'client/common/helpers/class-names.js'
 import e from 'client/common/styles/elements.module.css'
-import { BasePageWrapper } from 'client/modules/app'
 
 function GamingRoute() {
   return (
-    <BasePageWrapper>
+    <PageWrapper>
       <div className="flex flex-col items-center mb-10">
         <h1 className={cn(e.typographyH1, 'mb-10')}>Gaming NFT / IGO (Initial Game Offering)</h1>
         <Diamond />
@@ -39,8 +37,8 @@ function GamingRoute() {
         ullamcorper augue facilisis tincidunt. Interdum et malesuada fames ac ante ipsum primis in
         faucibus. Donec fringilla pretium purus id scelerisque.
       </p>
-    </BasePageWrapper>
+    </PageWrapper>
   )
 }
 
-export default memo(GamingRoute)
+export default GamingRoute

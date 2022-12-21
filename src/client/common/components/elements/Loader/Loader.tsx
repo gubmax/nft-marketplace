@@ -1,8 +1,8 @@
 import { memo } from 'react'
 
-import { cn } from 'client/common/helpers/classNames'
-import { StyledProps } from 'client/common/typings'
-import s from './Loader.module.css'
+import { cn } from 'client/common/helpers/class-names.js'
+import { StyledProps } from 'client/common/typings/styled-props.js'
+import s from './loader.module.css'
 
 export type LoaderVariant = 'primary' | 'body'
 export type LoaderSize = 'sm' | 'md'

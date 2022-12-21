@@ -1,8 +1,6 @@
-import { memo } from 'react'
-
-import { PageTitle } from 'client/common/components/elements/PageTitle'
-import { BasePageWrapper } from 'client/modules/app'
-import { About } from 'client/modules/features/about'
+import PageTitle from 'client/common/components/elements/page/page-title.js'
+import PageWrapper from 'client/common/components/elements/page/page-wrapper/page-wrapper.js'
+import About from 'client/modules/features/about.js'
 
 const PAGE_TITLE = 'About'
 
@@ -12,11 +10,11 @@ export const head = () => `
 
 function AboutRoute() {
   return (
-    <BasePageWrapper>
+    <PageWrapper>
       <PageTitle>{PAGE_TITLE}</PageTitle>
       <About />
-    </BasePageWrapper>
+    </PageWrapper>
   )
 }
 
-export default memo(AboutRoute)
+export default AboutRoute

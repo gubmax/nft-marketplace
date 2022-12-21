@@ -1,27 +1,27 @@
-import { StrictMode } from 'react'
 import { hydrateRoot } from 'react-dom/client'
 
-import { BrowserRouter } from 'client/common/components/system/BrowserRouter'
-import { EntryRouteContextType } from 'client/common/context/entryRouteContext'
-import { getJSONData } from 'client/common/helpers/getJSONData'
-import invariant from 'client/common/helpers/invariant'
-import { Document } from 'client/document'
-import { App } from 'client/modules/app'
-import { reportWebVitals } from 'client/modules/webVitals'
+import BrowserRouter from 'client/common/components/system/browser-router/browser-router.js'
+import { getJSONData } from 'client/common/helpers/get-json-data.js'
+import { invariant } from 'client/common/helpers/invariant.js'
+import { reportWebVitals } from 'client/common/utils/report-web-vitals.js'
+import { document } from 'client/document.js'
+import App from 'client/modules/app/app.js'
+import type { EntryRouteContextType } from 'client/modules/entry-route/entry-route.context.js'
 import 'client/common/styles/global.css'
 
 const entryRouteContext = getJSONData<EntryRouteContextType>('__ENTRY_ROUTE_CONTEXT__')
 invariant(entryRouteContext)
 
 hydrateRoot(
-  document,
-  <StrictMode>
-    <Document entryRouteContext={entryRouteContext}>
+  window.document,
+  document({
+    entryRouteContext,
+    content: (
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Document>
-  </StrictMode>,
+    ),
+  }),
 )
 
 if (import.meta.env.PROD) {

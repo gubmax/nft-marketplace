@@ -1,14 +1,12 @@
-import { memo } from 'react'
-
-import { BasePageWrapper } from 'client/modules/app'
-import { Discover } from 'client/modules/features/discover'
+import PageWrapper from 'client/common/components/elements/page/page-wrapper/page-wrapper.js'
+import Discover from 'client/modules/features/discover/discover.js'
 
 function HomeRoute() {
   return (
-    <BasePageWrapper>
+    <PageWrapper>
       <Discover />
-    </BasePageWrapper>
+    </PageWrapper>
   )
 }
 
-export default memo(HomeRoute)
+export default HomeRoute

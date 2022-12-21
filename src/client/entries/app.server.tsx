@@ -1,9 +1,9 @@
-import { ReactNode, StrictMode } from 'react'
-import { StaticRouter } from 'react-router-dom/server'
+import { ReactNode } from 'react'
+import { StaticRouter } from 'react-router-dom/server.js'
 
-import { EntryRouteContextType } from 'client/common/context/entryRouteContext'
-import { Document } from 'client/document'
-import { App } from 'client/modules/app'
+import { document } from 'client/document.js'
+import App from 'client/modules/app/app.js'
+import { EntryRouteContextType } from 'client/modules/entry-route/entry-route.context.js'
 import 'client/common/styles/global.css'
 
 export interface AppRenderOptions {
@@ -12,13 +12,12 @@ export interface AppRenderOptions {
 }
 
 export function render({ url, entryRouteContext }: AppRenderOptions): ReactNode {
-  return (
-    <StrictMode>
-      <Document entryRouteContext={entryRouteContext}>
-        <StaticRouter location={url}>
-          <App />
-        </StaticRouter>
-      </Document>
-    </StrictMode>
-  )
+  return document({
+    entryRouteContext,
+    content: (
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>
+    ),
+  })
 }

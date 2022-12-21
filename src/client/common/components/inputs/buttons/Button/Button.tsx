@@ -1,10 +1,10 @@
 import { MouseEvent } from 'react'
+import { noop } from 'rxjs'
 
-import { Loader, LoaderVariant } from 'client/common/components/elements/Loader'
-import { cn } from 'client/common/helpers/classNames'
-import { noop } from 'client/common/helpers/noop'
-import { ButtonBase, ButtonBaseProps, ButtonVariant } from '../ButtonBase'
-import s from './Button.module.css'
+import Loader, { LoaderVariant } from 'client/common/components/elements/loader/loader.js'
+import { cn } from 'client/common/helpers/class-names.js'
+import ButtonBase, { ButtonBaseProps, ButtonVariant } from '../button-base/button-base.js'
+import s from './button.module.css'
 
 const loaderVariantByButtonVariant: Record<ButtonVariant, LoaderVariant> = {
   contained: 'body',

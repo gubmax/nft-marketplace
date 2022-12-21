@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react'
 
-import Anchor from './Anchor'
+import Anchor from './anchor.js'
 
 export default {
   title: 'Typography/Anchor',

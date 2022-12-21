@@ -1,6 +1,7 @@
-import { cn } from 'client/common/helpers/classNames'
-import { ChildrenProp, StyledProps } from 'client/common/typings'
-import s from './Tip.module.css'
+import { cn } from 'client/common/helpers/class-names.js'
+import { ChildrenProp } from 'client/common/typings/children-prop.js'
+import { StyledProps } from 'client/common/typings/styled-props.js'
+import s from './tip.module.css'
 
 type TipProps = ChildrenProp & StyledProps
 

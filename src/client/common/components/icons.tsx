@@ -1,4 +1,4 @@
-import { withIcon } from '../hocs/withIcon'
+import { withIcon } from 'client/common/hocs/with-icon/with-icon.js'
 
 export const BoltIcon = withIcon((props) => (
   <svg {...props}>

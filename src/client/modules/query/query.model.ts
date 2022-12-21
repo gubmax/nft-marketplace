@@ -1,10 +1,27 @@
 import { BehaviorSubject } from 'rxjs'
 
-import { QueryStatuses } from './query.constants'
-import { QueryAction, QueryState } from './query.types'
+export interface QueryState<T> {
+  status: QueryStatuses
+  loading: boolean
+  response?: T
+  error?: unknown
+}
+
+export type QueryAction<T> =
+  | { type: QueryStatuses.IDLE }
+  | { type: QueryStatuses.LOADING }
+  | { type: QueryStatuses.SUCCESS; payload: T }
+  | { type: QueryStatuses.FAILURE; payload: unknown }
+
+export enum QueryStatuses {
+  IDLE = 'idle',
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  FAILURE = 'failure',
+}
 
 export abstract class QueryModel<R> {
-  readonly query$ = new BehaviorSubject<QueryState<R>>({
+  readonly queryObs = new BehaviorSubject<QueryState<R>>({
     status: QueryStatuses.IDLE,
     loading: false,
   })
@@ -44,7 +61,7 @@ export abstract class QueryModel<R> {
   }
 
   #dispatch = (action: QueryAction<R>): void => {
-    this.query$.next(this.#reduce(action))
+    this.queryObs.next(this.#reduce(action))
   }
 
   // Public

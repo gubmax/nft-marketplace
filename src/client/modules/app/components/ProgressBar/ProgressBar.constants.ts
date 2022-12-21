@@ -1,1 +1,0 @@
-export const LOADING_TRANSITION_DELAY = 500

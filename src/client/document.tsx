@@ -1,33 +1,40 @@
-import { Links } from './common/components/entryRoute/Links'
-import { LiveReload } from './common/components/entryRoute/LiveReload'
-import { Meta } from './common/components/entryRoute/Meta'
-import { Scripts } from './common/components/entryRoute/Scripts'
-import { Title } from './common/components/entryRoute/Title'
-import { EntryRouteContextType, EntryRouteProvider } from './common/context/entryRouteContext'
-import { ChildrenProp } from './common/typings'
+import { ReactNode, StrictMode } from 'react'
 
-interface DocumentProps extends ChildrenProp {
+import Links from 'client/modules/entry-route/links.js'
+import LiveReload from 'client/modules/entry-route/live-reload.js'
+import Meta from 'client/modules/entry-route/meta.js'
+import Scripts from 'client/modules/entry-route/scripts.js'
+import Title from 'client/modules/entry-route/title.js'
+import {
+  EntryRouteContextType,
+  EntryRouteProvider,
+} from './modules/entry-route/entry-route.context.js'
+
+interface DocumentOptions {
   entryRouteContext: EntryRouteContextType
+  content: ReactNode
 }
 
-export function Document({ children, entryRouteContext }: DocumentProps) {
+export function document({ entryRouteContext, content }: DocumentOptions) {
   return (
-    <EntryRouteProvider value={entryRouteContext}>
-      <html lang="en">
-        <head>
-          <meta charSet="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <Meta />
-          <Title />
-          <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-          <Links />
-        </head>
-        <body>
-          {children}
-          <LiveReload />
-          <Scripts />
-        </body>
-      </html>
-    </EntryRouteProvider>
+    <StrictMode>
+      <EntryRouteProvider value={entryRouteContext}>
+        <html lang="en">
+          <head>
+            <meta charSet="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <Meta />
+            <Title />
+            <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+            <Links />
+          </head>
+          <body>
+            {content}
+            <LiveReload />
+            <Scripts />
+          </body>
+        </html>
+      </EntryRouteProvider>
+    </StrictMode>
   )
 }

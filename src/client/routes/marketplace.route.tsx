@@ -1,9 +1,7 @@
-import { memo } from 'react'
-
-import { Marketplace } from 'client/modules/features/marketplace'
+import Marketplace from 'client/modules/features/marketplace/marketplace.js'
 
 function MarketplacePage() {
   return <Marketplace />
 }
 
-export default memo(MarketplacePage)
+export default MarketplacePage

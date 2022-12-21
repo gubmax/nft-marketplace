@@ -1,7 +1,5 @@
-import { memo } from 'react'
-
-import { Tip } from 'client/common/components/surfaces/Tip'
-import { AuthBanner } from 'client/modules/features/marketplace/components/AuthBanner'
+import Tip from 'client/common/components/surfaces/tip/tip.js'
+import AuthBanner from 'client/modules/features/marketplace/auth-banner/auth-banner.js'
 
 function ShowcasePage() {
   return (
@@ -12,4 +10,4 @@ function ShowcasePage() {
   )
 }
 
-export default memo(ShowcasePage)
+export default ShowcasePage
