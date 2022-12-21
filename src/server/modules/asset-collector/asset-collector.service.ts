@@ -39,7 +39,7 @@ export class AssetCollectorService {
 
       seen.add(m.id)
 
-      const link = this.getPreloadLink({ file: m.id, isEntry: false, withSsrAttr: true })
+      const link = this.getPreloadLink({ file: m.url, isEntry: false, withSsrAttr: true })
       if (link) links.push(link)
 
       m.importedModules.forEach((importedMod) => collect(importedMod))
