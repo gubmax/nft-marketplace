@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify'
 
-import { ConfigService } from 'server/modules/config/config.service'
-import { RenderService } from 'server/modules/render/render.service'
+import { ConfigService } from 'server/modules/config/config.service.js'
+import { RenderService } from 'server/modules/render/render.service.js'
 
 interface AuxiliaryControllerOptions {
   configService: ConfigService

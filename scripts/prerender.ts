@@ -7,9 +7,9 @@ import { writeFileSync } from 'node:fs'
 
 import pc from 'picocolors'
 
-import type { bootstrap } from 'server/bootstrap'
-import { resolvePath } from 'server/common/helpers/paths'
-import { ROUTES } from 'server/routes'
+import type { bootstrap } from 'server/bootstrap.js'
+import { resolvePath } from 'server/common/helpers/paths.js'
+import { ROUTES } from 'server/routes.js'
 
 process.env.NODE_ENV = 'production'
 process.env.BUILD_ENV = 'prerender'

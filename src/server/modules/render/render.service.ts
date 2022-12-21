@@ -8,8 +8,8 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import isbot from 'isbot'
 import type { Manifest } from 'vite'
 
-import { resolvePath } from 'server/common/helpers/paths'
-import { AssetCollectorService } from '../assetCollector/assetCollector.service'
+import { resolvePath } from 'server/common/helpers/paths.js'
+import { AssetCollectorService } from 'server/modules/asset-collector/asset-collector.service.js'
 
 const ABORT_RENDER_DELAY = 5000
 

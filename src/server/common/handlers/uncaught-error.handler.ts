@@ -2,10 +2,10 @@ import { createReadStream } from 'node:fs'
 
 import { FastifyInstance } from 'fastify'
 
-import { ConfigService } from 'server/modules/config/config.service'
-import { LoggerService } from 'server/modules/logger/logger.service'
-import { RenderService } from 'server/modules/render/render.service'
-import { resolvePath } from '../helpers/paths'
+import { ConfigService } from 'server/modules/config/config.service.js'
+import { LoggerService } from 'server/modules/logger/logger.service.js'
+import { RenderService } from 'server/modules/render/render.service.js'
+import { resolvePath } from '../helpers/paths.js'
 
 interface UncaughtErrorHandlerOptions {
   configService: ConfigService

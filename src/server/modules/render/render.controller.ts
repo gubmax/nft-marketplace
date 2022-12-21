@@ -2,10 +2,10 @@ import { createReadStream } from 'node:fs'
 
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
-import { resolvePath } from 'server/common/helpers/paths'
-import { ROUTES } from 'server/routes'
-import { ConfigService } from '../config/config.service'
-import { RenderService } from './render.service'
+import { resolvePath } from 'server/common/helpers/paths.js'
+import { ConfigService } from 'server/modules/config/config.service.js'
+import { ROUTES } from 'server/routes.js'
+import { RenderService } from './render.service.js'
 
 interface RenderControllerOptions {
   configService: ConfigService

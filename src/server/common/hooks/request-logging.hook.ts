@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyReply, FastifyRequest, HookHandlerDoneFunction } from 'fastify'
 
-import { AsyncStorageService } from 'server/modules/asyncStorage/asyncStorage.service'
-import { LoggerService } from 'server/modules/logger/logger.service'
+import { AsyncStorageService } from 'server/modules/async-storage/async-storage.service.js'
+import { LoggerService } from 'server/modules/logger/logger.service.js'
 
 interface RequestLoggingHookOptions {
   asyncStorageService: AsyncStorageService

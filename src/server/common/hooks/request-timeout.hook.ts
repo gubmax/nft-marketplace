@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify'
 
-import { LoggerService } from 'server/modules/logger/logger.service'
+import { LoggerService } from 'server/modules/logger/logger.service.js'
 
 interface RequestTimeoutHookOptions {
   loggerService: LoggerService

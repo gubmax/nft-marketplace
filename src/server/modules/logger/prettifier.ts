@@ -3,7 +3,7 @@ import assert from 'node:assert'
 import pc from 'picocolors'
 import { PinoPretty } from 'pino-pretty'
 
-import { colorByType, levelByNumber, LogLevelWeights } from './constants'
+import { colorByType, levelByNumber, LogLevelWeights } from './constants.js'
 
 interface InputData {
   [key: string]: unknown

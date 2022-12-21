@@ -1,5 +1,5 @@
-import { bootstrap } from './bootstrap'
-import { ENV_CONFIG } from './config/env.config'
+import { bootstrap } from './bootstrap.js'
+import { ENV_CONFIG } from './config/env.config.js'
 
 const { isTest, buildEnv } = ENV_CONFIG
 

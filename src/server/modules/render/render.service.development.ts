@@ -4,10 +4,10 @@ import { PassThrough } from 'node:stream'
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { ViteDevServer } from 'vite'
 
-import { resolvePath } from 'server/common/helpers/paths'
-import { VITE_DEV_SERVER_CONFIG } from 'server/config/viteDevServer.config'
-import { AssetCollectorService } from '../assetCollector/assetCollector.service'
-import { EntryModule, RenderService } from './render.service'
+import { resolvePath } from 'server/common/helpers/paths.js'
+import { VITE_DEV_SERVER_CONFIG } from 'server/config/vite-dev-server.config.js'
+import { AssetCollectorService } from 'server/modules/asset-collector/asset-collector.service.js'
+import { EntryModule, RenderService } from './render.service.js'
 
 const INIT_ERROR_MSG = 'Vite dev server has not been initialized'
 

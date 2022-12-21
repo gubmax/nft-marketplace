@@ -1,9 +1,9 @@
 import { FastifyBaseLogger } from 'fastify'
-import pino from 'pino'
+import { pino } from 'pino'
 import pretty from 'pino-pretty'
 
-import { ConfigService } from '../config/config.service'
-import { levelPrettifier, messageFormat, timePrettifier } from './prettifier'
+import { ConfigService } from '../config/config.service.js'
+import { levelPrettifier, messageFormat, timePrettifier } from './prettifier.js'
 
 export class LoggerService {
   readonly logger: FastifyBaseLogger
@@ -11,9 +11,11 @@ export class LoggerService {
   constructor(private readonly configService: ConfigService) {
     const { isProd, buildEnv } = configService.env
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const optionsOrStream = isProd
       ? { enabled: buildEnv !== 'prerender' }
-      : pretty({
+      : // @ts-expect-error: No correct import
+        pretty({
           colorize: false,
           hideObject: true,
           ignore: 'hostname,pid,name,caller',

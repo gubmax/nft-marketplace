@@ -1,4 +1,4 @@
-import { PageRoutes } from 'server/common/constants'
+import { PageRoutes } from 'server/common/constants.js'
 
 interface PageOptions {
   name: string

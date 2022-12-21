@@ -1,4 +1,4 @@
-import { Colors } from 'picocolors/types'
+import { Colors } from 'picocolors/types.js'
 
 export enum LogLevelTexts {
   TRACE = 'TRACE',
