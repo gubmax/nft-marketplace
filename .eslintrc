@@ -8,10 +8,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": { "jsx": true },
-    "project": [
-      "./tsconfig.json",
-      "./tsconfig.node.json"
-    ]
+    "project": ["./tsconfig.json", "./tsconfig.node.json"]
   },
   "plugins": ["prettier", "simple-import-sort"],
   "extends": [
@@ -43,10 +40,23 @@
       "error",
       {
         "groups": [
-          ["^node:", "^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)"],
+          [
+            "^node:",
+            "^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)"
+          ],
           ["^react", "^"],
           ["^(client|server|shared)(/.*|$)", "^\\.", "^.+\\.css$"]
         ]
+      }
+    ],
+    // Disabling using of useLayoutEffect from react
+    "react-hooks/exhaustive-deps": ["warn", { "additionalHooks": "useEnhancedEffect" }],
+    "no-restricted-imports": [
+      "error",
+      {
+        "name": "react",
+        "importNames": ["useLayoutEffect"],
+        "message": "\"useLayoutEffect\" causes a warning in SSR. Use \"useEnhancedEffect\""
       }
     ]
   },
@@ -54,15 +64,7 @@
     {
       "files": "src/client/**/*",
       "extends": "plugin:react-hooks/recommended"
-    },
-    {
-      "files": "*.d.ts",
-      "rules": { "no-var": "off" }
     }
   ],
-  "ignorePatterns": [
-    "dist",
-    "node_modules",
-    "*.html"
-  ]
+  "ignorePatterns": ["dist", "node_modules"]
 }
