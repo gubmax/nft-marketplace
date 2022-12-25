@@ -3,7 +3,7 @@ import { RouteObject } from 'react-router-dom'
 
 import { PageRoutes } from 'client/common/constants.js'
 import { dynamic, DynamicComponentType } from 'client/common/hocs/dynamic.js'
-import { Layout } from 'client/modules/app/layout/layout.js'
+import Layout from 'client/modules/app/layout/layout.js'
 import NotFoundPage from './routes/not-found.route.js'
 
 const DynamicHomePage = dynamic(() => import('client/routes/home.route.js'))

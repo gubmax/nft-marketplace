@@ -9,11 +9,11 @@ import { QueryModel } from 'client/modules/query/query.model.js'
 
 type LoaderFunction = () => Promise<{ default: ElementType }>
 
-class PreloadRoutesModel extends QueryModel<void[] | void> {
+class PreloadRouteModel extends QueryModel<void[] | void> {
   #loadedModules = new WeakSet<LoaderFunction>()
-  #updateSubject = new Subject<Update>()
+  updateSubject = new Subject<Update>()
 
-  #preloadRouteObs = this.#updateSubject.pipe(
+  preloadObs = this.updateSubject.pipe(
     // Reset query state
     tap(() => this.reset()),
     // Preload chunk
@@ -48,17 +48,6 @@ class PreloadRoutesModel extends QueryModel<void[] | void> {
       return from(queryPromise).pipe(map(() => update))
     }),
   )
-
-  // Public
-
-  preload = (update: Update): void => {
-    this.#updateSubject.next(update)
-  }
-
-  subscribe = (callback: (update?: Update) => void): (() => void) => {
-    const subscription = this.#preloadRouteObs.subscribe(callback)
-    return subscription.unsubscribe.bind(this)
-  }
 }
 
-export const preloadRoutesModel = new PreloadRoutesModel()
+export const preloadRouteModel = new PreloadRouteModel()

@@ -17,5 +17,4 @@ function Layout() {
   )
 }
 
-const ExoticComponent = memo(Layout)
-export { ExoticComponent as Layout }
+export default memo(Layout)

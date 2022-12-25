@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history'
 import { useEffectOnce } from 'client/common/hooks/use-effect-once.js'
 import { useEnhancedEffect } from 'client/common/hooks/use-enhanced-effect.js'
 import { ChildrenProp } from 'client/common/typings/children-prop.js'
-import { preloadRoutesModel } from './models/preload-routes.model.js'
+import { preloadRouteModel } from './models/preload-route.model.js'
 
 function BrowserRouter({ children }: ChildrenProp) {
   const { current: history } = useRef(createBrowserHistory({ window }))
@@ -16,18 +16,18 @@ function BrowserRouter({ children }: ChildrenProp) {
 
   useEnhancedEffect(() => {
     const unsubscribe = history.listen((update) => {
-      if (update.location.pathname !== location.pathname) preloadRoutesModel.preload(update)
+      if (update.location.pathname !== location.pathname)
+        preloadRouteModel.updateSubject.next(update)
     })
     return () => unsubscribe()
   }, [history, location.pathname])
 
   useEffectOnce(() => {
-    const unsubscribe = preloadRoutesModel.subscribe((update) => {
-      if (!update) return
+    const subscription = preloadRouteModel.preloadObs.subscribe((update) => {
       setHistory(update)
       window.scrollTo(0, 0)
     })
-    return () => unsubscribe()
+    return () => subscription.unsubscribe()
   })
 
   return (

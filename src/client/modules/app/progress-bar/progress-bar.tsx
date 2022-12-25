@@ -1,7 +1,7 @@
 import { memo, useState } from 'react'
 import { delay, filter, tap } from 'rxjs'
 
-import { preloadRoutesModel } from 'client/common/components/system/browser-router/models/preload-routes.model.js'
+import { preloadRouteModel } from 'client/common/components/system/browser-router/models/preload-route.model.js'
 import { cn } from 'client/common/helpers/class-names.js'
 import { useEffectOnce } from 'client/common/hooks/use-effect-once.js'
 import { useEnhancedEffect } from 'client/common/hooks/use-enhanced-effect.js'
@@ -13,14 +13,14 @@ const LOADING_TRANSITION_DELAY = 500
 
 function ProgressBar() {
   const [prehydrationLoading, setPrehydrationLoading] = useState(true)
-  const { status } = useSubscription(preloadRoutesModel.queryObs)
+  const { status } = useSubscription(preloadRouteModel.queryObs)
 
   useEnhancedEffect(() => {
-    const subscriprion = preloadRoutesModel.queryObs
+    const subscriprion = preloadRouteModel.queryObs
       .pipe(
         filter((state) => state.status === QueryStatuses.SUCCESS),
         delay(LOADING_TRANSITION_DELAY),
-        tap(() => preloadRoutesModel.reset()),
+        tap(() => preloadRouteModel.reset()),
       )
       .subscribe()
 
