@@ -1,9 +1,9 @@
 import PageTitle from 'client/common/components/elements/page/page-title.js'
 
-const PAGE_TITLE = 'Schedule'
+const PAGE_TITLE = 'Collection'
 
-function ScheduleRoute() {
+function CollectionPage() {
   return <PageTitle>{PAGE_TITLE}</PageTitle>
 }
 
-export default ScheduleRoute
+export default CollectionPage

@@ -2,11 +2,13 @@ import react from '@vitejs/plugin-react'
 import { CSSOptions, defineConfig, splitVendorChunkPlugin } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
+import { generateRoutesManifest } from './plugins/generateRoutesManifest.js'
+
 /**
  * @link https://vitejs.dev/config/
  */
 export default defineConfig(({ ssrBuild, mode }) => {
-  const plugins = [tsconfigPaths(), react(), splitVendorChunkPlugin()]
+  const plugins = [tsconfigPaths(), react(), splitVendorChunkPlugin(), generateRoutesManifest()]
 
   const css: CSSOptions = {
     modules: {

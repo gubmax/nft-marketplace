@@ -1,9 +1,9 @@
 import PageTitle from 'client/common/components/elements/page/page-title.js'
 
-const PAGE_TITLE = 'Collections'
+const PAGE_TITLE = 'Sales'
 
-function CollectionsRoute() {
+function SalesPage() {
   return <PageTitle>{PAGE_TITLE}</PageTitle>
 }
 
-export default CollectionsRoute
+export default SalesPage

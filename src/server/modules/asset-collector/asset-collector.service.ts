@@ -3,7 +3,6 @@ import { Manifest, ModuleNode } from 'vite'
 interface GetPreloadLinkOptions {
   file: string
   isEntry?: boolean
-  withSsrAttr?: boolean
 }
 
 export class AssetCollectorService {
@@ -39,8 +38,10 @@ export class AssetCollectorService {
 
       seen.add(m.id)
 
-      const link = this.getPreloadLink({ file: m.url, isEntry: false, withSsrAttr: true })
-      if (link) links.push(link)
+      if (m.file?.includes('.css')) {
+        const link = this.getPreloadLink({ file: m.url })
+        if (link) links.push(link)
+      }
 
       m.importedModules.forEach((importedMod) => collect(importedMod))
     }
@@ -59,22 +60,14 @@ export class AssetCollectorService {
 
       seen.add(p)
 
-      const { file, isEntry, imports = [], dynamicImports = [], css = [] } = manifest[p]
+      const { isEntry, file, css = [], assets = [], imports = [] } = manifest[p]
 
-      if (file) {
-        const link = this.getPreloadLink({ file: `/${file}`, isEntry })
+      for (const url of [file, ...css, ...assets]) {
+        const link = this.getPreloadLink({ file: `/${url}`, isEntry })
         if (link) links.push(link)
       }
 
-      if (css.length) {
-        css.forEach((url) => {
-          const link = this.getPreloadLink({ file: `/${url}`, isEntry })
-          if (link) links.push(link)
-        })
-      }
-
       for (const assetPath of imports) collect(assetPath)
-      for (const assetPath of dynamicImports) collect(assetPath)
     }
 
     collect(path)

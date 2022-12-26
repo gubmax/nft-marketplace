@@ -8,11 +8,11 @@ export type DynamicComponentType<P = unknown> = ComponentType<P & DynamicProps> 
   loader: DynamicFactory<P>
 }
 
-interface DynamicModule<P> {
+export interface DynamicModule<P = unknown> {
   default: ComponentType<P>
 }
 
-type DynamicFactory<P> = () => Promise<DynamicModule<P>>
+export type DynamicFactory<P = unknown> = () => Promise<DynamicModule<P>>
 
 export function dynamic<P>(factory: DynamicFactory<P>): DynamicComponentType<P> {
   let cache: DynamicModule<P> | null = null

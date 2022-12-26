@@ -13,6 +13,7 @@
   "include": [
     ".storybook",
     "package.json",
+    "plugins",
     "scripts",
     "src/server",
     "vite.config.ts"

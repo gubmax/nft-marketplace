@@ -1,9 +1,10 @@
 import assert from 'node:assert'
-import { readFileSync } from 'node:fs'
+import { readFile } from 'node:fs/promises'
 import { PassThrough } from 'node:stream'
 
 import { ReactNode } from 'react'
 import { renderToPipeableStream } from 'react-dom/server'
+import { matchRoutes } from 'react-router-dom'
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import isbot from 'isbot'
 import type { Manifest } from 'vite'
@@ -37,8 +38,11 @@ export interface BaseRenderOpts {
   bootstrapModules?: string[]
 }
 
+type RoutesManifestItem = Record<string, string>
+
 export class RenderService {
   manifest?: Manifest
+  routesManifest?: RoutesManifestItem[]
 
   constructor(protected readonly assetCollectorService: AssetCollectorService) {}
 
@@ -46,9 +50,33 @@ export class RenderService {
     return import(resolvePath(path)) as Promise<EntryModule>
   }
 
-  protected collectPreloadLinks(path: string): Array<Record<string, unknown>> {
+  protected collectPreloadLinks(entryPath: string, url: string): Array<Record<string, unknown>> {
     assert(this.manifest, 'Manifest not found')
-    return this.assetCollectorService.collectPreloadLinksByManifest(this.manifest, path)
+    assert(this.routesManifest, 'Pages Manifest not found')
+
+    const assets = []
+
+    // Common
+
+    const commonAssets = this.assetCollectorService.collectPreloadLinksByManifest(
+      this.manifest,
+      entryPath,
+    )
+    assets.push(...commonAssets)
+
+    // Routes
+
+    const matches = matchRoutes<RoutesManifestItem>(this.routesManifest, url) ?? []
+
+    for (const match of matches) {
+      const pageAssets = this.assetCollectorService.collectPreloadLinksByManifest(
+        this.manifest,
+        match.route.id,
+      )
+      assets.push(...pageAssets)
+    }
+
+    return assets
   }
 
   // Public
@@ -56,10 +84,12 @@ export class RenderService {
   async init(server?: FastifyInstance): Promise<void>
   async init(): Promise<void> {
     this.manifest = JSON.parse(
-      readFileSync(resolvePath('dist/client/manifest.json'), 'utf-8'),
+      await readFile(resolvePath('dist/client/manifest.json'), 'utf-8'),
     ) as Manifest
 
-    return Promise.resolve()
+    this.routesManifest = JSON.parse(
+      await readFile(resolvePath('dist/server/routes.manifest.json'), 'utf-8'),
+    ) as RoutesManifestItem[]
   }
 
   protected renderBase(
@@ -106,14 +136,14 @@ export class RenderService {
 
   async renderApp(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
     const entryMod = await this.getEntryModule('dist/server/app.server.js')
-    const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.client.tsx')
+    const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.client.tsx', req.url)
     const entryRouteContext = { prefetchLinks }
     return this.renderBase(req, res, { entryMod, entryRouteContext })
   }
 
   async renderError(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
     const entryMod = await this.getEntryModule('dist/server/error.server.js')
-    const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.client.tsx')
+    const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.client.tsx', req.url)
     const entryRouteContext = { prefetchLinks }
     return this.renderBase(req, res, { entryMod, entryRouteContext })
   }

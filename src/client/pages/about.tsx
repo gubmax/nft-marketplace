@@ -8,7 +8,7 @@ export const head = () => `
 <title>${PAGE_TITLE}</title>
 `
 
-function AboutRoute() {
+function AboutPage() {
   return (
     <PageWrapper>
       <PageTitle>{PAGE_TITLE}</PageTitle>
@@ -17,4 +17,4 @@ function AboutRoute() {
   )
 }
 
-export default AboutRoute
+export default AboutPage

@@ -1,7 +1,7 @@
 import PageWrapper from 'client/common/components/elements/page/page-wrapper/page-wrapper.js'
 import Discover from 'client/modules/features/discover/discover.js'
 
-function HomeRoute() {
+function HomePage() {
   return (
     <PageWrapper>
       <Discover />
@@ -9,4 +9,4 @@ function HomeRoute() {
   )
 }
 
-export default HomeRoute
+export default HomePage

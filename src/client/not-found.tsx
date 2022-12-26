@@ -1,7 +1,7 @@
 import NotFound from 'client/modules/features/not-found/not-found.js'
 
-function NotFoundRoute() {
+function NotFoundPage() {
   return <NotFound />
 }
 
-export default NotFoundRoute
+export default NotFoundPage

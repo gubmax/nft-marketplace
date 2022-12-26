@@ -23,9 +23,9 @@ export class DevelopmentRenderService extends RenderService {
     return this.viteDevServer.ssrLoadModule(path) as Promise<EntryModule>
   }
 
-  protected collectPreloadLinks(path: string): Array<Record<string, unknown>> {
+  protected collectPreloadLinks(entryPath: string): Array<Record<string, unknown>> {
     assert(this.viteDevServer, INIT_ERROR_MSG)
-    const id = resolvePath(path)
+    const id = resolvePath(entryPath)
     const mod = this.viteDevServer.moduleGraph.getModuleById(id)
     return this.assetCollectorService.collectPreloadLinksByModule(mod)
   }
@@ -40,17 +40,17 @@ export class DevelopmentRenderService extends RenderService {
 
   async renderApp(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
     const entryMod = await this.getEntryModule('/src/client/entries/app.server.tsx')
-    const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.server.tsx')
+    const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.client.tsx')
     const entryRouteContext = { prefetchLinks }
-    const bootstrapModules = ['/src/client/entries/app.client.tsx']
+    const bootstrapModules = ['/@vite/client', '/src/client/entries/app.client.tsx']
     return this.renderBase(req, res, { entryMod, entryRouteContext, bootstrapModules })
   }
 
   async renderError(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
     const entryMod = await this.getEntryModule('/src/client/entries/error.server.tsx')
-    const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.server.tsx')
+    const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.client.tsx')
     const entryRouteContext = { prefetchLinks }
-    const bootstrapModules = ['/src/client/entries/error.client.tsx']
+    const bootstrapModules = ['/@vite/client', '/src/client/entries/error.client.tsx']
     return this.renderBase(req, res, { entryMod, entryRouteContext, bootstrapModules })
   }
 }

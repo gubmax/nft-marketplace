@@ -3,7 +3,7 @@ import PageWrapper from 'client/common/components/elements/page/page-wrapper/pag
 import { cn } from 'client/common/helpers/class-names.js'
 import e from 'client/common/styles/elements.module.css'
 
-function GamingRoute() {
+function GamingPage() {
   return (
     <PageWrapper>
       <div className="flex flex-col items-center mb-10">
@@ -41,4 +41,4 @@ function GamingRoute() {
   )
 }
 
-export default GamingRoute
+export default GamingPage

@@ -3,9 +3,9 @@ import { matchRoutes, RouteMatch } from 'react-router-dom'
 import { Update } from 'history'
 import { from, map, of, Subject, switchMap, tap } from 'rxjs'
 
-import { CLIENT_ROUTES, CustomRouteObject } from 'client/client-routes.js'
 import { DynamicComponentType } from 'client/common/hocs/dynamic.js'
 import { QueryModel } from 'client/modules/query/query.model.js'
+import { CustomRouteObject, routes } from 'client/routes.js'
 
 type LoaderFunction = () => Promise<{ default: ElementType }>
 
@@ -19,7 +19,7 @@ class PreloadRouteModel extends QueryModel<void[] | void> {
     // Preload chunk
     switchMap((update) => {
       const loaders: LoaderFunction[] = []
-      const matchedRoutes = matchRoutes(CLIENT_ROUTES, update.location)
+      const matchedRoutes = matchRoutes<CustomRouteObject>(routes, update.location)
 
       if (matchedRoutes === null) return of(update)
 
