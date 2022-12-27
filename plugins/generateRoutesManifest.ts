@@ -4,9 +4,10 @@ import { Plugin } from 'vite'
 
 const PATH_ROUTES_FOLDER = 'src/client/pages'
 
-interface Route {
+export interface Route {
   id: string
   path: string
+  static: boolean
   children: Route[]
 }
 
@@ -26,7 +27,12 @@ function generateRoutes(routes: Route[], rootFolder: string, prefix = '/') {
     const end = name.endsWith('index.tsx') ? name.indexOf('index.tsx') - 1 : name.indexOf('.tsx')
     const subpath = name.substring(0, end)
 
-    routes.push({ id, path: `${prefix}${subpath}`, children: [] })
+    routes.push({
+      id,
+      path: `${prefix}${subpath}`,
+      static: true, // TODO: add condition for preload routes
+      children: [],
+    })
   }
 
   for (const { name } of folderArr) {

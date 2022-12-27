@@ -2,39 +2,55 @@
  * Pre-render the app into static HTML.
  * run `pnpm prerender` and then `dist/client` can be served as a static site.
  */
-import assert from 'node:assert'
-import { writeFileSync } from 'node:fs'
+import fs from 'node:fs'
+import { dirname } from 'node:path'
 
 import pc from 'picocolors'
 
 import type { bootstrap } from 'server/bootstrap.js'
 import { resolvePath } from 'server/common/helpers/paths.js'
-import { ROUTES } from 'server/routes.js'
+import { Route } from '../plugins/generateRoutesManifest.js'
 
 process.env.NODE_ENV = 'production'
 process.env.BUILD_ENV = 'prerender'
 
-console.log(`${pc.cyan('pre-render script')} ${pc.green('generating HTML files...')}`)
+const PATH_ROUTES_MANIFEST = 'dist/server/routes.manifest.json'
+
+console.log(
+  `${pc.cyan('pre-render script')} ${pc.green('creating HTML files for static routes...')}`,
+)
 
 // @ts-expect-error: Production js without declaration file
 const module = (await import('../dist/server')) as { default: typeof bootstrap }
 const { server } = await module.default()
 
-function writePageFile(name: string, html: string) {
-  const fileName = `${name}.html`
-  writeFileSync(resolvePath(`dist/client/${fileName}`), html)
-  console.log(`${pc.dim('dist/client/')}${pc.green(`${fileName}`)}`)
+function writePageFile(path: string, html: string) {
+  const pathWithFilename = `${path}.html`
+  const pagePath = resolvePath(`dist/client/${pathWithFilename}`)
+
+  fs.mkdirSync(dirname(pagePath), { recursive: true })
+  fs.writeFileSync(pagePath, html)
+
+  console.log(`${pc.dim('dist/client/')}${pc.green(`${pathWithFilename}`)}`)
 }
 
 // Pre-render app pages
 
-for (const url in ROUTES) {
-  const pageConfig = ROUTES[url]
-  assert(pageConfig, `Page config for url "${url}" not found`)
+async function prerenderPages(routes: Route[]) {
+  for (const route of routes) {
+    if (!route.static) continue
 
-  const res = await server.inject(url)
-  writePageFile(pageConfig.name, res.body)
+    const res = await server.inject(route.path)
+    writePageFile(`pages${route.path}`, res.body)
+
+    if (route.children.length) await prerenderPages(route.children)
+  }
 }
+
+const routesManifest = JSON.parse(
+  fs.readFileSync(resolvePath(PATH_ROUTES_MANIFEST), 'utf-8'),
+) as Route[]
+await prerenderPages(routesManifest)
 
 // Pre-render Not Found page
 

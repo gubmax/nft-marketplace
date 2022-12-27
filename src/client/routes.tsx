@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { RouteObject } from 'react-router-dom'
-import { routes as clientRoutes } from 'virtual:routes-manifest'
+import { routes as routesManifest } from 'virtual:routes-manifest'
 
 import { dynamic, DynamicComponentType, DynamicModule } from './common/hocs/dynamic.js'
 import Layout from './modules/app/layout/layout.js'
@@ -12,23 +12,27 @@ const modules = import.meta.glob<DynamicModule>('/src/client/pages/**/*.tsx')
 
 export type CustomRouteObject = RouteObject & {
   element: ReactNode | DynamicComponentType
+  children?: CustomRouteObject[]
 }
 
-function enhanceRoutes(routeArr: Route[]): void {
-  for (const route of routeArr) {
-    const DynamicPage = dynamic(modules[`/${route.id}`])
-    ;(route as CustomRouteObject).element = <DynamicPage />
-    enhanceRoutes(route.children)
+function enhanceRoutes(arr: CustomRouteObject[]): void {
+  for (const route of arr) {
+    if (route.id) {
+      const DynamicPage = dynamic(modules[`/${route.id}`])
+      route.element = <DynamicPage />
+    }
+    if (route.children) enhanceRoutes(route.children)
   }
 }
 
-enhanceRoutes(clientRoutes)
+const customRoutes = routesManifest as CustomRouteObject[]
+enhanceRoutes(customRoutes)
 
 // All routes
 
-export const routes = [
+export const routes: CustomRouteObject[] = [
   {
     element: <Layout />,
-    children: [...clientRoutes, { path: '*', element: <NotFoundPage /> }],
+    children: [...customRoutes, { path: '*', element: <NotFoundPage /> }],
   },
 ]

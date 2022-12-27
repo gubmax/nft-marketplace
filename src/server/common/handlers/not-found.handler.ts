@@ -21,6 +21,7 @@ export function useNotFoundHandler(server: FastifyInstance, options: NotFoundHan
       return res.status(404).type('text/html').send(stream)
     }
 
+    res.statusCode = 404
     return renderService.renderApp(req, res)
   })
 }

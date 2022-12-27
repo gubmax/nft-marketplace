@@ -29,6 +29,7 @@ export function useUncaughtErrorHandler(
       return res.status(500).type('text/html').send(stream)
     }
 
+    res.statusCode = 500
     return renderService.renderError(req, res)
   })
 }

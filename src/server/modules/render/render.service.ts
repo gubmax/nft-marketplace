@@ -11,6 +11,7 @@ import type { Manifest } from 'vite'
 
 import { resolvePath } from 'server/common/helpers/paths.js'
 import { AssetCollectorService } from 'server/modules/asset-collector/asset-collector.service.js'
+import { Route } from '../../../../plugins/generateRoutesManifest.js'
 
 const ABORT_RENDER_DELAY = 5000
 
@@ -38,16 +39,18 @@ export interface BaseRenderOpts {
   bootstrapModules?: string[]
 }
 
-type RoutesManifestItem = Record<string, string>
-
 export class RenderService {
   manifest?: Manifest
-  routesManifest?: RoutesManifestItem[]
+  routesManifest?: Route[]
 
   constructor(protected readonly assetCollectorService: AssetCollectorService) {}
 
-  protected getEntryModule(path: string): Promise<EntryModule> {
-    return import(resolvePath(path)) as Promise<EntryModule>
+  protected loadModule<T>(path: string): Promise<T> {
+    return import(resolvePath(path)) as Promise<T>
+  }
+
+  getRoutesManifest(): Route[] | Promise<Route[]> {
+    return this.routesManifest ?? []
   }
 
   protected collectPreloadLinks(entryPath: string, url: string): Array<Record<string, unknown>> {
@@ -66,7 +69,7 @@ export class RenderService {
 
     // Routes
 
-    const matches = matchRoutes<RoutesManifestItem>(this.routesManifest, url) ?? []
+    const matches = matchRoutes<Route>(this.routesManifest, url) ?? []
 
     for (const match of matches) {
       const pageAssets = this.assetCollectorService.collectPreloadLinksByManifest(
@@ -89,7 +92,7 @@ export class RenderService {
 
     this.routesManifest = JSON.parse(
       await readFile(resolvePath('dist/server/routes.manifest.json'), 'utf-8'),
-    ) as RoutesManifestItem[]
+    ) as Route[]
   }
 
   protected renderBase(
@@ -117,7 +120,8 @@ export class RenderService {
         bootstrapModules,
         [callbackName]() {
           const body = new PassThrough()
-          void res.status(didError ? 500 : 200).type('text/html')
+          if (didError) res.statusCode = 500
+          void res.type('text/html')
           resolve(body)
           stream.pipe(body)
         },
@@ -135,14 +139,14 @@ export class RenderService {
   }
 
   async renderApp(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
-    const entryMod = await this.getEntryModule('dist/server/app.server.js')
+    const entryMod = await this.loadModule<EntryModule>('dist/server/app.server.js')
     const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.client.tsx', req.url)
     const entryRouteContext = { prefetchLinks }
     return this.renderBase(req, res, { entryMod, entryRouteContext })
   }
 
   async renderError(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
-    const entryMod = await this.getEntryModule('dist/server/error.server.js')
+    const entryMod = await this.loadModule<EntryModule>('dist/server/error.server.js')
     const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.client.tsx', req.url)
     const entryRouteContext = { prefetchLinks }
     return this.renderBase(req, res, { entryMod, entryRouteContext })

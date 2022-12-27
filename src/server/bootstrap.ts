@@ -73,7 +73,7 @@ export async function bootstrap(): Promise<BootstrapResult> {
   // Routes
 
   useAuxiliaryController(server, { configService, renderService })
-  useRenderController(server, { configService, renderService })
+  await useRenderController(server, { configService, renderService })
 
   // Result
 
