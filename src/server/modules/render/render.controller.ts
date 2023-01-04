@@ -12,10 +12,10 @@ interface RenderControllerOptions {
   renderService: RenderService
 }
 
-export async function useRenderController(
+export function useRenderController(
   server: FastifyInstance,
   options: RenderControllerOptions,
-): Promise<void> {
+): void {
   const { configService, renderService } = options
   const { isProd, buildEnv } = configService.env
 
@@ -35,6 +35,5 @@ export async function useRenderController(
     }
   }
 
-  const routesManifest = await renderService.getRoutesManifest()
-  setRouteHandlers(routesManifest)
+  setRouteHandlers(renderService.routesManifest)
 }

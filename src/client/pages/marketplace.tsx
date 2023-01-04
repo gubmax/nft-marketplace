@@ -1,7 +1,9 @@
+import { useOutlet } from 'react-router-dom'
+
 import Marketplace from 'client/modules/features/marketplace/marketplace.js'
 
-function MarketplacePage() {
-  return <Marketplace />
-}
+export default function MarketplacePage() {
+  const childRoute = useOutlet()
 
-export default MarketplacePage
+  return <Marketplace>{childRoute}</Marketplace>
+}

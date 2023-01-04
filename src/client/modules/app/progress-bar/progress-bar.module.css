@@ -18,7 +18,7 @@ $loading_transition_delay: 500ms;
   animation-name: loading-animation;
   animation-duration: 8s;
   animation-fill-mode: forwards;
-  transition: width loading_transition_delay ease-in;
+  transition: width $loading_transition_delay ease-in;
 }
 
 @keyframes loading-end-animation {

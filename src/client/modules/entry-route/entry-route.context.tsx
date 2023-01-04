@@ -1,14 +1,15 @@
-import { createContext, useContext } from 'react'
+import { createContext, LinkHTMLAttributes, ScriptHTMLAttributes, useContext } from 'react'
 
 // import type { Manifest } from 'vite'
 import { invariant } from 'client/common/helpers/invariant.js'
 import { ChildrenProp } from 'client/common/typings/children-prop.js'
+import { HtmlMetaDescriptor } from './modules.js'
 
 export interface EntryRouteContextType {
-  prefetchLinks: Array<Record<string, string>>
-  // matches: any[]
-  // routeModules: any[]
-  // manifest: Manifest
+  links: Array<LinkHTMLAttributes<HTMLLinkElement>>
+  meta: HtmlMetaDescriptor
+  scripts: Array<ScriptHTMLAttributes<HTMLScriptElement> & { content: string }>
+  // routesManifest: any[]
 }
 
 const EntryRouteContext = createContext<EntryRouteContextType | null>(null)

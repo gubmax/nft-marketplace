@@ -1,18 +1,20 @@
 import { ComponentType, lazy, PropsWithRef, ReactNode, Suspense } from 'react'
 
-interface DynamicProps {
+export interface DynamicProps {
   fallback?: ReactNode
 }
 
-export type DynamicComponentType<P = unknown> = ComponentType<P & DynamicProps> & {
-  loader: DynamicFactory<P>
+export type DynamicComponentType<P = unknown, E = never> = ComponentType<P & DynamicProps> & {
+  loader: DynamicFactory<P, E>
 }
 
 export interface DynamicModule<P = unknown> {
   default: ComponentType<P>
 }
 
-export type DynamicFactory<P = unknown> = () => Promise<DynamicModule<P>>
+export type DynamicFactory<P = unknown, E = never> = () => Promise<
+  [E] extends [never] ? DynamicModule<P> : DynamicModule<P> & E
+>
 
 export function dynamic<P>(factory: DynamicFactory<P>): DynamicComponentType<P> {
   let cache: DynamicModule<P> | null = null

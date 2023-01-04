@@ -4,7 +4,7 @@ import { PassThrough } from 'node:stream'
 
 import { ReactNode } from 'react'
 import { renderToPipeableStream } from 'react-dom/server'
-import { matchRoutes } from 'react-router-dom'
+import { matchRoutes, RouteMatch } from 'react-router-dom'
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import isbot from 'isbot'
 import type { Manifest } from 'vite'
@@ -16,10 +16,10 @@ import { Route } from '../../../../plugins/generateRoutesManifest.js'
 const ABORT_RENDER_DELAY = 5000
 
 export interface EntryRouteContextType {
-  prefetchLinks: Array<Record<string, unknown>>
-  // matches: any[]
-  // routeModules: any[]
-  // manifest: Manifest
+  links: Array<Record<string, unknown>>
+  meta: Record<string, string>
+  scripts: Array<Record<string, unknown>>
+  // routesManifest: any[]
 }
 
 export interface RenderOptions {
@@ -40,8 +40,8 @@ export interface BaseRenderOpts {
 }
 
 export class RenderService {
-  manifest?: Manifest
-  routesManifest?: Route[]
+  #manifest?: Manifest
+  routesManifest: Route[] = []
 
   constructor(protected readonly assetCollectorService: AssetCollectorService) {}
 
@@ -49,44 +49,55 @@ export class RenderService {
     return import(resolvePath(path)) as Promise<T>
   }
 
-  getRoutesManifest(): Route[] | Promise<Route[]> {
-    return this.routesManifest ?? []
-  }
-
-  protected collectPreloadLinks(entryPath: string, url: string): Array<Record<string, unknown>> {
-    assert(this.manifest, 'Manifest not found')
+  protected collectRouteAssets(
+    entryContext: EntryRouteContextType,
+    matches: Array<RouteMatch<string, Route>>,
+    entryPath: string,
+  ) {
+    assert(this.#manifest, 'Manifest not found')
     assert(this.routesManifest, 'Pages Manifest not found')
-
-    const assets = []
 
     // Common
 
-    const commonAssets = this.assetCollectorService.collectPreloadLinksByManifest(
-      this.manifest,
-      entryPath,
-    )
-    assets.push(...commonAssets)
+    const commonAssets = this.assetCollectorService.collectByManifest(this.#manifest, entryPath)
+    entryContext.links.push(...commonAssets.links)
+    entryContext.scripts.push(...commonAssets.scripts)
 
     // Routes
 
-    const matches = matchRoutes<Route>(this.routesManifest, url) ?? []
-
     for (const match of matches) {
-      const pageAssets = this.assetCollectorService.collectPreloadLinksByManifest(
-        this.manifest,
+      const routeAssets = this.assetCollectorService.collectByManifest(
+        this.#manifest,
         match.route.id,
       )
-      assets.push(...pageAssets)
+      entryContext.links.push(...routeAssets.links)
+      entryContext.scripts.push(...routeAssets.scripts)
     }
+  }
 
-    return assets
+  protected collectRouteMeta(
+    entryContext: EntryRouteContextType,
+    matches: Array<RouteMatch<string, Route>>,
+  ) {
+    // TODO: Add meta collecting via manifest
+    return
+  }
+
+  protected createEntryRouteContext(entryPath: string, url: string): EntryRouteContextType {
+    const entryContext: EntryRouteContextType = { links: [], scripts: [], meta: {} }
+    const matches = matchRoutes<Route>(this.routesManifest, url) ?? []
+
+    this.collectRouteAssets(entryContext, matches, entryPath)
+    this.collectRouteMeta(entryContext, matches)
+
+    return entryContext
   }
 
   // Public
 
   async init(server?: FastifyInstance): Promise<void>
   async init(): Promise<void> {
-    this.manifest = JSON.parse(
+    this.#manifest = JSON.parse(
       await readFile(resolvePath('dist/client/manifest.json'), 'utf-8'),
     ) as Manifest
 
@@ -103,7 +114,7 @@ export class RenderService {
     const { entryMod, entryRouteContext, bootstrapModules } = opts
 
     // Inject entry context like script for client side
-    entryRouteContext.prefetchLinks.push({
+    entryRouteContext.scripts.push({
       id: '__ENTRY_ROUTE_CONTEXT__',
       type: 'application/json',
       content: JSON.stringify(entryRouteContext),
@@ -140,15 +151,19 @@ export class RenderService {
 
   async renderApp(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
     const entryMod = await this.loadModule<EntryModule>('dist/server/app.server.js')
-    const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.client.tsx', req.url)
-    const entryRouteContext = { prefetchLinks }
+    const entryRouteContext = this.createEntryRouteContext(
+      'src/client/entries/app.client.tsx',
+      req.url,
+    )
     return this.renderBase(req, res, { entryMod, entryRouteContext })
   }
 
   async renderError(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
     const entryMod = await this.loadModule<EntryModule>('dist/server/error.server.js')
-    const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.client.tsx', req.url)
-    const entryRouteContext = { prefetchLinks }
+    const entryRouteContext = this.createEntryRouteContext(
+      'src/client/entries/error.client.tsx',
+      req.url,
+    )
     return this.renderBase(req, res, { entryMod, entryRouteContext })
   }
 }

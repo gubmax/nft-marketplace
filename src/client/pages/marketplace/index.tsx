@@ -1,7 +1,10 @@
 import Tip from 'client/common/components/surfaces/tip/tip.js'
+import { MetaFunction } from 'client/modules/entry-route/modules.js'
 import AuthBanner from 'client/modules/features/marketplace/auth-banner/auth-banner.js'
 
-function ShowcasePage() {
+export const meta: MetaFunction = () => ({ title: 'Marketplace' })
+
+export default function ShowcasePage() {
   return (
     <>
       <AuthBanner className="mb-5" />
@@ -9,5 +12,3 @@ function ShowcasePage() {
     </>
   )
 }
-
-export default ShowcasePage

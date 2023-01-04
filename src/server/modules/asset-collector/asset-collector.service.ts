@@ -1,15 +1,12 @@
 import { Manifest, ModuleNode } from 'vite'
 
-interface GetPreloadLinkOptions {
-  file: string
-  isEntry?: boolean
+export interface EntryRouteAssets {
+  links: Array<Record<string, unknown>>
+  scripts: Array<Record<string, unknown>>
 }
 
 export class AssetCollectorService {
-  private getPreloadLink({
-    file,
-    isEntry = false,
-  }: GetPreloadLinkOptions): Record<string, unknown> | null {
+  private getFileProps(file: string, isEntry = false): Record<string, unknown> | null {
     if (file.endsWith('.js')) {
       if (isEntry) return { type: 'module', crossOrigin: '', src: file }
       else return { rel: 'modulepreload', crossOrigin: '', href: file }
@@ -27,10 +24,11 @@ export class AssetCollectorService {
     else return null
   }
 
-  collectPreloadLinksByModule(mod?: ModuleNode): Array<Record<string, unknown>> {
-    if (!mod) return []
+  collectByModule(mod?: ModuleNode): EntryRouteAssets {
+    const assetsAcc: EntryRouteAssets = { links: [], scripts: [] }
 
-    const links: Array<Record<string, unknown>> = []
+    if (!mod) return assetsAcc
+
     const seen = new Set()
 
     const collect = (m: ModuleNode) => {
@@ -39,8 +37,8 @@ export class AssetCollectorService {
       seen.add(m.id)
 
       if (m.file?.includes('.css')) {
-        const link = this.getPreloadLink({ file: m.url })
-        if (link) links.push(link)
+        const link = this.getFileProps(m.url)
+        if (link) assetsAcc.links.push(link)
       }
 
       m.importedModules.forEach((importedMod) => collect(importedMod))
@@ -48,11 +46,11 @@ export class AssetCollectorService {
 
     collect(mod)
 
-    return links
+    return assetsAcc
   }
 
-  collectPreloadLinksByManifest(manifest: Manifest, path: string): Array<Record<string, unknown>> {
-    const links: Array<Record<string, unknown>> = []
+  collectByManifest(manifest: Manifest, path: string): EntryRouteAssets {
+    const assetsAcc: EntryRouteAssets = { links: [], scripts: [] }
     const seen = new Set('')
 
     const collect = (p: string) => {
@@ -63,8 +61,11 @@ export class AssetCollectorService {
       const { isEntry, file, css = [], assets = [], imports = [] } = manifest[p]
 
       for (const url of [file, ...css, ...assets]) {
-        const link = this.getPreloadLink({ file: `/${url}`, isEntry })
-        if (link) links.push(link)
+        const link = this.getFileProps(`/${url}`, isEntry)
+        if (link) {
+          if (url.endsWith('.js')) assetsAcc.scripts.push(link)
+          else assetsAcc.links.push(link)
+        }
       }
 
       for (const assetPath of imports) collect(assetPath)
@@ -72,6 +73,6 @@ export class AssetCollectorService {
 
     collect(path)
 
-    return links
+    return assetsAcc
   }
 }

@@ -1,6 +1,7 @@
 import assert from 'node:assert'
 import { PassThrough } from 'node:stream'
 
+import { matchRoutes, RouteMatch } from 'react-router-dom'
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { ViteDevServer } from 'vite'
 
@@ -8,7 +9,7 @@ import { resolvePath } from 'server/common/helpers/paths.js'
 import { VITE_DEV_SERVER_CONFIG } from 'server/config/vite-dev-server.config.js'
 import { AssetCollectorService } from 'server/modules/asset-collector/asset-collector.service.js'
 import { Route } from '../../../../plugins/generateRoutesManifest.js'
-import { EntryModule, RenderService } from './render.service.js'
+import { EntryModule, EntryRouteContextType, RenderService } from './render.service.js'
 
 const INIT_ERROR_MSG = 'Vite dev server has not been initialized'
 
@@ -24,16 +25,52 @@ export class DevelopmentRenderService extends RenderService {
     return this.viteDevServer.ssrLoadModule(path) as Promise<T>
   }
 
-  async getRoutesManifest(): Promise<Route[]> {
-    const { routes = [] } = await this.loadModule<{ routes: Route[] }>('virtual:routes-manifest')
-    return routes
+  private getMetaByModuleId(id: string): (() => unknown) | undefined {
+    assert(this.viteDevServer, INIT_ERROR_MSG)
+
+    const mod = this.viteDevServer.moduleGraph.getModuleById(resolvePath(id))
+    const meta = mod?.ssrModule?.meta as (() => unknown) | undefined
+    return meta
   }
 
-  protected collectPreloadLinks(entryPath: string): Array<Record<string, unknown>> {
+  protected collectRouteAssets(
+    entryContext: EntryRouteContextType,
+    matches: Array<RouteMatch<string, Route>>,
+    entryPath: string,
+  ) {
     assert(this.viteDevServer, INIT_ERROR_MSG)
-    const id = resolvePath(entryPath)
-    const mod = this.viteDevServer.moduleGraph.getModuleById(id)
-    return this.assetCollectorService.collectPreloadLinksByModule(mod)
+
+    const mod = this.viteDevServer.moduleGraph.getModuleById(resolvePath(entryPath))
+    const commonAssets = this.assetCollectorService.collectByModule(mod)
+
+    entryContext.links.push(...commonAssets.links)
+  }
+
+  protected collectRouteMeta(
+    entryContext: EntryRouteContextType,
+    matches: Array<RouteMatch<string, Route>>,
+  ) {
+    assert(this.viteDevServer, INIT_ERROR_MSG)
+
+    if (matches.length) {
+      for (const match of matches) {
+        const meta = this.getMetaByModuleId(match.route.id)
+        if (meta) Object.assign(entryContext.meta, meta())
+      }
+    } else {
+      const meta = this.getMetaByModuleId('src/client/not-found.tsx')
+      if (meta) Object.assign(entryContext.meta, meta())
+    }
+  }
+
+  protected createEntryRouteContext(entryPath: string, url: string): EntryRouteContextType {
+    const entryContext: EntryRouteContextType = { links: [], scripts: [], meta: {} }
+    const matches = matchRoutes<Route>(this.routesManifest, url) ?? []
+
+    this.collectRouteAssets(entryContext, matches, entryPath)
+    this.collectRouteMeta(entryContext, matches)
+
+    return entryContext
   }
 
   // Public
@@ -42,20 +79,27 @@ export class DevelopmentRenderService extends RenderService {
     const vite = await import('vite')
     this.viteDevServer = await vite.createServer(VITE_DEV_SERVER_CONFIG)
     server.use(this.viteDevServer.middlewares)
+
+    const { routes = [] } = await this.loadModule<{ routes: Route[] }>('virtual:routes-manifest')
+    this.routesManifest = routes
   }
 
   async renderApp(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
     const entryMod = await this.loadModule<EntryModule>('/src/client/entries/app.server.tsx')
-    const prefetchLinks = this.collectPreloadLinks('src/client/entries/app.client.tsx')
-    const entryRouteContext = { prefetchLinks }
+    const entryRouteContext = this.createEntryRouteContext(
+      'src/client/entries/app.client.tsx',
+      req.url,
+    )
     const bootstrapModules = ['/@vite/client', '/src/client/entries/app.client.tsx']
     return this.renderBase(req, res, { entryMod, entryRouteContext, bootstrapModules })
   }
 
   async renderError(req: FastifyRequest, res: FastifyReply): Promise<PassThrough> {
     const entryMod = await this.loadModule<EntryModule>('/src/client/entries/error.server.tsx')
-    const prefetchLinks = this.collectPreloadLinks('src/client/entries/error.client.tsx')
-    const entryRouteContext = { prefetchLinks }
+    const entryRouteContext = this.createEntryRouteContext(
+      'src/client/entries/error.client.tsx',
+      req.url,
+    )
     const bootstrapModules = ['/@vite/client', '/src/client/entries/error.client.tsx']
     return this.renderBase(req, res, { entryMod, entryRouteContext, bootstrapModules })
   }

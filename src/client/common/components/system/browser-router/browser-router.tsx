@@ -23,7 +23,7 @@ function BrowserRouter({ children }: ChildrenProp) {
   }, [history, location.pathname])
 
   useEffectOnce(() => {
-    const subscription = preloadRouteModel.preloadObs.subscribe((update) => {
+    const subscription = preloadRouteModel.preloadObs.subscribe(({ update }) => {
       setHistory(update)
       window.scrollTo(0, 0)
     })

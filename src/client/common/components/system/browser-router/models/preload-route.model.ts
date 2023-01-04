@@ -1,51 +1,65 @@
-import { ElementType, ReactElement } from 'react'
-import { matchRoutes, RouteMatch } from 'react-router-dom'
+import { ReactElement } from 'react'
+import { matchRoutes } from 'react-router-dom'
 import { Update } from 'history'
 import { from, map, of, Subject, switchMap, tap } from 'rxjs'
 
-import { DynamicComponentType } from 'client/common/hocs/dynamic.js'
+import { invariant } from 'client/common/helpers/invariant.js'
+import {
+  DynamicComponentType,
+  DynamicFactory,
+  DynamicModule,
+  DynamicProps,
+} from 'client/common/hocs/dynamic.js'
+import { HtmlMetaDescriptor, MetaFunction } from 'client/modules/entry-route/modules.js'
 import { QueryModel } from 'client/modules/query/query.model.js'
 import { CustomRouteObject, routes } from 'client/routes.js'
 
-type LoaderFunction = () => Promise<{ default: ElementType }>
+interface RouteModuleExports {
+  meta?: MetaFunction
+}
 
-class PreloadRouteModel extends QueryModel<void[] | void> {
-  #loadedModules = new WeakSet<LoaderFunction>()
+type RouteModule = DynamicFactory<unknown, RouteModuleExports>
+type RouteElement = ReactElement<DynamicProps, DynamicComponentType<unknown, RouteModuleExports>>
+
+class PreloadRouteModel extends QueryModel<Array<DynamicModule & RouteModuleExports>> {
+  #cache = new WeakMap<RouteModule, { meta?: HtmlMetaDescriptor }>()
   updateSubject = new Subject<Update>()
 
   preloadObs = this.updateSubject.pipe(
     // Reset query state
     tap(() => this.reset()),
-    // Preload chunk
+    // Preload modules
     switchMap((update) => {
-      const loaders: LoaderFunction[] = []
+      const loaders: RouteModule[] = []
+      const meta: HtmlMetaDescriptor = {}
       const matchedRoutes = matchRoutes<CustomRouteObject>(routes, update.location)
+      invariant(matchedRoutes)
 
-      if (matchedRoutes === null) return of(update)
+      for (const routeObj of matchedRoutes) {
+        const elWithLoader = routeObj.route.element as RouteElement
 
-      const match = (routes: Array<RouteMatch<string, CustomRouteObject>>) => {
-        for (const routeObj of routes) {
-          const elWithLoader = routeObj.route.element as ReactElement<unknown, DynamicComponentType>
-
-          if (typeof elWithLoader === 'object' && 'loader' in elWithLoader.type) {
-            const { loader } = elWithLoader.type
-            if (!this.#loadedModules.has(loader)) loaders.push(loader)
-          }
+        if ('loader' in elWithLoader.type) {
+          const { loader } = elWithLoader.type
+          if (this.#cache.has(loader)) {
+            const routeMeta = this.#cache.get(loader)?.meta
+            if (routeMeta) Object.assign(meta, routeMeta)
+          } else loaders.push(loader)
         }
       }
 
-      match(matchedRoutes)
-
-      if (!loaders.length) return of(update)
+      if (!loaders.length) return of({ update, meta })
 
       const loaderPromises = loaders.map(async (loader) => {
-        await loader()
-        this.#loadedModules.add(loader)
+        const mod = await loader()
+        const routeMeta = mod.meta?.()
+        this.#cache.set(loader, { meta: routeMeta })
+        if (routeMeta) Object.assign(meta, routeMeta)
+        return mod
       })
 
       const queryPromise = this.run(() => Promise.all(loaderPromises))
 
-      return from(queryPromise).pipe(map(() => update))
+      return from(queryPromise).pipe(map(() => ({ update, meta })))
     }),
   )
 }

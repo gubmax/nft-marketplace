@@ -4,7 +4,6 @@ import Links from 'client/modules/entry-route/links.js'
 import LiveReload from 'client/modules/entry-route/live-reload.js'
 import Meta from 'client/modules/entry-route/meta.js'
 import Scripts from 'client/modules/entry-route/scripts.js'
-import Title from 'client/modules/entry-route/title.js'
 import {
   EntryRouteContextType,
   EntryRouteProvider,
@@ -24,7 +23,6 @@ export function document({ entryRouteContext, content }: DocumentOptions) {
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <Meta />
-            <Title />
             <link rel="icon" type="image/svg+xml" href="/vite.svg" />
             <Links />
           </head>
