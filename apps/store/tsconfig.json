@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"strict": true,
+		"composite": true,
+		"module": "ESNext",
+		"moduleResolution": "NodeNext",
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true,
+		"baseUrl": "."
+	},
+	"include": [".eslintrc.cjs", "package.json", "src", "scripts"]
+}

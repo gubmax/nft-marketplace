@@ -1,0 +1,23 @@
+{
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "nx/tasks-runners/default",
+			"options": {
+				"cacheableOperations": ["build", "lint", "sb.build"]
+			}
+		}
+	},
+	"targetDefaults": {
+		"build": {
+			"outputs": ["dist/**"],
+			"dependsOn": ["^build"]
+		},
+		"lint": {
+			"outputs": []
+		},
+		"sb.build": {
+			"outputs": ["storybook-static/**"],
+			"dependsOn": ["^sb.build"]
+		}
+	}
+}

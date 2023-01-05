@@ -1,0 +1,51 @@
+@import url("/client/common/styles/media.css");
+
+$paddingHeight: 40px;
+
+.footer {
+  background: var(--color-surface);
+  border-top: var(--border-width-1) solid var(--color-outline-variant);
+
+  @media (--media-screen-max-mobile) {
+    padding: $paddingHeight var(--space-5);
+  }
+}
+
+.wrapper {
+  min-width: var(--screen-tablet);
+  max-width: var(--screen-desktop);
+  padding: $paddingHeight var(--space-5) 0;
+}
+
+.top-section {
+  @media (--media-screen-max-tablet) {
+    flex-direction: column;
+  }
+}
+
+.description {
+  width: 480px;
+  padding-right: var(--space-3);
+
+  @media (--media-screen-max-tablet) {
+    width: 100%;
+    margin-bottom: var(--space-4);
+    padding-right: unset;
+    text-align: center;
+  }
+}
+
+.bottom-section {
+  margin-top: $paddingHeight;
+  padding-top: var(--space-4);
+  border-top: var(--border-width-1) solid var(--color-outline);
+
+  @media (--media-screen-max-mobile) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.bottom-links {
+  color: var(--color-on-outline);
+}

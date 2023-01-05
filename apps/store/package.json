@@ -1,0 +1,30 @@
+{
+	"name": "store",
+	"version": "0.1.0",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx scripts/watch",
+		"build": "tsx scripts/build",
+		"lint": "pnpm typecheck & pnpm eslint",
+		"typecheck": "tsc --noEmit",
+		"eslint": "eslint src scripts --ext .ts,.tsx"
+	},
+	"dependencies": {
+		"fastify": "4.11.0",
+		"hyperid": "3.0.1",
+		"pino": "8.8.0",
+		"pino-pretty": "9.1.1"
+	},
+	"devDependencies": {
+		"@nft-marketplace/eslint-config": "workspace:*",
+		"@types/node": "18.11.18",
+		"@types/nodemon": "1.19.2",
+		"esbuild": "0.16.14",
+		"nodemon": "2.0.20",
+		"picocolors": "1.0.0"
+	},
+	"peerDependencies": {
+		"tsx": "^3.0.0",
+		"typescript": "^4.0.0"
+	}
+}
