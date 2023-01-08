@@ -10,6 +10,7 @@
 		"eslint": "eslint src scripts --ext .ts,.tsx"
 	},
 	"dependencies": {
+		"esbuild": "0.16.14",
 		"fastify": "4.11.0",
 		"hyperid": "3.0.1",
 		"pino": "8.8.0",
@@ -19,7 +20,6 @@
 		"@nft-marketplace/eslint-config": "workspace:*",
 		"@types/node": "18.11.18",
 		"@types/nodemon": "1.19.2",
-		"esbuild": "0.16.14",
 		"nodemon": "2.0.20",
 		"picocolors": "1.0.0"
 	},

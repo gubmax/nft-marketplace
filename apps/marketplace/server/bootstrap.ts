@@ -47,7 +47,6 @@ export async function bootstrap(): Promise<BootstrapResult> {
 	})
 
 	if (isProd) {
-		await server.register(import('@fastify/compress'))
 		await server.register(import('@fastify/static'), {
 			root: resolvePath('dist/client'),
 			index: false,
