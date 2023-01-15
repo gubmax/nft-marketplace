@@ -48,6 +48,7 @@
 	"devDependencies": {
 		"@fastify/middie": "8.1.0",
 		"@nft-marketplace/eslint-config": "workspace:*",
+		"@nft-marketplace/tsconfig": "workspace:*",
 		"@types/node": "18.11.18",
 		"@types/nodemon": "1.19.2",
 		"@types/react": "18.0.26",

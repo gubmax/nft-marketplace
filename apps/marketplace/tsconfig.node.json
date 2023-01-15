@@ -1,15 +1,6 @@
 {
-	"compilerOptions": {
-		"target": "ESNext",
-		"strict": true,
-		"composite": true,
-		"module": "ESNext",
-		"moduleResolution": "NodeNext",
-		"resolveJsonModule": true,
-		"allowSyntheticDefaultImports": true,
-		"skipLibCheck": true,
-		"baseUrl": "."
-	},
+  "extends": "@nft-marketplace/tsconfig/node.json",
+  "compilerOptions": { "baseUrl": "." },
 	"include": [
 		".eslintrc.cjs",
 		".storybook",

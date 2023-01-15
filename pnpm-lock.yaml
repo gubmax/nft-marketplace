@@ -26,6 +26,7 @@ importers:
       '@fastify/middie': 8.1.0
       '@fastify/static': 6.6.0
       '@nft-marketplace/eslint-config': workspace:*
+      '@nft-marketplace/tsconfig': workspace:*
       '@storybook/addon-actions': 7.0.0-beta.13
       '@storybook/addon-backgrounds': 7.0.0-beta.13
       '@storybook/addon-docs': 7.0.0-beta.13
@@ -114,6 +115,7 @@ importers:
     devDependencies:
       '@fastify/middie': 8.1.0
       '@nft-marketplace/eslint-config': link:../../packages/eslint-config
+      '@nft-marketplace/tsconfig': link:../../packages/tsconfig
       '@types/node': 18.11.18
       '@types/nodemon': 1.19.2
       '@types/react': 18.0.26
@@ -124,6 +126,7 @@ importers:
   apps/store:
     specifiers:
       '@nft-marketplace/eslint-config': workspace:*
+      '@nft-marketplace/tsconfig': workspace:*
       '@types/node': 18.11.18
       '@types/nodemon': 1.19.2
       esbuild: 0.16.14
@@ -141,6 +144,7 @@ importers:
       pino-pretty: 9.1.1
     devDependencies:
       '@nft-marketplace/eslint-config': link:../../packages/eslint-config
+      '@nft-marketplace/tsconfig': link:../../packages/tsconfig
       '@types/node': 18.11.18
       '@types/nodemon': 1.19.2
       nodemon: 2.0.20
@@ -161,6 +165,17 @@ importers:
       eslint-plugin-react: 7.31.11
       eslint-plugin-react-hooks: 4.6.0
       eslint-plugin-simple-import-sort: 8.0.0
+
+  packages/tsconfig:
+    specifiers: {}
+
+  packages/ui:
+    specifiers:
+      '@nft-marketplace/eslint-config': workspace:*
+      '@nft-marketplace/tsconfig': workspace:*
+    devDependencies:
+      '@nft-marketplace/eslint-config': link:../eslint-config
+      '@nft-marketplace/tsconfig': link:../tsconfig
 
 packages:
 
