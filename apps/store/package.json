@@ -7,7 +7,7 @@
 		"build": "tsx scripts/build",
 		"lint": "pnpm typecheck & pnpm eslint",
 		"typecheck": "tsc --noEmit",
-		"eslint": "eslint src scripts --ext .ts,.tsx"
+		"eslint": "eslint . --ext .ts,.tsx"
 	},
 	"dependencies": {
 		"esbuild": "0.17.0",

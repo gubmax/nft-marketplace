@@ -12,9 +12,9 @@
 		"prerender": "tsx scripts/prerender",
 		"sb": "sb dev -p 6006",
 		"sb.build": "sb build",
-		"lint": "pnpm typecheck & pnpm eslint & pnpm stylelint",
+		"lint": "pnpm typecheck && pnpm eslint && pnpm stylelint",
 		"typecheck": "tsc --noEmit",
-		"eslint": "eslint client server scripts plugins --ext .ts,.tsx",
+		"eslint": "eslint . --ext .ts,.tsx",
 		"stylelint": "stylelint client/**/*.css"
 	},
 	"dependencies": {

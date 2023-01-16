@@ -1,13 +1,6 @@
 {
   "extends": "@nft-marketplace/tsconfig/node.json",
   "compilerOptions": { "baseUrl": "." },
-	"include": [
-		".eslintrc.cjs",
-		".storybook",
-		"package.json",
-		"plugins",
-		"scripts",
-		"server",
-		"vite.config.ts"
-	]
+	"include": [".", "package.json"],
+	"exclude": ["client"]
 }

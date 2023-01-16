@@ -2,10 +2,6 @@ module.exports = {
 	root: true,
 	extends: [
 		'@nft-marketplace/eslint-config',
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended',
-		'plugin:@typescript-eslint/recommended-requiring-type-checking',
-		'plugin:@typescript-eslint/strict',
 		'plugin:react/recommended',
 	],
 	parserOptions: {

@@ -29,15 +29,12 @@ module.exports = {
 			'error',
 			{
 				groups: [
-					[
-						'^node:',
-						'^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)',
-					],
-					['^react', '^'],
-					['^(client|server|shared)(/.*|$)', '^\\.', '^.+\\.css$'],
+          ['^node:', `^(${require('module').builtinModules.join('|')})(/|$)`],
+          ['^react', '^@?\\w'],
+          ['^(client|server|shared|plugins)(/.*|$)', '^\\.', '^.+\\.css$'],
 				],
 			},
 		],
 	},
-	ignorePatterns: ['dist', 'node_modules'],
+	ignorePatterns: ['dist', 'node_modules', '*.cjs'],
 }

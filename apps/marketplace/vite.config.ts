@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react'
-import { CSSOptions, defineConfig, splitVendorChunkPlugin } from 'vite'
+import { CSSOptions, defineConfig, splitVendorChunkPlugin, UserConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 import { generateRoutesManifest } from './plugins/generateRoutesManifest.js'
@@ -17,28 +17,30 @@ export default defineConfig(({ ssrBuild, mode }) => {
 		},
 	}
 
-	return ssrBuild
-		? {
-				css,
-				plugins,
-				publicDir: false,
-				build: {
-					outDir: './dist/server',
-					rollupOptions: {
-						input: ['./client/entries/app.server', './client/entries/error.server'],
-					},
-				},
-		  }
-		: {
-				css,
-				plugins,
-				publicDir: './client/public',
-				build: {
-					manifest: true,
-					outDir: './dist/client',
-					rollupOptions: {
-						input: ['./client/entries/app.client', './client/entries/error.client'],
-					},
-				},
-		  }
+	const ssrConfig: UserConfig = {
+		css,
+		plugins,
+		publicDir: false,
+		build: {
+			outDir: './dist/server',
+			rollupOptions: {
+				input: ['./client/entries/app.server', './client/entries/error.server'],
+			},
+		},
+	}
+
+	const spaConfig: UserConfig = {
+		css,
+		plugins,
+		publicDir: './client/public',
+		build: {
+			manifest: true,
+			outDir: './dist/client',
+			rollupOptions: {
+				input: ['./client/entries/app.client', './client/entries/error.client'],
+			},
+		},
+	}
+
+	return ssrBuild ? ssrConfig : spaConfig
 })

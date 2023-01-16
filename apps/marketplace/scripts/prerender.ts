@@ -7,9 +7,9 @@ import { dirname } from 'node:path'
 
 import pc from 'picocolors'
 
-import type { bootstrap } from 'server/bootstrap.js'
+import { type Route } from 'plugins/generateRoutesManifest.js'
+import { type bootstrap } from 'server/bootstrap.js'
 import { resolvePath } from 'server/common/helpers/paths.js'
-import { Route } from '../plugins/generateRoutesManifest.js'
 
 process.env.NODE_ENV = 'production'
 process.env.BUILD_ENV = 'prerender'
