@@ -3,16 +3,16 @@ $paddingBottom: 64px;
 
 .wrapper {
   position: relative;
-  min-height: 100vh;
   max-width: var(--screen-desktop);
+  min-height: 100vh;
   padding: 0 var(--space-5);
 }
 
 .aside {
-  padding: $paddingTop var(--space-3) $paddingBottom 0;
-  margin-right: 40px;
-  border-right: var(--border-width-1) solid var(--color-outline-variant);
   z-index: 0;
+  padding: $paddingTop var(--space-3) $paddingBottom 0;
+  border-right: var(--border-width-1) solid var(--color-outline-variant);
+  margin-right: 40px;
 }
 
 .sidebar {

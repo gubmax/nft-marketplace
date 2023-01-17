@@ -4,15 +4,15 @@
 
 .tag {
   all: inherit;
+  display: flex;
+  width: 100%;
   align-items: center;
+  justify-content: center;
   border-radius: inherit;
   cursor: pointer;
-  display: flex;
   font-family: inherit;
   font-size: var(--font-size-body);
   font-weight: 500;
-  justify-content: center;
-  width: 100%;
 }
 
 .base {
@@ -33,11 +33,11 @@
   &_contained {
     border: 0;
     background: var(--gradient-secondary);
-    color: var(--color-dark-on-background);
     box-shadow: inset 0 0 0 var(--border-width-1) var(--color-primary);
+    color: var(--color-dark-on-background);
     transition: filter 100ms ease;
 
-    &:active { filter: brightness(0.8) }
+    &:active { filter: brightness(0.8); }
   }
 
   &_contained-light {
@@ -46,8 +46,8 @@
     color: var(--color-light-on-background);
     transition: filter 100ms ease;
 
-    &:active { filter: brightness(0.8) }
-    &:focus-visible { outline-color: var(--color-light-background) }
+    &:active { filter: brightness(0.8); }
+    &:focus-visible { outline-color: var(--color-light-background); }
   }
 
   &_outline {
@@ -56,16 +56,16 @@
     color: var(--color-secondary);
     transition: background 100ms ease;
 
-    &:active { background: var(--color-tertiary) }
+    &:active { background: var(--color-tertiary); }
   }
 
   &_outline-light {
-    border:  var(--border-width-1) solid var(--color-dark-on-background);
+    border: var(--border-width-1) solid var(--color-dark-on-background);
     background: transparent;
     color: var(--color-dark-on-background);
     transition: filter 100ms ease;
 
-    &:active { filter: brightness(0.8) }
-    &:focus-visible { outline-color: var(--color-light-background) }
+    &:active { filter: brightness(0.8); }
+    &:focus-visible { outline-color: var(--color-light-background); }
   }
 }

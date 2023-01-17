@@ -5,6 +5,7 @@
 
   &_primary {
     fill: url("#lg-accent-light");
+
     @media (prefers-color-scheme: dark) {
       fill: url("#lg-accent-dark");
     }

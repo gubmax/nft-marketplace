@@ -16,44 +16,44 @@
 .highlight {
   @media (prefers-color-scheme: dark) {
     position: absolute;
-    width: 100%;
-    height: 12%;
     top: 30%;
     right: 0;
+    width: 100%;
+    height: 12%;
     background: var(--gradient-primary);
-    transform: rotate(170deg);
     filter: blur(100px);
     pointer-events: none;
+    transform: rotate(170deg);
   }
 }
 
 .right-present-section {
   position: relative;
   display: grid;
+  min-width: 355px;
+  grid-gap: var(--space-2);
   grid-template-columns: repeat(2, 0fr);
   grid-template-rows: repeat(2, 0fr);
-  grid-gap: var(--space-2);
-  min-width: 355px;
 }
 
 .right-present-circle {
   position: absolute;
+  z-index: -1;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   background: var(--color-outline);
   outline: var(--border-width-1) dashed var(--color-outline);
-  outline-offset: var(--space-5) ;
-  border-radius: 50%;
-  z-index: -1;
+  outline-offset: var(--space-5);
 }
 
 .img-present1,
 .img-present2,
 .img-present3,
 .img-present4 {
-  background: var(--color-color-surface) ;
-  border-radius: var(--border-radius-2) ;
   flex-basis: 50%;
+  border-radius: var(--border-radius-2);
+  background: var(--color-color-surface);
 }
 
 .img-present1 {

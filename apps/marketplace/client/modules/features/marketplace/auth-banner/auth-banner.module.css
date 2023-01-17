@@ -1,9 +1,9 @@
-@import url('/client/common/styles/media.css');
+@import url("/client/common/styles/media.css");
 
 .wrapper {
-  background: var(--gradient-primary);
   padding: var(--space-4) var(--space-5);
   border-radius: var(--border-radius-2);
+  background: var(--gradient-primary);
   color: var(--color-dark-on-background);
 }
 

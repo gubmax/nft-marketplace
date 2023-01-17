@@ -1,19 +1,19 @@
 .wrapper {
+  overflow: hidden;
   height: 100vh;
   padding: var(--space-3);
   text-align: center;
-  overflow: hidden;
 }
 
 .bg-text {
+  position: relative;
+  margin-bottom: 64px;
   font-size: 200px;
   font-weight: 700;
-  margin-bottom: 64px;
-  position: relative;
   transform: rotate(4deg);
 }
 
 .description {
-  text-align: center;
   color: var(--color-on-outline);
+  text-align: center;
 }

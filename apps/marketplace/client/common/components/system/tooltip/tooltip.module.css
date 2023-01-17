@@ -5,16 +5,16 @@ $positionValue: calc(100% + var(--space-2));
 }
 
 .tooltip {
-  background: var(--color-on-outline);
-  border-radius: var(--border-radius-1);
-  color: var(--color-dark-on-background);
+  position: absolute;
+  z-index: 1;
   padding: var(--space-2) var(--space-3);
+  border-radius: var(--border-radius-1);
+  background: var(--color-on-outline);
+  color: var(--color-dark-on-background);
   font-size: var(--font-size-label);
   pointer-events: none;
-  position: absolute;
   visibility: hidden;
   white-space: nowrap;
-  z-index: 1;
 }
 
 .activator:hover + .tooltip {

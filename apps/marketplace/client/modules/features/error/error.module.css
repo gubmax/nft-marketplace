@@ -1,31 +1,31 @@
 .wrapper {
+  overflow: hidden;
   height: 100vh;
   padding: var(--space-3);
   text-align: center;
-  overflow: hidden;
 }
 
 .bg-text {
-  font-size: 120px;
-  margin-bottom: 64px;
   position: relative;
-  transform: rotate(4deg);
-  font-weight: 700;
   z-index: -1;
+  margin-bottom: 64px;
+  font-size: 120px;
+  font-weight: 700;
+  transform: rotate(4deg);
 }
 
 .highlight {
   @media (prefers-color-scheme: dark) {
     position: absolute;
-    background: var(--gradient-primary);
+    z-index: -1;
     width: 40vw;
     height: 100px;
+    background: var(--gradient-primary);
     filter: blur(140px);
-    z-index: -1;
   }
 }
 
-.description  {
-  text-align: center;
+.description {
   color: var(--color-on-outline);
+  text-align: center;
 }

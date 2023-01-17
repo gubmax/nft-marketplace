@@ -3,8 +3,8 @@
 $paddingHeight: 40px;
 
 .footer {
-  background: var(--color-surface);
   border-top: var(--border-width-1) solid var(--color-outline-variant);
+  background: var(--color-surface);
 
   @media (--media-screen-max-mobile) {
     padding: $paddingHeight var(--space-5);
@@ -29,16 +29,16 @@ $paddingHeight: 40px;
 
   @media (--media-screen-max-tablet) {
     width: 100%;
-    margin-bottom: var(--space-4);
     padding-right: unset;
+    margin-bottom: var(--space-4);
     text-align: center;
   }
 }
 
 .bottom-section {
-  margin-top: $paddingHeight;
   padding-top: var(--space-4);
   border-top: var(--border-width-1) solid var(--color-outline);
+  margin-top: $paddingHeight;
 
   @media (--media-screen-max-mobile) {
     flex-direction: column;

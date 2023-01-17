@@ -3,15 +3,15 @@
 }
 
 .wrapper {
-  height: 56px;
   min-width: var(--screen-tablet);
   max-width: var(--screen-desktop);
+  height: 56px;
   padding: 0 var(--space-5);
 }
 
 .logo {
-  margin-left: calc(-1 * var(--space-2));
   padding: 0 var(--space-2);
+  margin-left: calc(-1 * var(--space-2));
 }
 
 .link,
@@ -21,8 +21,8 @@
 
 .link {
   padding: 0 var(--space-3);
-  line-height: 36px;
   font-weight: 500;
+  line-height: 36px;
   transition: color 100ms ease-out, background 100ms ease-out, box-shadow 100ms ease-out;
 
   &:hover {

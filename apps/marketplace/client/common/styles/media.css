@@ -3,7 +3,6 @@
 @custom-media --media-screen-min-tablet (min-width: 768px);
 @custom-media --media-screen-min-laptop (min-width: 1024px);
 @custom-media --media-screen-min-desktop (min-width: 1200px);
-
 @custom-media --media-screen-max-min (max-width: 320px);
 @custom-media --media-screen-max-mobile (max-width: 480px);
 @custom-media --media-screen-max-tablet (max-width: 768px);

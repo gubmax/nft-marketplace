@@ -1,6 +1,6 @@
 .link {
-  color: var(--color-secondary);
   border-radius: var(--border-radius-1);
+  color: var(--color-secondary);
   transition: color 100ms ease-out, border-color 100ms ease-out;
 
   &:active {

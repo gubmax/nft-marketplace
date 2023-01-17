@@ -1,9 +1,9 @@
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 .wrapper {
@@ -16,7 +16,7 @@
 
 .sidebar {
   position: sticky;
-  flex-shrink: 0;
   top: 0;
   width: 232px;
+  flex-shrink: 0;
 }

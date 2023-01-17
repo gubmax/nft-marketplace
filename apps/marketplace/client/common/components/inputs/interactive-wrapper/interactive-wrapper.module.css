@@ -1,6 +1,6 @@
 .wrapper {
-  cursor: pointer;
   border-radius: var(--border-radius-2);
+  cursor: pointer;
 }
 
 .active {

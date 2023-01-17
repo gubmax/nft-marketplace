@@ -1,13 +1,13 @@
 .surface {
   padding: var(--space-4);
-  background: var(--color-surface);
   border: var(--border-width-1) solid var(--color-outline-variant);
   border-radius: var(--border-radius-2);
+  background: var(--color-surface);
 }
 
 .glass {
-  background: var(--color-glass);
   backdrop-filter: blur(12px);
+  background: var(--color-glass);
 }
 
 /* Typography */
