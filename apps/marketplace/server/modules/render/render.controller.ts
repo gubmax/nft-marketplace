@@ -4,7 +4,7 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
 import { resolvePath } from 'server/common/helpers/paths.js'
 import { ConfigService } from 'server/modules/config/config.service.js'
-import { Route } from '../../../plugins/generateRoutesManifest.js'
+import { Route } from '../../../plugins/generate-routes-manifest.js'
 import { RenderService } from './render.service.js'
 
 interface RenderControllerOptions {

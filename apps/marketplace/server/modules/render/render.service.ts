@@ -11,7 +11,7 @@ import type { Manifest } from 'vite'
 
 import { resolvePath } from 'server/common/helpers/paths.js'
 import { AssetCollectorService } from 'server/modules/asset-collector/asset-collector.service.js'
-import { Route } from '../../../plugins/generateRoutesManifest.js'
+import { Route } from '../../../plugins/generate-routes-manifest.js'
 
 const ABORT_RENDER_DELAY = 5000
 

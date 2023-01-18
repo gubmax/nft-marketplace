@@ -8,7 +8,7 @@ import { ViteDevServer } from 'vite'
 import { resolvePath } from 'server/common/helpers/paths.js'
 import { VITE_DEV_SERVER_CONFIG } from 'server/config/vite-dev-server.config.js'
 import { AssetCollectorService } from 'server/modules/asset-collector/asset-collector.service.js'
-import { Route } from '../../../plugins/generateRoutesManifest.js'
+import { Route } from '../../../plugins/generate-routes-manifest.js'
 import { EntryModule, EntryRouteContextType, RenderService } from './render.service.js'
 
 const INIT_ERROR_MSG = 'Vite dev server has not been initialized'

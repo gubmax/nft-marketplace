@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react'
 import { CSSOptions, defineConfig, splitVendorChunkPlugin, UserConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-import { generateRoutesManifest } from './plugins/generateRoutesManifest.js'
+import { generateRoutesManifest } from './plugins/generate-routes-manifest.js'
 
 /**
  * @link https://vitejs.dev/config/

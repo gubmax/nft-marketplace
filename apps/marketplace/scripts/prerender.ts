@@ -7,7 +7,7 @@ import { dirname } from 'node:path'
 
 import pc from 'picocolors'
 
-import { type Route } from 'plugins/generateRoutesManifest.js'
+import { type Route } from 'plugins/generate-routes-manifest.js'
 import { type bootstrap } from 'server/bootstrap.js'
 import { resolvePath } from 'server/common/helpers/paths.js'
 
