@@ -9,5 +9,6 @@
 	"files.associations": {
 		"*.css": "postcss"
 	},
-	"eslint.workingDirectories": ["apps", "packages"]
+	"eslint.workingDirectories": ["apps", "packages"],
+	"typescript.tsdk": "./node_modules/typescript/lib"
 }

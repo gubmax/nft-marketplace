@@ -6,5 +6,8 @@
 		"base.json",
 		"node.json",
 		"web.json"
-	]
+	],
+	"dependencies": {
+		"typescript-plugin-css-modules": "4.1.1"
+	}
 }
