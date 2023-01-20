@@ -29,7 +29,7 @@ function writePageFile(path: string, html: string) {
 	fs.mkdirSync(dirname(pagePath), { recursive: true })
 	fs.writeFileSync(pagePath, html)
 
-	console.log(`${pc.dim('dist/client/')}${pc.green(`${pathWithFilename}`)}`)
+	console.log(`${pc.dim('dist/client/')}${pc.green(pathWithFilename)}`)
 }
 
 // Pre-render app pages
@@ -57,5 +57,3 @@ writePageFile('not-found', notFoundRes.body)
 
 const errorRes = await server.inject('/error')
 writePageFile('error', errorRes.body)
-
-process.exit(0)

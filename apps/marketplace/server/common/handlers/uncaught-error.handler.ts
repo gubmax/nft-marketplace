@@ -15,13 +15,13 @@ interface UncaughtErrorHandlerOptions {
 
 export function useUncaughtErrorHandler(server: FastifyInstance, options: UncaughtErrorHandlerOptions): void {
 	const { configService, loggerService, renderService } = options
-	const { isProd, buildEnv } = configService.env
+	const { isProd, isPrerenderMode } = configService.app
 	const { logger } = loggerService
 
 	server.setErrorHandler(async (error, req, res) => {
 		logger.error(error, 'Uncaught error')
 
-		if (isProd && buildEnv !== 'prerender') {
+		if (isProd && !isPrerenderMode) {
 			const stream = createReadStream(resolvePath('dist/client/error.html'), 'utf-8')
 			return res.status(500).type('text/html').send(stream)
 		}

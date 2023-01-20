@@ -10,11 +10,11 @@ interface AuxiliaryControllerOptions {
 
 export function useAuxiliaryController(server: FastifyInstance, options: AuxiliaryControllerOptions): void {
 	const { configService, renderService } = options
-	const { isProd, buildEnv } = configService.env
+	const { isProd, isPrerenderMode } = configService.app
 
 	server.get('/health', async (req, res) => res.status(200).send())
 
-	if (isProd && buildEnv !== 'prerender') return
+	if (isProd && !isPrerenderMode) return
 
 	server.get('/not-found', async (req, res) => renderService.renderApp(req, res))
 	server.get('/error', async (req, res) => renderService.renderError(req, res))

@@ -1,12 +1,12 @@
 import { bootstrap } from './bootstrap.js'
-import { ENV_CONFIG } from './config/env.config.js'
+import { appConfig } from './config/app.config.js'
 
-const { isTest, buildEnv } = ENV_CONFIG
+const { isTest, isPrerenderMode, env } = appConfig
 
 // Bootstrap
-if (!isTest && buildEnv !== 'prerender') {
-	const { server, config } = await bootstrap()
-	await server.listen(config)
+if (!isTest && !isPrerenderMode) {
+	const { server } = await bootstrap()
+	await server.listen({ host: env.HOST, port: env.PORT })
 }
 
 // For tests

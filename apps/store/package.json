@@ -3,13 +3,15 @@
 	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx scripts/watch",
+		"dev": "tsx watch --clear-screen=false src/main.ts",
 		"build": "tsx scripts/build",
 		"lint": "pnpm typecheck & pnpm eslint",
 		"typecheck": "tsc --noEmit",
 		"eslint": "eslint . --ext .ts,.tsx"
 	},
 	"dependencies": {
+		"dotenv": "16.0.3",
+		"envalid": "7.3.1",
 		"esbuild": "0.17.0",
 		"fastify": "4.11.0",
 		"hyperid": "3.1.0",
@@ -20,8 +22,6 @@
 		"@nft-marketplace/eslint-config": "workspace:*",
 		"@nft-marketplace/tsconfig": "workspace:*",
 		"@types/node": "16.11.7",
-		"@types/nodemon": "1.19.2",
-		"nodemon": "2.0.20",
 		"picocolors": "1.0.0"
 	},
 	"peerDependencies": {

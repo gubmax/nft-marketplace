@@ -14,10 +14,10 @@ interface RenderControllerOptions {
 
 export function useRenderController(server: FastifyInstance, options: RenderControllerOptions): void {
 	const { configService, renderService } = options
-	const { isProd, buildEnv } = configService.env
+	const { isProd, isPrerenderMode } = configService.app
 
 	async function sendHtml(req: FastifyRequest, res: FastifyReply, route: Route) {
-		if (route.static && isProd && buildEnv !== 'prerender') {
+		if (route.static && isProd && !isPrerenderMode) {
 			const stream = createReadStream(resolvePath(`dist/client/pages${route.path}.html`), 'utf-8')
 			return res.status(200).type('text/html').send(stream)
 		}

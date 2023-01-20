@@ -19,14 +19,13 @@ import { RenderService } from './modules/render/render.service.js'
 
 export interface BootstrapResult {
 	server: FastifyInstance
-	config: { host: string; port: number }
 }
 
 export async function bootstrap(): Promise<BootstrapResult> {
 	// Services
 
 	const configService = new ConfigService()
-	const { isProd } = configService.env
+	const { isProd } = configService.app
 
 	const asyncStorageService = new AsyncStorageService()
 	const loggerService = new LoggerService(configService)
@@ -74,8 +73,5 @@ export async function bootstrap(): Promise<BootstrapResult> {
 	useAuxiliaryController(server, { configService, renderService })
 	useRenderController(server, { configService, renderService })
 
-	// Result
-
-	const { host, port } = configService.env
-	return { server, config: { host, port } }
+	return { server }
 }

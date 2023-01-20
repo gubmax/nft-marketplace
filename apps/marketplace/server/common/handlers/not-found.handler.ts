@@ -13,10 +13,10 @@ interface NotFoundHandlerOptions {
 
 export function useNotFoundHandler(server: FastifyInstance, options: NotFoundHandlerOptions) {
 	const { configService, renderService } = options
-	const { isProd, buildEnv } = configService.env
+	const { isProd, isPrerenderMode } = configService.app
 
 	server.setNotFoundHandler(async (req, res) => {
-		if (isProd && buildEnv !== 'prerender') {
+		if (isProd && !isPrerenderMode) {
 			const stream = createReadStream(resolvePath('dist/client/not-found.html'), 'utf-8')
 			return res.status(404).type('text/html').send(stream)
 		}

@@ -9,12 +9,12 @@ export class LoggerService {
 	readonly logger: FastifyBaseLogger
 
 	constructor(private readonly configService: ConfigService) {
-		const { isProd, buildEnv } = configService.env
+		const { isProd, isPrerenderMode } = configService.app
 
 		let optionsOrStream: LoggerOptions | DestinationStream
 
 		if (isProd) {
-			optionsOrStream = { enabled: buildEnv !== 'prerender' }
+			optionsOrStream = { enabled: !isPrerenderMode }
 		} else {
 			// @ts-expect-error: No correct import
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

@@ -48,6 +48,8 @@ importers:
       '@types/react-dom': 18.0.10
       '@vitejs/plugin-react': 3.0.1
       autoprefixer: 10.4.13
+      dotenv: 16.0.3
+      envalid: 7.3.1
       esbuild: 0.17.0
       fastify: 4.11.0
       history: 5.3.0
@@ -79,6 +81,8 @@ importers:
       '@fastify/static': 6.6.1
       '@vitejs/plugin-react': 3.0.1_vite@4.0.4
       autoprefixer: 10.4.13_postcss@8.4.21
+      dotenv: 16.0.3
+      envalid: 7.3.1
       esbuild: 0.17.0
       fastify: 4.11.0
       history: 5.3.0
@@ -134,15 +138,17 @@ importers:
       '@nft-marketplace/eslint-config': workspace:*
       '@nft-marketplace/tsconfig': workspace:*
       '@types/node': 16.11.7
-      '@types/nodemon': 1.19.2
+      dotenv: 16.0.3
+      envalid: 7.3.1
       esbuild: 0.17.0
       fastify: 4.11.0
       hyperid: 3.1.0
-      nodemon: 2.0.20
       picocolors: 1.0.0
       pino: 8.8.0
       pino-pretty: 9.1.1
     dependencies:
+      dotenv: 16.0.3
+      envalid: 7.3.1
       esbuild: 0.17.0
       fastify: 4.11.0
       hyperid: 3.1.0
@@ -152,8 +158,6 @@ importers:
       '@nft-marketplace/eslint-config': link:../../packages/eslint-config
       '@nft-marketplace/tsconfig': link:../../packages/tsconfig
       '@types/node': 16.11.7
-      '@types/nodemon': 1.19.2
-      nodemon: 2.0.20
       picocolors: 1.0.0
 
   packages/eslint-config:
@@ -3016,7 +3020,7 @@ packages:
       '@storybook/core-events': 7.0.0-beta.28
       '@storybook/csf': 0.0.2-next.8
       '@storybook/csf-tools': 7.0.0-beta.28
-      '@storybook/docs-mdx': 0.0.1-next.5
+      '@storybook/docs-mdx': 0.0.1-next.6
       '@storybook/global': 5.0.0
       '@storybook/node-logger': 7.0.0-beta.28
       '@storybook/preview-api': 7.0.0-beta.28
@@ -3091,8 +3095,8 @@ packages:
     dev: false
     optional: true
 
-  /@storybook/docs-mdx/0.0.1-next.5:
-    resolution: {integrity: sha512-EowXFPq4TBZQguKCdU8y7EzpuSv2vSu5gy7pgF/1P5mq7LG9h8YIrerOW9DL4zfp9E0GHIWlSXR5KuFIqqKc/Q==}
+  /@storybook/docs-mdx/0.0.1-next.6:
+    resolution: {integrity: sha512-DjoSIXADmLJtdroXAjUotFiZlcZ2usWhqrS7aeOtZs0DVR0Ws5WQjnwtpDUXt8gryTSd+OZJ0cNsDcqg4JDEvQ==}
     dev: false
     optional: true
 
@@ -5279,6 +5283,13 @@ packages:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
     dev: true
+
+  /envalid/7.3.1:
+    resolution: {integrity: sha512-KL1YRwn8WcoF/Ty7t+yLLtZol01xr9ZJMTjzoGRM8NaSU+nQQjSWOQKKJhJP2P57bpdakJ9jbxqQX4fGTOicZg==}
+    engines: {node: '>=8.12'}
+    dependencies:
+      tslib: 2.3.1
+    dev: false
 
   /envinfo/7.8.1:
     resolution: {integrity: sha512-/o+BXHmB7ocbHEAs6F2EnG0ogybVVUdkRunTT2glZU9XAaGmhqskrvKwqXuDfNjEO0LZKWdejEEpnq8aM0tOaw==}
@@ -10901,6 +10912,10 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: false
+
+  /tslib/2.3.1:
+    resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
     dev: false
 
   /tslib/2.4.1:
