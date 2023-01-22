@@ -1,0 +1,7 @@
+{
+	"name": "NFT Marketplace",
+	"dockerComposeFile": ["../compose.yml", "compose.extend.yml"],
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"shutdownAction": "stopCompose"
+}
