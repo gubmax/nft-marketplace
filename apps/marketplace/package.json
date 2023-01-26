@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
-		"start": "cross-env NODE_ENV=production node dist/server",
+		"start": "NODE_ENV=production node dist/server",
 		"dev": "tsx scripts/watch",
 		"build": "pnpm build.client && pnpm build.render && pnpm build.server && pnpm prerender",
 		"build.client": "vite build",

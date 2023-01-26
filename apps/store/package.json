@@ -5,18 +5,25 @@
 	"scripts": {
 		"dev": "tsx watch --clear-screen=false src/main.ts",
 		"build": "tsx scripts/build",
+		"codegen": "prisma generate",
+		"migrate.dev": "prisma migrate dev",
+		"migrate.deploy": "prisma migrate deploy",
+		"migrate.reset": "prisma migrate reset",
+		"studio": "prisma studio",
 		"lint": "pnpm typecheck & pnpm eslint",
 		"typecheck": "tsc --noEmit",
 		"eslint": "eslint . --ext .ts,.tsx"
 	},
 	"dependencies": {
+		"@prisma/client": "4.9.0",
 		"dotenv": "16.0.3",
 		"envalid": "7.3.1",
 		"esbuild": "0.17.0",
 		"fastify": "4.11.0",
 		"hyperid": "3.1.0",
 		"pino": "8.8.0",
-		"pino-pretty": "9.1.1"
+		"pino-pretty": "9.1.1",
+		"prisma": "4.9.0"
 	},
 	"devDependencies": {
 		"@nft-marketplace/eslint-config": "workspace:*",
