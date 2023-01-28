@@ -3,12 +3,11 @@
 	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
-		"start": "NODE_ENV=production node dist/server",
 		"dev": "tsx scripts/watch",
 		"build": "pnpm build.client && pnpm build.render && pnpm build.server && pnpm prerender",
 		"build.client": "vite build",
 		"build.render": "vite build --ssr",
-		"build.server": "tsx scripts/build",
+		"build.server": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
 		"prerender": "tsx scripts/prerender",
 		"sb": "sb dev -p 6006",
 		"sb.build": "sb build",
@@ -21,6 +20,7 @@
 		"@fastify/static": "6.6.1",
 		"@vitejs/plugin-react": "3.0.1",
 		"autoprefixer": "10.4.13",
+		"awilix": "8.0.0",
 		"dotenv": "16.0.3",
 		"envalid": "7.3.1",
 		"esbuild": "0.17.0",
@@ -58,7 +58,8 @@
 		"@types/react": "18.0.26",
 		"@types/react-dom": "18.0.10",
 		"nodemon": "2.0.20",
-		"picocolors": "1.0.0"
+		"picocolors": "1.0.0",
+		"tsc-alias": "1.8.2"
 	},
 	"peerDependencies": {
 		"tsx": "^3.0.0",

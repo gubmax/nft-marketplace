@@ -1,17 +1,17 @@
 import { FastifyInstance, FastifyReply, FastifyRequest, HookHandlerDoneFunction } from 'fastify'
+import hyperid from 'hyperid'
 
-import { AsyncStorageService } from 'server/modules/async-storage/async-storage.service.js'
-import { LoggerService } from 'server/modules/logger/logger.service.js'
+import type AsyncStorageService from 'server/modules/async-storage/async-storage.service.js'
+import type LoggerService from 'server/modules/logger/logger.service.js'
 
-interface RequestLoggingHookOptions {
-	asyncStorageService: AsyncStorageService
-	loggerService: LoggerService
-	uuid(): string
-}
-
-export function useRequestLoggingHook(server: FastifyInstance, options: RequestLoggingHookOptions): void {
-	const { storage } = options.asyncStorageService
-	const { logger } = options.loggerService
+export default function requestLoggingHook(
+	server: FastifyInstance,
+	asyncStorageService: AsyncStorageService,
+	loggerService: LoggerService,
+): void {
+	const { storage } = asyncStorageService
+	const { logger } = loggerService
+	const uuid = hyperid()
 
 	function logRequest(req: FastifyRequest, res: FastifyReply, done: HookHandlerDoneFunction): void {
 		const store = new Map<string, unknown>()
@@ -19,7 +19,7 @@ export function useRequestLoggingHook(server: FastifyInstance, options: RequestL
 		const traceIdHeader = req.headers['x-trace-id']
 
 		store.set('reqId', reqId)
-		store.set('traceId', typeof traceIdHeader === 'string' ? traceIdHeader : options.uuid())
+		store.set('traceId', typeof traceIdHeader === 'string' ? traceIdHeader : uuid())
 
 		const reqPayload = {
 			reqId: String(req.id),

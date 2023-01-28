@@ -5,11 +5,11 @@ import { matchRoutes, RouteMatch } from 'react-router-dom'
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { ViteDevServer } from 'vite'
 
+import type { Route } from 'plugins/generate-routes-manifest.js'
 import { resolvePath } from 'server/common/helpers/paths.js'
 import { VITE_DEV_SERVER_CONFIG } from 'server/config/vite-dev-server.config.js'
-import { AssetCollectorService } from 'server/modules/asset-collector/asset-collector.service.js'
-import { Route } from '../../../plugins/generate-routes-manifest.js'
-import { EntryModule, EntryRouteContextType, RenderService } from './render.service.js'
+import type AssetCollectorService from 'server/modules/asset-collector/asset-collector.service.js'
+import { type EntryModule, type EntryRouteContextType, RenderService } from './render.service.production.js'
 
 const INIT_ERROR_MSG = 'Vite dev server has not been initialized'
 

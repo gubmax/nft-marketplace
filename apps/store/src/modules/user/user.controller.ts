@@ -1,13 +1,12 @@
 import { User } from '@prisma/client'
 import { FastifyInstance, RouteGenericInterface } from 'fastify'
 
-import { UserRepository } from './user.repository.js'
+import type UserRepository from './user.repository.js'
 
-interface UserIdRoute extends RouteGenericInterface {
-	Params: { id: string }
-}
-
-export function useUserController(server: FastifyInstance, userRepository: UserRepository): void {
+export default (server: FastifyInstance, userRepository: UserRepository) => {
+	interface UserIdRoute extends RouteGenericInterface {
+		Params: { id: string }
+	}
 	server.get<UserIdRoute>('/user/:id', async (req, res): Promise<User> => {
 		const { id } = req.params
 		const user = await userRepository.getUserById(id)

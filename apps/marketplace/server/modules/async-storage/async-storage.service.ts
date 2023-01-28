@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from 'node:async_hooks'
 
-export class AsyncStorageService {
+export default class AsyncStorageService {
 	storage = new AsyncLocalStorage<Map<string, unknown>>()
 }

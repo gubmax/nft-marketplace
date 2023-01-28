@@ -2,19 +2,17 @@ import { createReadStream } from 'node:fs'
 
 import { FastifyInstance } from 'fastify'
 
-import { ConfigService } from 'server/modules/config/config.service.js'
-import { LoggerService } from 'server/modules/logger/logger.service.js'
-import { RenderService } from 'server/modules/render/render.service.js'
-import { resolvePath } from '../helpers/paths.js'
+import { resolvePath } from 'server/common/helpers/paths.js'
+import type ConfigService from 'server/modules/config/config.service.js'
+import type LoggerService from 'server/modules/logger/logger.service.js'
+import { RenderService } from 'server/modules/render/render.service.production.js'
 
-interface UncaughtErrorHandlerOptions {
-	configService: ConfigService
-	loggerService: LoggerService
-	renderService: RenderService
-}
-
-export function useUncaughtErrorHandler(server: FastifyInstance, options: UncaughtErrorHandlerOptions): void {
-	const { configService, loggerService, renderService } = options
+export function uncaughtErrorHandler(
+	server: FastifyInstance,
+	configService: ConfigService,
+	loggerService: LoggerService,
+	renderService: RenderService,
+): void {
 	const { isProd, isPrerenderMode } = configService.app
 	const { logger } = loggerService
 

@@ -5,7 +5,7 @@ export interface EntryRouteAssets {
 	scripts: Array<Record<string, unknown>>
 }
 
-export class AssetCollectorService {
+export default class AssetCollectorService {
 	private getFileProps(file: string, isEntry = false): Record<string, unknown> | null {
 		if (file.endsWith('.js')) {
 			if (isEntry) return { type: 'module', crossOrigin: '', src: file }

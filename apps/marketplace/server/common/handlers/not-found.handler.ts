@@ -2,17 +2,15 @@ import { createReadStream } from 'node:fs'
 
 import { FastifyInstance } from 'fastify'
 
-import { ConfigService } from 'server/modules/config/config.service.js'
-import { RenderService } from 'server/modules/render/render.service.js'
-import { resolvePath } from '../helpers/paths.js'
+import { resolvePath } from 'server/common/helpers/paths.js'
+import type ConfigService from 'server/modules/config/config.service.js'
+import type { RenderService } from 'server/modules/render/render.service.production.js'
 
-interface NotFoundHandlerOptions {
-	configService: ConfigService
-	renderService: RenderService
-}
-
-export function useNotFoundHandler(server: FastifyInstance, options: NotFoundHandlerOptions) {
-	const { configService, renderService } = options
+export default function notFoundHandler(
+	server: FastifyInstance,
+	configService: ConfigService,
+	renderService: RenderService,
+) {
 	const { isProd, isPrerenderMode } = configService.app
 
 	server.setNotFoundHandler(async (req, res) => {

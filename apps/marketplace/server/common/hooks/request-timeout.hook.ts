@@ -1,13 +1,9 @@
 import { FastifyInstance } from 'fastify'
 
-import { LoggerService } from 'server/modules/logger/logger.service.js'
+import type LoggerService from 'server/modules/logger/logger.service.js'
 
-interface RequestTimeoutHookOptions {
-	loggerService: LoggerService
-}
-
-export function useRequestTimeoutHook(server: FastifyInstance, options: RequestTimeoutHookOptions): void {
-	const { logger } = options.loggerService
+export default function requestTimeoutHook(server: FastifyInstance, loggerService: LoggerService): void {
+	const { logger } = loggerService
 
 	server.addHook('onTimeout', (req, res, done) => {
 		const payload = { url: req.url }

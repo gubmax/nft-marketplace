@@ -19,7 +19,7 @@ const PATH_ROUTES_MANIFEST = 'dist/server/routes.manifest.json'
 console.log(`${pc.cyan('pre-render script')} ${pc.green('creating HTML files for static routes...')}`)
 
 // @ts-expect-error: Production js without declaration file
-const module = (await import('../dist/server/index.js')) as { default: typeof bootstrap }
+const module = (await import('../dist/server/main.js')) as { default: typeof bootstrap }
 const { server } = await module.default()
 
 function writePageFile(path: string, html: string) {

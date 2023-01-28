@@ -2,18 +2,12 @@ import { createReadStream } from 'node:fs'
 
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
+import type { Route } from 'plugins/generate-routes-manifest.js'
 import { resolvePath } from 'server/common/helpers/paths.js'
-import { ConfigService } from 'server/modules/config/config.service.js'
-import { Route } from '../../../plugins/generate-routes-manifest.js'
-import { RenderService } from './render.service.js'
+import type ConfigService from 'server/modules/config/config.service.js'
+import type { RenderService } from './render.service.production.js'
 
-interface RenderControllerOptions {
-	configService: ConfigService
-	renderService: RenderService
-}
-
-export function useRenderController(server: FastifyInstance, options: RenderControllerOptions): void {
-	const { configService, renderService } = options
+export default (server: FastifyInstance, configService: ConfigService, renderService: RenderService): void => {
 	const { isProd, isPrerenderMode } = configService.app
 
 	async function sendHtml(req: FastifyRequest, res: FastifyReply, route: Route) {

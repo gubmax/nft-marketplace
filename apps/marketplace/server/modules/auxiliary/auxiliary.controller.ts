@@ -1,15 +1,9 @@
 import { FastifyInstance } from 'fastify'
 
-import { ConfigService } from 'server/modules/config/config.service.js'
-import { RenderService } from 'server/modules/render/render.service.js'
+import type ConfigService from 'server/modules/config/config.service.js'
+import type { RenderService } from 'server/modules/render/render.service.production.js'
 
-interface AuxiliaryControllerOptions {
-	configService: ConfigService
-	renderService: RenderService
-}
-
-export function useAuxiliaryController(server: FastifyInstance, options: AuxiliaryControllerOptions): void {
-	const { configService, renderService } = options
+export default (server: FastifyInstance, configService: ConfigService, renderService: RenderService): void => {
 	const { isProd, isPrerenderMode } = configService.app
 
 	server.get('/health', async (req, res) => res.status(200).send())
