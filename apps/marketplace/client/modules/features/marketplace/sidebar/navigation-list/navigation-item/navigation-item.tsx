@@ -6,15 +6,16 @@ import { PageRoutes } from 'client/common/constants.js'
 import { cn } from 'client/common/helpers/class-names.js'
 import { IconProps } from 'client/common/hocs/with-icon/with-icon.js'
 import { useLink } from 'client/common/hooks/use-link.js'
+import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './navigation-item.module.css'
 
-export interface NavigationItemProps {
+export interface NavigationItemProps extends StyledProps {
 	icon: ElementType<IconProps>
 	text: string
 	to: PageRoutes
 }
 
-function NavigationItem({ icon: Icon, text, to }: NavigationItemProps) {
+function NavigationItem({ icon: Icon, text, to, className, style }: NavigationItemProps) {
 	const { pathname } = useLocation()
 	const navigate = useLink(to)
 
@@ -22,7 +23,13 @@ function NavigationItem({ icon: Icon, text, to }: NavigationItemProps) {
 	const iconVariant = isActive ? 'primary' : 'inherit'
 
 	return (
-		<IW as="a" href={to} className={cn(s.wrapper, isActive && s.wrapperActive)} onClick={navigate}>
+		<IW
+			as="a"
+			href={to}
+			className={cn(s.wrapper, isActive && s.wrapperActive, className)}
+			style={style}
+			onClick={navigate}
+		>
 			<Icon className="flex-shrink" variant={iconVariant} />
 			<span className="ml-2">{text}</span>
 		</IW>

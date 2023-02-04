@@ -40,5 +40,4 @@ function Footer() {
 	)
 }
 
-const ExoticComponent = memo(Footer)
-export { ExoticComponent as Footer }
+export default memo(Footer)

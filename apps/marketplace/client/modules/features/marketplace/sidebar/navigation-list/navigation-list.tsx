@@ -11,7 +11,10 @@ interface NavigationListProps extends StyledProps {
 }
 
 function NavigationList({ className, style, title, routes }: NavigationListProps) {
-	const routesTemplate = useMemo(() => routes.map((route, i) => <NavigationItem key={i} {...route} />), [routes])
+	const routesTemplate = useMemo(
+		() => routes.map((route, i) => <NavigationItem key={i} className="mb-1" {...route} />),
+		[routes],
+	)
 
 	return (
 		<div className={className} style={style}>

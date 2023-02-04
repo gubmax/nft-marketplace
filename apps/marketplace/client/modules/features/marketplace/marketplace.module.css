@@ -10,9 +10,14 @@ $paddingBottom: 64px;
 
 .aside {
   z-index: 0;
-  padding: $paddingTop var(--space-3) $paddingBottom 0;
-  border-right: var(--border-width-1) solid var(--color-outline-variant);
-  margin-right: 40px;
+  padding: $paddingTop var(--space-4) $paddingBottom 0;
+}
+
+.border {
+	width: 1px;
+	flex-shrink: 0;
+	margin-right: 40px;
+	background: linear-gradient(to bottom, var(--color-outline-variant) 0%, var(--color-outline-variant) 80%, transparent 100%);
 }
 
 .sidebar {

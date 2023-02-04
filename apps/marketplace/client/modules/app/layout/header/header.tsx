@@ -25,7 +25,7 @@ function Header({ className, style }: StyledProps) {
 	const navigateToSignIn = useLink(PageRoutes.SIGN_IN)
 
 	return (
-		<header className={cn(s.header, e.glass, className)} style={style}>
+		<header className={cn(e.glass, className)} style={style}>
 			<nav className={cn(s.wrapper, 'flex items-center m-auto gap-4')}>
 				<Link className={s.logoLink} to={PageRoutes.HOME}>
 					<Logo className={s.logo} />
@@ -60,9 +60,9 @@ function Header({ className, style }: StyledProps) {
 					{TEXT_SIGN_IN}
 				</Button>
 			</nav>
+			<hr className={s.border} />
 		</header>
 	)
 }
 
-const ExoticComponent = memo(Header)
-export { ExoticComponent as Header }
+export default memo(Header)

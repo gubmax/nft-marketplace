@@ -11,6 +11,7 @@ function Marketplace({ children }: ChildrenProp) {
 			<div className={s.aside}>
 				<Sidebar className={cn(s.sidebar, 'flex-shrink-0')} />
 			</div>
+			<hr className={s.border} />
 			<div className={cn(s.content, 'w-full')}>{children}</div>
 		</div>
 	)

@@ -6,70 +6,75 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-  font-size: var(--font-size-body);
-  text-size-adjust: 100%;
+	font-size: var(--font-size-body);
+	text-size-adjust: 100%;
 }
 
 :root,
 body {
-  width: 100%;
-  min-height: 100vh;
+	width: 100%;
+	min-height: 100vh;
 }
 
 :root {
-  color-scheme: light;
+	color-scheme: light;
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+	@media (prefers-color-scheme: dark) {
+		color-scheme: dark;
+	}
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-on-background);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Noto Sans",
-    Helvetica,
-    Arial,
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overscroll-behavior: none;
-  -webkit-tap-highlight-color: transparent;
+	background: var(--color-background);
+	color: var(--color-on-background);
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		"Noto Sans",
+		Helvetica,
+		Arial,
+		sans-serif,
+		"Apple Color Emoji",
+		"Segoe UI Emoji";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overscroll-behavior: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 a {
-  color: unset;
-  cursor: pointer;
-  text-decoration: none;
+	color: unset;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+hr {
+	all: unset;
+	display: block;
 }
 
 :focus {
-  outline: 0;
+	outline: 0;
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
+	outline: 3px solid var(--color-primary);
+	outline-offset: 3px;
 }
 
 @keyframes autofill {
-  to {
-    background: inherit;
-    color: inherit;
-  }
+	to {
+		background: inherit;
+		color: inherit;
+	}
 }
 
 input:-webkit-autofill {
-  animation-fill-mode: both;
-  animation-name: autofill;
+	animation-fill-mode: both;
+	animation-name: autofill;
 }
