@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
 
 import { cn } from 'client/common/helpers/class-names.js'
-import e from 'client/common/styles/elements.module.css'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './tooltip.module.css'
+import e from '@nft-marketplace/ui/styles/elements.module.css'
 
 export type TooltipPositions = 'top' | 'right' | 'bottom' | 'left'
 

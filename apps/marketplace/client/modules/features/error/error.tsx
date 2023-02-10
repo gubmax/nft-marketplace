@@ -1,8 +1,8 @@
 import { memo } from 'react'
 
 import { cn } from 'client/common/helpers/class-names.js'
-import e from 'client/common/styles/elements.module.css'
 import s from './error.module.css'
+import e from '@nft-marketplace/ui/styles/elements.module.css'
 
 function Error() {
 	return (

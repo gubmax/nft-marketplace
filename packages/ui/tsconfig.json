@@ -1,0 +1,4 @@
+{
+  "extends": "@nft-marketplace/tsconfig/web.json",
+  "include": ["."],
+}

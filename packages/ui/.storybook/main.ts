@@ -1,7 +1,7 @@
-import type { StorybookConfig } from '@storybook/builder-vite'
+import type { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {
-  stories: ['../client/**/*.stories.@(ts|tsx)'],
+  stories: ['../components/**/*.stories.@(ts|tsx)'],
   addons: ['@storybook/addon-essentials'],
   framework: '@storybook/react-vite',
   features: { storyStoreV7: true },

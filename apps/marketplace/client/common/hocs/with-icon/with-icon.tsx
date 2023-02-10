@@ -1,7 +1,7 @@
 import { ElementType, memo } from 'react'
+import { pxToRem } from '@nft-marketplace/ui'
 
 import { cn } from 'client/common/helpers/class-names.js'
-import { pxToRem } from 'client/common/styles/helpers.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './with-icon.module.css'
 

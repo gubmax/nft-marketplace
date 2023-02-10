@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 
 import { cn } from 'client/common/helpers/class-names.js'
-import e from 'client/common/styles/elements.module.css'
 import { ChildrenProp } from 'client/common/typings/children-prop.js'
+import e from '@nft-marketplace/ui/styles/elements.module.css'
 
 interface HelpBlockProps extends ChildrenProp {
 	icon: ReactNode

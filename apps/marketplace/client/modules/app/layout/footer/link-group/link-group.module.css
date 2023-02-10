@@ -1,4 +1,4 @@
-@import url("/client/common/styles/media.css");
+@import url("@nft-marketplace/ui/styles/media.css");
 
 .column {
   &:last-of-type {

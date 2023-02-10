@@ -1,4 +1,4 @@
-@import url("/client/common/styles/media.css");
+@import url("@nft-marketplace/ui/styles/media.css");
 
 .wrapper {
   padding: var(--space-4) var(--space-5);

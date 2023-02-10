@@ -22,22 +22,20 @@
 		"migrate.reset": "nx run-many --target=migrate.reset --parallel --output-style=stream",
 		"compose.build": "docker compose -f compose.yml -f infra/compose.extend.yml build",
 		"compose.up": "docker compose -f compose.yml -f infra/compose.extend.yml up -d",
-		"sb": "nx run marketplace:sb",
-		"sb.build": "nx run marketplace:sb.build",
+		"sb": "FORCE_COLOR=1 nx run @nft-marketplace/ui:sb",
+		"sb.build": "nx run @nft-marketplace/ui:sb.build",
 		"studio": "nx run store:studio",
 		"lint": "nx run-many --target=lint --parallel --output-style=stream",
     "ncu": "npm-check-updates --deep",
 		"prepare": "husky install"
 	},
-	"dependencies": {
-		"nx": "15.5.1",
-		"tsx": "3.12.2",
-		"typescript": "4.9.4"
-	},
 	"devDependencies": {
-		"eslint": "8.32.0",
+		"eslint": "8.34.0",
 		"husky": "8.0.3",
-		"npm-check-updates": "16.6.2",
-		"prettier": "2.8.3"
+		"npm-check-updates": "16.7.4",
+		"nx": "15.6.3",
+		"prettier": "2.8.4",
+		"tsx": "3.12.3",
+		"typescript": "4.9.5"
 	}
 }

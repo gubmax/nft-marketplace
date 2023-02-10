@@ -24,6 +24,7 @@ Check out the [docs](https://code.visualstudio.com/docs/devcontainers/containers
 ### To develop package locally or inside development container:
 ```sh
 pnpm i
+pnpm codegen
 pnpm migrate.dev
 pnpm dev
 ```

@@ -7,7 +7,8 @@
 		"node.json",
 		"web.json"
 	],
-	"dependencies": {
+	"devDependencies": {
+		"typescript": "4.9.5",
 		"typescript-plugin-css-modules": "4.1.1"
 	}
 }
