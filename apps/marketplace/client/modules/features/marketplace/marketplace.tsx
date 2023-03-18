@@ -1,6 +1,6 @@
 import { memo } from 'react'
+import { cn } from '@nft-marketplace/ui'
 
-import { cn } from 'client/common/helpers/class-names.js'
 import { ChildrenProp } from 'client/common/typings/children-prop.js'
 import Sidebar from './sidebar/sidebar.js'
 import s from './marketplace.module.css'

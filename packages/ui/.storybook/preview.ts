@@ -1,22 +1,14 @@
-import { theme } from './theme'
-
-import '../styles/globals.css'
+import { dark, light } from './themes'
 
 export const parameters = {
 	actions: { argTypesRegex: '^on[A-Z].*' },
-	docs: { theme },
+	backgrounds: { disable: true },
+	darkMode: {
+		current: 'dark',
+		dark,
+		light,
+		stylePreview: true,
+	},
+	docs: { theme: dark },
 	layout: 'centered',
-	controls: {
-		matchers: {
-			color: /(background|color)$/i,
-			date: /Date$/,
-		},
-	},
-	backgrounds: {
-		default: 'dark',
-		values: [
-			{ name: 'dark', value: '#1c1b1f' },
-			{ name: 'light', value: '#ffffff' },
-		],
-	},
 }

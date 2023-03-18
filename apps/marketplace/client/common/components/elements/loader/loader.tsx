@@ -1,6 +1,6 @@
 import { memo } from 'react'
+import { cn } from '@nft-marketplace/ui'
 
-import { cn } from 'client/common/helpers/class-names.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './loader.module.css'
 

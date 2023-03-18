@@ -1,12 +1,11 @@
 import { memo } from 'react'
+import { cn, HelpIcon, InfoIcon, SupportIcon } from '@nft-marketplace/ui'
 
-import { HelpIcon, InfoIcon, SupportIcon } from 'client/common/components/icons.js'
 import A from 'client/common/components/typography/anchor/anchor.js'
 import { PageRoutes } from 'client/common/constants.js'
-import { cn } from 'client/common/helpers/class-names.js'
 import HelpBlock from './help-block.js'
 import SectionTitle from './section-title.js'
-import e from '@nft-marketplace/ui/styles/elements.module.css'
+import e from '@nft-marketplace/ui/src/styles/elements.module.css'
 
 function HelpSection() {
 	return (

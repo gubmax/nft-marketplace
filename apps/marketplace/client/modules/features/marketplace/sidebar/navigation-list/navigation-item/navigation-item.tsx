@@ -1,10 +1,9 @@
 import { ElementType, memo } from 'react'
 import { useLocation } from 'react-router-dom'
+import { cn, IconProps } from '@nft-marketplace/ui'
 
 import IW from 'client/common/components/inputs/interactive-wrapper/interactive-wrapper.js'
 import { PageRoutes } from 'client/common/constants.js'
-import { cn } from 'client/common/helpers/class-names.js'
-import { IconProps } from 'client/common/hocs/with-icon/with-icon.js'
 import { useLink } from 'client/common/hooks/use-link.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './navigation-item.module.css'

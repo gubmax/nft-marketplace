@@ -1,7 +1,4 @@
 module.exports = {
-	env: {
-		node: true,
-	},
 	parser: '@typescript-eslint/parser',
 	plugins: ['prettier', 'simple-import-sort'],
 	extends: [

@@ -1,6 +1,6 @@
 import { memo } from 'react'
+import { cn } from '@nft-marketplace/ui'
 
-import { cn } from 'client/common/helpers/class-names.js'
 import s from './icon-counter.module.css'
 
 interface IconCounterProps {

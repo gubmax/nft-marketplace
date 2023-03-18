@@ -1,7 +1,7 @@
 import { memo } from 'react'
+import { cn } from '@nft-marketplace/ui'
 
 import A from 'client/common/components/typography/anchor/anchor.js'
-import { cn } from 'client/common/helpers/class-names.js'
 import { links } from './domain/links.js'
 import s from './link-group.module.css'
 

@@ -1,12 +1,12 @@
 import { memo } from 'react'
+import { cn } from '@nft-marketplace/ui'
 
 import A from 'client/common/components/typography/anchor/anchor.js'
 import { PageRoutes } from 'client/common/constants.js'
-import { cn } from 'client/common/helpers/class-names.js'
 import Logo from '../logo/logo.js'
 import LinkGroup from './link-group/link-group.js'
 import s from './footer.module.css'
-import e from '@nft-marketplace/ui/styles/elements.module.css'
+import e from '@nft-marketplace/ui/src/styles/elements.module.css'
 
 const TEXT_DESCRIPTION =
 	'The largest trading platform for crypto collectibles and non-fungible tokens (NFTs). Buy, sell, and discover exclusive digital items.'

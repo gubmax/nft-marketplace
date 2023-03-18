@@ -39,15 +39,18 @@
 		"postcss": "8.4.21",
 		"postcss-custom-media": "9.1.2",
 		"postcss-import": "15.1.0",
+		"postcss-mixins": "9.0.4",
 		"postcss-nested": "6.0.0",
 		"postcss-pxtorem": "6.0.0",
 		"postcss-reporter": "7.0.5",
 		"postcss-simple-vars": "7.0.1",
+		"storybook-dark-mode": "2.0.6",
 		"stylelint": "14.16.1",
 		"stylelint-config-idiomatic-order": "9.0.0",
 		"stylelint-config-prettier": "9.0.5",
 		"stylelint-config-standard": "29.0.0",
 		"typescript": "4.9.5",
-		"vite": "4.1.1"
+		"vite": "4.1.1",
+		"vite-tsconfig-paths": "4.0.5"
 	}
 }

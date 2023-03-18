@@ -1,9 +1,8 @@
 import { memo } from 'react'
+import { ChevronIcon, cn } from '@nft-marketplace/ui'
 
-import { ChevronIcon } from 'client/common/components/icons.js'
 import Button from 'client/common/components/inputs/buttons/button/button.js'
 import { PageRoutes } from 'client/common/constants.js'
-import { cn } from 'client/common/helpers/class-names.js'
 import { useLink } from 'client/common/hooks/use-link.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import StatisticCard from '../statistic-card/statistic-card.js'
@@ -12,7 +11,7 @@ import nft2URL from './assets/nft2.jpg'
 import nft3URL from './assets/nft3.png'
 import nft4URL from './assets/nft4.jpg'
 import s from './present-section.module.css'
-import e from '@nft-marketplace/ui/styles/elements.module.css'
+import e from '@nft-marketplace/ui/src/styles/elements.module.css'
 
 function PresentSection({ className, style }: StyledProps) {
 	const navigateToSignIn = useLink(PageRoutes.SIGN_IN)
@@ -33,7 +32,7 @@ function PresentSection({ className, style }: StyledProps) {
 					</span>
 					<Button as="a" href={PageRoutes.SIGN_IN} variant="contained" className="gap-1" onClick={navigateToSignIn}>
 						Get started
-						<ChevronIcon rotate={90} />
+						<ChevronIcon rotate="90deg" />
 					</Button>
 				</div>
 				<div className="flex flex-grow justify-center">

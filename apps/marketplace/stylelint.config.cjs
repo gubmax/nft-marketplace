@@ -1,1 +1,3 @@
-module.exports = require('@nft-marketplace/ui/stylelint.config.cjs')
+module.exports = {
+	extends: ['@nft-marketplace/ui/stylelint.config.cjs'],
+}

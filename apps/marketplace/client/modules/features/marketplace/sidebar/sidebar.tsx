@@ -1,5 +1,4 @@
 import { memo } from 'react'
-
 import {
 	CollectionIcon,
 	HelpIcon,
@@ -8,7 +7,8 @@ import {
 	ScheduleIcon,
 	SettingsIcon,
 	ShowcaseIcon,
-} from 'client/common/components/icons.js'
+} from '@nft-marketplace/ui'
+
 import { PageRoutes } from 'client/common/constants.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import type { NavigationItemProps } from './navigation-list/navigation-item/navigation-item.js'

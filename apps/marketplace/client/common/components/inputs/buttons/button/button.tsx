@@ -1,8 +1,8 @@
 import { MouseEvent } from 'react'
+import { cn } from '@nft-marketplace/ui'
 import { noop } from 'rxjs'
 
 import Loader, { LoaderVariant } from 'client/common/components/elements/loader/loader.js'
-import { cn } from 'client/common/helpers/class-names.js'
 import { useEvent } from 'client/common/hooks/use-event.js'
 import ButtonBase, { ButtonBaseProps, ButtonVariant } from '../button-base/button-base.js'
 import s from './button.module.css'

@@ -1,2 +1,5 @@
-export { default as Button } from './components/button.js'
-export * from './styles/helpers'
+export { default as Button } from './src/components/buttons/button.js'
+export * from './src/components/icons/icons.js'
+export * from './src/helpers/class-names.js'
+export * from './src/helpers/px-to-rem'
+export * from './src/hocs/with-icon/with-icon.js'

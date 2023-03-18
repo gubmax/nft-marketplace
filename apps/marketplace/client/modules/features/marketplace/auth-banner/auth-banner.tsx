@@ -1,12 +1,12 @@
 import { memo } from 'react'
+import { cn } from '@nft-marketplace/ui'
 
 import Button from 'client/common/components/inputs/buttons/button/button.js'
 import { PageRoutes } from 'client/common/constants.js'
-import { cn } from 'client/common/helpers/class-names.js'
 import { useLink } from 'client/common/hooks/use-link.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './auth-banner.module.css'
-import e from '@nft-marketplace/ui/styles/elements.module.css'
+import e from '@nft-marketplace/ui/src/styles/elements.module.css'
 
 const TEXT_SIGN_IN = 'Sign In'
 const TEXT_SIGN_UP = 'Sign Up'

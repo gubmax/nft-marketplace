@@ -1,6 +1,6 @@
 import { ElementType, KeyboardEventHandler, MouseEventHandler } from 'react'
+import { cn } from '@nft-marketplace/ui'
 
-import { cn } from 'client/common/helpers/class-names.js'
 import { AsProp } from 'client/common/typings/as-prop.js'
 import { ChildrenProp } from 'client/common/typings/children-prop.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'

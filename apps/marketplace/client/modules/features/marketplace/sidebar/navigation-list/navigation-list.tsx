@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
+import { cn } from '@nft-marketplace/ui'
 
-import { cn } from 'client/common/helpers/class-names.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import NavigationItem, { NavigationItemProps } from './navigation-item/navigation-item.js'
 import s from './navigation-list.module.css'

@@ -1,4 +1,5 @@
-import { cn } from 'client/common/helpers/class-names.js'
+import { cn } from '@nft-marketplace/ui'
+
 import { ChildrenProp } from 'client/common/typings/children-prop.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './page-wrapper.module.css'

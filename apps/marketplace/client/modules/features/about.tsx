@@ -3,7 +3,7 @@ import { memo } from 'react'
 import Button from 'client/common/components/inputs/buttons/button/button.js'
 import IconButton from 'client/common/components/inputs/buttons/icon-button/icon-button.js'
 import { PageRoutes } from 'client/common/constants.js'
-import e from '@nft-marketplace/ui/styles/elements.module.css'
+import e from '@nft-marketplace/ui/src/styles/elements.module.css'
 
 function About() {
 	return (

@@ -1,9 +1,15 @@
-.variant {
-  &_inherit {
+.ui-icon {
+	&[data-rotate] {
+		transform: rotate(attr(data-rotate));
+	}
+}
+
+.ui-icon.variant {
+  &--inherit {
     fill: currentcolor;
   }
 
-  &_primary {
+  &--primary {
     fill: url("#lg-accent-light");
 
     @media (prefers-color-scheme: dark) {
@@ -11,28 +17,33 @@
     }
   }
 
-  &_outline {
+  &--outline {
     fill: var(--color-on-outline);
   }
 }
 
-.size {
-  &_sm {
+.ui-icon.size {
+  &--sm {
     width: 16px;
     height: 16px;
   }
 
-  &_md {
+  &--md {
     width: 24px;
     height: 24px;
   }
 
-  &_xl {
+	&--lg {
+    width: 32px;
+    height: 32px;
+  }
+
+  &--xl {
     width: 48px;
     height: 48px;
   }
 
-  &_xxl {
+  &--xxl {
     width: 112px;
     height: 112px;
   }

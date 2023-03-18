@@ -1,5 +1,6 @@
 module.exports = {
 	root: true,
+	env: { node: true, browser: true },
 	extends: [
 		'@nft-marketplace/eslint-config',
 		'plugin:react/recommended',
