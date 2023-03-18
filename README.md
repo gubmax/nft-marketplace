@@ -29,6 +29,12 @@ pnpm migrate.dev
 pnpm dev
 ```
 
+## Update Packages
+Via [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
+```sh
+npx npm-check-updates --deep --upgrade
+```
+
 ## Inspiration
 
 - [vercel/next.js](https://github.com/vercel/next.js)
