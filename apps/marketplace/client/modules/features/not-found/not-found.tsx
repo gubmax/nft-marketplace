@@ -5,7 +5,7 @@ import Button from 'client/common/components/inputs/buttons/button/button.js'
 import { PageRoutes } from 'client/common/constants.js'
 import { useLink } from 'client/common/hooks/use-link.js'
 import s from './not-found.module.css'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 function NotFound() {
 	const navigateToHome = useLink(PageRoutes.HOME)

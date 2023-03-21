@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router-dom/server.js'
 import { document } from 'client/document.js'
 import App from 'client/modules/app/app.js'
 import { EntryRouteContextType } from 'client/modules/entry-route/entry-route.context.js'
-import '@nft-marketplace/ui/src/styles/globals.css'
+import '@nft-marketplace/ui/globals.css'
 
 export interface AppRenderOptions {
 	url: string

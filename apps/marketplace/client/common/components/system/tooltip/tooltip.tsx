@@ -3,7 +3,7 @@ import { cn } from '@nft-marketplace/ui'
 
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './tooltip.module.css'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 export type TooltipPositions = 'top' | 'right' | 'bottom' | 'left'
 

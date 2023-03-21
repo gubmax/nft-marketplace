@@ -11,7 +11,7 @@ import nft2URL from './assets/nft2.jpg'
 import nft3URL from './assets/nft3.png'
 import nft4URL from './assets/nft4.jpg'
 import s from './present-section.module.css'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 function PresentSection({ className, style }: StyledProps) {
 	const navigateToSignIn = useLink(PageRoutes.SIGN_IN)

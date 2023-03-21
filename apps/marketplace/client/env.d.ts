@@ -1,4 +1,4 @@
-/// <reference types="vite/client" />
+/// <reference types="@nft-marketplace/ui/client" />
 
 interface Route {
 	id: string

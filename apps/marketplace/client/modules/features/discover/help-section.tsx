@@ -5,7 +5,7 @@ import A from 'client/common/components/typography/anchor/anchor.js'
 import { PageRoutes } from 'client/common/constants.js'
 import HelpBlock from './help-block.js'
 import SectionTitle from './section-title.js'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 function HelpSection() {
 	return (

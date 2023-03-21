@@ -11,7 +11,7 @@ import { useLink } from 'client/common/hooks/use-link.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import Logo from '../logo/logo.js'
 import s from './header.module.css'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 const TEXT_SIGN_IN = 'Sign In'
 const TEXT_DISCOVER = 'Discover'

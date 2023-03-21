@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { cn } from '@nft-marketplace/ui'
 
 import s from './statistic-card.module.css'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 interface StatisticCardProps {
 	title: string

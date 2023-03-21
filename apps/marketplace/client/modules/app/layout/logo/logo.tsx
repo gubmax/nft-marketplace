@@ -3,7 +3,7 @@ import { BoltIcon, cn } from '@nft-marketplace/ui'
 
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './logo.module.css'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 function Logo({ className, style }: StyledProps) {
 	return (

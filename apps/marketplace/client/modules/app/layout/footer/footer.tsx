@@ -6,7 +6,7 @@ import { PageRoutes } from 'client/common/constants.js'
 import Logo from '../logo/logo.js'
 import LinkGroup from './link-group/link-group.js'
 import s from './footer.module.css'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 const TEXT_DESCRIPTION =
 	'The largest trading platform for crypto collectibles and non-fungible tokens (NFTs). Buy, sell, and discover exclusive digital items.'

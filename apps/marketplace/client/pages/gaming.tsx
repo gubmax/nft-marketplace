@@ -3,7 +3,7 @@ import { cn } from '@nft-marketplace/ui'
 import Diamond from 'client/common/components/elements/diamond/diamond.js'
 import PageWrapper from 'client/common/components/elements/page/page-wrapper/page-wrapper.js'
 import { MetaFunction } from 'client/modules/entry-route/modules.js'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 export const meta: MetaFunction = () => ({ title: 'Gaming' })
 

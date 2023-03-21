@@ -4,7 +4,7 @@ import { cn } from '@nft-marketplace/ui'
 import HelpSection from './help-section.js'
 import PresentSection from './present-section/present-section.js'
 import SectionTitle from './section-title.js'
-import e from '@nft-marketplace/ui/src/styles/elements.module.css'
+import e from '@nft-marketplace/ui/elements.module.css'
 
 function Discover() {
 	return (

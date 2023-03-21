@@ -7,7 +7,7 @@ import { reportWebVitals } from 'client/common/utils/report-web-vitals.js'
 import { document } from 'client/document.js'
 import App from 'client/modules/app/app.js'
 import type { EntryRouteContextType } from 'client/modules/entry-route/entry-route.context.js'
-import '@nft-marketplace/ui/src/styles/globals.css'
+import '@nft-marketplace/ui/globals.css'
 
 const entryRouteContext = getJSONData<EntryRouteContextType>('__ENTRY_ROUTE_CONTEXT__')
 invariant(entryRouteContext)

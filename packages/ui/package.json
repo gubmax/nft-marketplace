@@ -3,6 +3,13 @@
 	"version": "0.1.0",
 	"main": "./index.ts",
 	"types": "./index.ts",
+	"exports": {
+		".": "./index.ts",
+		"./*.css": "./src/styles/*.css",
+		"./.postcssrc.cjs": "./.postcssrc.cjs",
+		"./client": "./src/client.d.ts",
+		"./stylelint.config.cjs": "./stylelint.config.cjs"
+	},
 	"scripts": {
 		"sb": "sb dev -p 6006",
 		"sb.build": "sb build",
