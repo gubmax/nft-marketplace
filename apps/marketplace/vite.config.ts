@@ -8,6 +8,7 @@ import { generateRoutesManifest } from './plugins/generate-routes-manifest.js'
  * @link https://vitejs.dev/config/
  */
 export default defineConfig(({ ssrBuild, mode }) => {
+	// @ts-expect-error: No correct import
 	const plugins = [tsconfigPaths({ root: '.' }), react(), splitVendorChunkPlugin(), generateRoutesManifest()]
 
 	const css: CSSOptions = {

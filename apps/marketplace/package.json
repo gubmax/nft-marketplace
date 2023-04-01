@@ -3,14 +3,14 @@
 	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx scripts/watch",
+		"dev": "node scripts/watch.js",
 		"build": "pnpm build.client && pnpm build.render && pnpm build.server && pnpm prerender",
 		"build.client": "vite build",
 		"build.render": "vite build --ssr",
 		"build.server": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
 		"prerender": "tsx scripts/prerender",
 		"lint": "pnpm typecheck && pnpm eslint && pnpm stylelint",
-		"typecheck": "tsc --noEmit",
+		"typecheck": "tsc --noEmit & tsc -p tsconfig.node.json --noEmit",
 		"eslint": "eslint . --ext .ts,.tsx",
 		"stylelint": "stylelint client/**/*.css"
 	},

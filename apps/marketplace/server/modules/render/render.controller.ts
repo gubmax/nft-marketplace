@@ -8,10 +8,10 @@ import type ConfigService from 'server/modules/config/config.service.js'
 import type { RenderService } from './render.service.production.js'
 
 export default (server: FastifyInstance, configService: ConfigService, renderService: RenderService): void => {
-	const { isProd, isPrerenderMode } = configService.app
+	const { env } = configService.app
 
 	async function sendHtml(req: FastifyRequest, res: FastifyReply, route: Route) {
-		if (route.static && isProd && !isPrerenderMode) {
+		if (route.static && env.isProd && !env.isPrerendering) {
 			const stream = createReadStream(resolvePath(`dist/client/pages${route.path}.html`), 'utf-8')
 			return res.status(200).type('text/html').send(stream)
 		}

@@ -13,13 +13,13 @@ export function uncaughtErrorHandler(
 	loggerService: LoggerService,
 	renderService: RenderService,
 ): void {
-	const { isProd, isPrerenderMode } = configService.app
+	const { env } = configService.app
 	const { logger } = loggerService
 
 	server.setErrorHandler(async (error, req, res) => {
 		logger.error(error, 'Uncaught error')
 
-		if (isProd && !isPrerenderMode) {
+		if (env.isProd && !env.isPrerendering) {
 			const stream = createReadStream(resolvePath('dist/client/error.html'), 'utf-8')
 			return res.status(500).type('text/html').send(stream)
 		}

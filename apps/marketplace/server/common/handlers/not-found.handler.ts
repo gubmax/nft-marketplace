@@ -11,10 +11,10 @@ export default function notFoundHandler(
 	configService: ConfigService,
 	renderService: RenderService,
 ) {
-	const { isProd, isPrerenderMode } = configService.app
+	const { env } = configService.app
 
 	server.setNotFoundHandler(async (req, res) => {
-		if (isProd && !isPrerenderMode) {
+		if (env.isProd && !env.isPrerendering) {
 			const stream = createReadStream(resolvePath('dist/client/not-found.html'), 'utf-8')
 			return res.status(404).type('text/html').send(stream)
 		}

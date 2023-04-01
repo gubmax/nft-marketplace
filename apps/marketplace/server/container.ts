@@ -5,8 +5,6 @@ import { createContainer, Lifetime } from 'awilix'
 import { LoadModulesOptions } from 'awilix/lib/load-modules.js'
 import type { FastifyInstance } from 'fastify'
 
-export { RESOLVER } from 'awilix'
-
 export interface Container {
 	server: FastifyInstance
 }

@@ -8,13 +8,13 @@ import { levelPrettifier, messageFormat, timePrettifier } from './prettifier.js'
 export default class LoggerService {
 	readonly logger: FastifyBaseLogger
 
-	constructor(private readonly configService: ConfigService) {
-		const { isProd, isPrerenderMode } = configService.app
+	constructor(private configService: ConfigService) {
+		const { env } = configService.app
 
 		let optionsOrStream: LoggerOptions | DestinationStream
 
-		if (isProd) {
-			optionsOrStream = { enabled: !isPrerenderMode }
+		if (env.isProd) {
+			optionsOrStream = { enabled: !env.isPrerendering }
 		} else {
 			// @ts-expect-error: No correct import
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

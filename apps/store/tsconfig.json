@@ -1,5 +1,5 @@
 {
   "extends": "@nft-marketplace/tsconfig/node.json",
   "compilerOptions": { "baseUrl": "." },
-  "include": [".", "package.json"],
+  "include": ["."],
 }

@@ -12,7 +12,7 @@ import { type bootstrap } from 'server/bootstrap.js'
 import { resolvePath } from 'server/common/helpers/paths.js'
 
 process.env.NODE_ENV = 'production'
-process.env.BUILD_ENV = 'prerender'
+process.env.BUILD_ENV = 'prerendering'
 
 const PATH_ROUTES_MANIFEST = 'dist/server/routes.manifest.json'
 
