@@ -1,12 +1,15 @@
-import type { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Button from './button.js'
 
-export default {
+const meta: Meta<typeof Button> = {
 	title: 'Components/Buttons/Button',
 	component: Button,
-} as Meta<typeof Button>
+}
 
-const Template: StoryFn<typeof Button> = () => <Button />
+export default meta
+type Story = StoryObj<typeof Button>
 
-export const Basic = Template.bind({})
+export const Basic: Story = {
+	render: () => <Button />,
+}

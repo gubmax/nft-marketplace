@@ -8,7 +8,7 @@
 		"web.json"
 	],
 	"devDependencies": {
-		"typescript": "5.0.3",
+		"typescript": "5.0.4",
 		"typescript-plugin-css-modules": "5.0.0"
 	}
 }

@@ -5,7 +5,6 @@ const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
   addons: ['@storybook/addon-essentials', 'storybook-dark-mode'],
   framework: '@storybook/react-vite',
-  features: { storyStoreV7: true },
   core: {
     disableTelemetry: true,
     builder: '@storybook/builder-vite',

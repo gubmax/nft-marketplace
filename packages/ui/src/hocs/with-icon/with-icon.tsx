@@ -1,4 +1,4 @@
-import { ElementType, memo } from 'react'
+import { ComponentType, memo } from 'react'
 
 import { Size, StyledProps, Variant } from '../../common.js'
 import { cn } from '../../helpers/class-names.js'
@@ -12,7 +12,7 @@ export interface IconProps extends StyledProps {
 	size?: IconSize
 }
 
-export function withIcon(Component: ElementType<IconProps>): ElementType<IconProps> {
+export function withIcon(Component: ComponentType<IconProps>): ComponentType<IconProps> {
 	function Icon({ variant = 'inherit', size = 'md', className, ...rest }: IconProps) {
 		return <Component className={cn(`ui-icon variant--${variant} size--${size}`, className)} {...rest} />
 	}

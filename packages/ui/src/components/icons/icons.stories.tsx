@@ -1,19 +1,25 @@
 import { ElementType } from 'react'
-import { StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 
 import { IconProps, IconSize } from '../../hocs/with-icon/with-icon'
 import * as icons from './icons'
 
-export default {
+const ExampleIcon = icons.SettingsIcon
+
+const meta: Meta<typeof ExampleIcon> = {
 	title: 'Components/Icon',
+	component: ExampleIcon,
 }
 
-const ExampleIcon = icons.SettingsIcon
-const Template: StoryFn<IconProps> = (args) => <ExampleIcon {...args} />
+export default meta
+type Story = StoryObj<typeof ExampleIcon>
 
 // Basic
 
-export const Basic = Template.bind({})
+export const Basic: Story = {
+	render: (args: IconProps) => <ExampleIcon {...args} />,
+	args: { size: 'md' },
+}
 
 // Sizes
 
@@ -26,15 +32,17 @@ const SizeItem = ({ label, size }: { label: string; size: IconSize }) => (
 	</div>
 )
 
-export const Sizes: StoryFn = () => (
-	<div className="flex gap-5">
-		<SizeItem label="SMALL" size="sm" />
-		<SizeItem label="MEDIUM" size="md" />
-		<SizeItem label="LARGE" size="lg" />
-		<SizeItem label="EXTRA LARGE" size="xl" />
-		<SizeItem label="XXLARGE" size="xxl" />
-	</div>
-)
+export const Sizes: Story = {
+	render: () => (
+		<div className="flex gap-5">
+			<SizeItem label="SMALL" size="sm" />
+			<SizeItem label="MEDIUM" size="md" />
+			<SizeItem label="LARGE" size="lg" />
+			<SizeItem label="EXTRA LARGE" size="xl" />
+			<SizeItem label="XXLARGE" size="xxl" />
+		</div>
+	),
+}
 
 // Components
 
@@ -47,13 +55,15 @@ const ComponentItem = ({ name, el: Icon }: { name: string; el: ElementType }) =>
 	</div>
 )
 
-export const Components: StoryFn = () => (
-	<div
-		className="gap-6"
-		style={{ display: 'grid', maxWidth: '80rem', gridTemplateColumns: 'repeat(5, minmax(0, 1fr))' }}
-	>
-		{Object.entries(icons).map(([name, el]) => (
-			<ComponentItem key={name} name={name} el={el} />
-		))}
-	</div>
-)
+export const Components: Story = {
+	render: () => (
+		<div
+			className="gap-6"
+			style={{ display: 'grid', maxWidth: '80rem', gridTemplateColumns: 'repeat(5, minmax(0, 1fr))' }}
+		>
+			{Object.entries(icons).map(([name, el]) => (
+				<ComponentItem key={name} name={name} el={el} />
+			))}
+		</div>
+	),
+}
