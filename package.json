@@ -4,10 +4,10 @@
 	"private": true,
 	"author": "Maksim Gubyshev <gubyshev@gmail.com> (https://github.com/gubmax)",
 	"type": "module",
-	"packageManager": "^pnpm@7.0.0",
+	"packageManager": "^pnpm@8.0.0",
 	"engines": {
 		"node": ">=16.0.0",
-		"pnpm": ">=7.0.0"
+		"pnpm": ">=8.0.0"
 	},
 	"workspaces": [
 		"apps/*",
@@ -32,7 +32,7 @@
 	"devDependencies": {
 		"eslint": "8.38.0",
 		"husky": "8.0.3",
-		"npm-check-updates": "16.10.7",
+		"npm-check-updates": "16.10.8",
 		"nx": "15.9.2",
 		"prettier": "2.8.7",
 		"tsx": "3.12.6",
