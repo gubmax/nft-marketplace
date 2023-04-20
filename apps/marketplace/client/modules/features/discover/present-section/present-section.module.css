@@ -32,8 +32,8 @@
   display: grid;
   min-width: 355px;
   grid-gap: var(--space-2);
-  grid-template-columns: repeat(2, 0fr);
-  grid-template-rows: repeat(2, 0fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .right-present-circle {

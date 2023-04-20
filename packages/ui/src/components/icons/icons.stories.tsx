@@ -25,9 +25,7 @@ export const Basic: Story = {
 
 const SizeItem = ({ label, size }: { label: string; size: IconSize }) => (
 	<div className="flex flex-col items-center">
-		<h2 className="mb-4" style={{ color: 'var(--color-on-outline)' }}>
-			{label}
-		</h2>
+		<h2 className="mb-4 text-on-outline">{label}</h2>
 		<ExampleIcon size={size} />
 	</div>
 )
@@ -57,10 +55,7 @@ const ComponentItem = ({ name, el: Icon }: { name: string; el: ElementType }) =>
 
 export const Components: Story = {
 	render: () => (
-		<div
-			className="gap-6"
-			style={{ display: 'grid', maxWidth: '80rem', gridTemplateColumns: 'repeat(5, minmax(0, 1fr))' }}
-		>
+		<div className="grid grid-cols-5 gap-6 max-w-[80rem]">
 			{Object.entries(icons).map(([name, el]) => (
 				<ComponentItem key={name} name={name} el={el} />
 			))}

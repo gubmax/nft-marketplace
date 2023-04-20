@@ -3,6 +3,7 @@ import { Preview } from '@storybook/react';
 import { dark, light } from './themes'
 
 import '../src/styles/globals.css'
+import 'virtual:uno.css'
 
 const preview: Preview = {
 	parameters: {
@@ -17,6 +18,11 @@ const preview: Preview = {
 		},
 		docs: { theme: dark },
 		layout: 'centered',
+		options: {
+      storySort: {
+        order: ['Overview', 'Components'],
+      },
+    },
 	}
 };
 

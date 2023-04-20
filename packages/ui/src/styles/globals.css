@@ -1,13 +1,10 @@
-@import url("./atomic.css");
-@import url("./media.css");
-@import url("./reset.css");
+@import url("@unocss/reset/eric-meyer.css");
+@import url("@unocss/reset/sanitize/sanitize.css");
+@import url("@unocss/reset/sanitize/reduce-motion.css");
+@import url("@unocss/reset/sanitize/system-ui.css");
+@import url("@unocss/reset/sanitize/typography.css");
 @import url("./vars.css");
-
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
+@import url("./media.css");
 
 html {
 	font-size: var(--font-size-body);
@@ -23,16 +20,6 @@ body {
 body {
 	background: var(--color-background);
 	color: var(--color-on-background);
-	font-family:
-		-apple-system,
-		BlinkMacSystemFont,
-		"Segoe UI",
-		"Noto Sans",
-		Helvetica,
-		Arial,
-		sans-serif,
-		"Apple Color Emoji",
-		"Segoe UI Emoji";
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overscroll-behavior: none;
@@ -40,9 +27,12 @@ body {
 }
 
 a {
-	color: unset;
-	cursor: pointer;
+	color: currentcolor;
 	text-decoration: none;
+}
+
+ul {
+	list-style-type: none;
 }
 
 hr {
@@ -57,16 +47,4 @@ hr {
 :focus-visible {
 	outline: 3px solid var(--color-primary);
 	outline-offset: 3px;
-}
-
-@keyframes autofill {
-	to {
-		background: inherit;
-		color: inherit;
-	}
-}
-
-input:-webkit-autofill {
-	animation-fill-mode: both;
-	animation-name: autofill;
 }

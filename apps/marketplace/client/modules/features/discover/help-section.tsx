@@ -11,7 +11,7 @@ function HelpSection() {
 	return (
 		<>
 			<SectionTitle>Need help?</SectionTitle>
-			<div className="flex justify-around gap-5">
+			<div className="flex gap-5 justify-around">
 				<HelpBlock icon={<SupportIcon size="xl" variant="outline" />}>
 					<span className={cn(e.typographyH2, 'mb-2')}>Chat Support</span>
 					<span className={cn(e.typographySubtitle, 'mb-2')}>

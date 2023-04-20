@@ -1,5 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import unocss from 'unocss/vite'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
@@ -10,7 +11,7 @@ const config: StorybookConfig = {
     builder: '@storybook/builder-vite',
   },
 	async viteFinal(config) {
-    config.plugins?.push(tsconfigPaths())
+    config.plugins?.push(tsconfigPaths(), unocss({ mode: 'global' }))
 		config.css = { modules: { localsConvention:  'camelCaseOnly' }}
 
 		if (config.build) {

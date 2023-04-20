@@ -18,7 +18,7 @@ function PresentSection({ className, style }: StyledProps) {
 
 	return (
 		<div className={cn(s.firstScreen, 'flexflex-col', className)} style={style}>
-			<div className="flex mb-10 gap-5">
+			<div className="mb-10 flex gap-5">
 				<div className="flex-shrink-0">
 					<h1 className={cn(s.header, 'mb-5')}>
 						Buy, sell, and discover
@@ -32,7 +32,7 @@ function PresentSection({ className, style }: StyledProps) {
 					</span>
 					<Button as="a" href={PageRoutes.SIGN_IN} variant="contained" className="gap-1" onClick={navigateToSignIn}>
 						Get started
-						<ChevronIcon rotate="90deg" />
+						<ChevronIcon className="rotate-90" />
 					</Button>
 				</div>
 				<div className="flex flex-grow justify-center">
@@ -43,17 +43,17 @@ function PresentSection({ className, style }: StyledProps) {
 						<div className="mr-auto mt-auto">
 							<img className={s.imgPresent2} src={nft2URL} alt="NFT present 2" />
 						</div>
-						<div className="ml-auto mb-auto">
+						<div className="mb-auto ml-auto">
 							<img className={s.imgPresent3} src={nft3URL} alt="NFT present 3" />
 						</div>
-						<div className="mr-auto mb-auto">
+						<div className="mb-auto mr-auto">
 							<img className={s.imgPresent4} src={nft4URL} alt="NFT present 4" />
 						</div>
 						<div className={s.rightPresentCircle} />
 					</div>
 				</div>
 			</div>
-			<div className="flex justify-around gap-5">
+			<div className="flex gap-5 justify-around">
 				<StatisticCard title="$70 billion" text="24h trading volume" />
 				<StatisticCard title="250+" text="Cryptocurrencies listed" />
 				<StatisticCard title="90 million" text="Registered users" />

@@ -6,6 +6,7 @@ import { document } from 'client/document.js'
 import { EntryRouteContextType } from 'client/modules/entry-route/entry-route.context.js'
 import Error from 'client/modules/features/error/error.js'
 import '@nft-marketplace/ui/globals.css'
+import 'virtual:uno.css'
 
 const entryRouteContext = getJSONData<EntryRouteContextType>('__ENTRY_ROUTE_CONTEXT__')
 invariant(entryRouteContext)

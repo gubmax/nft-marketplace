@@ -10,7 +10,7 @@ export const meta: MetaFunction = () => ({ title: 'Gaming' })
 export default function GamingPage() {
 	return (
 		<PageWrapper>
-			<div className="flex flex-col items-center mb-10">
+			<div className="mb-10 flex flex-col items-center">
 				<h1 className={cn(e.typographyH1, 'mb-10')}>Gaming NFT / IGO (Initial Game Offering)</h1>
 				<Diamond />
 			</div>

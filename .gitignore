@@ -22,3 +22,6 @@ tmp
 *.njsproj
 *.sln
 *.sw?
+
+# Vite
+*.timestamp-*.mjs

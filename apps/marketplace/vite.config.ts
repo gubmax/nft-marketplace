@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react'
+import unocss from 'unocss/vite'
 import { CSSOptions, defineConfig, splitVendorChunkPlugin, UserConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
@@ -8,8 +9,15 @@ import { generateRoutesManifest } from './plugins/generate-routes-manifest.js'
  * @link https://vitejs.dev/config/
  */
 export default defineConfig(({ ssrBuild, mode }) => {
-	// @ts-expect-error: No correct import
-	const plugins = [tsconfigPaths({ root: '.' }), react(), splitVendorChunkPlugin(), generateRoutesManifest()]
+	const plugins = [
+		tsconfigPaths({ root: '.' }),
+		// @ts-expect-error: No correct import
+		react(),
+		// @ts-expect-error: No correct import
+		unocss({ mode: 'global' }),
+		splitVendorChunkPlugin(),
+		generateRoutesManifest(),
+	]
 
 	const css: CSSOptions = {
 		modules: {

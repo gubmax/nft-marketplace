@@ -6,5 +6,6 @@
 	"emmet.includeLanguages": { "postcss": "css" },
 	"eslint.workingDirectories": ["apps", "packages"],
 	"files.associations": { "*.css": "postcss" },
-	"typescript.tsdk": "node_modules/typescript/lib"
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"unocss.root": ["packages/ui", "apps/marketplace"],
 }

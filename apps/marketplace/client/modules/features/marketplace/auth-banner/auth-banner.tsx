@@ -21,7 +21,7 @@ function AuthBanner({ className, style }: StyledProps) {
 				<div className={cn(s.content, 'flex flex-col flex-grow')}>
 					<h1 className={cn(s.title, 'mb-3')}>Discover the exciting world of&nbsp;crypto&nbsp;art!</h1>
 					<h2 className={cn(e.typographyH1, 'mb-5')}>Start collect digital artwork now.</h2>
-					<div className="flex mt-auto gap-4">
+					<div className="mt-auto flex gap-4">
 						<Button
 							className={s.button}
 							variant="outlineLight"

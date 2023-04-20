@@ -9,13 +9,13 @@ function About() {
 	return (
 		<div className={e.surface}>
 			<p className="mb-4">The quick brown fox jumps over the lazy dog.</p>
-			<div className="flex gap-3 mb-3">
+			<div className="mb-3 flex gap-3">
 				<Button>Base</Button>
 				<Button loading>Loading</Button>
 				<IconButton>B</IconButton>
 				<Button className="w-full">Base</Button>
 			</div>
-			<div className="flex gap-3 mb-3">
+			<div className="mb-3 flex gap-3">
 				<Button variant="contained">Contained</Button>
 				<Button variant="contained" loading>
 					Loading
@@ -25,7 +25,7 @@ function About() {
 					Contained
 				</Button>
 			</div>
-			<div className="flex gap-3 mb-4">
+			<div className="mb-4 flex gap-3">
 				<Button variant="outline">Outline</Button>
 				<Button variant="outline" loading>
 					Loading

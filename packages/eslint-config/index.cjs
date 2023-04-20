@@ -1,6 +1,6 @@
 module.exports = {
 	parser: '@typescript-eslint/parser',
-	plugins: ['prettier', 'simple-import-sort'],
+	plugins: ['@unocss', 'prettier', 'simple-import-sort'],
 	extends: [
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
@@ -20,6 +20,8 @@ module.exports = {
 		'@typescript-eslint/array-type': ['warn', { default: 'array-simple' }],
 		// Pretier
 		'prettier/prettier': 'error',
+		// Unocss
+		'@unocss/order': 'error',
 		// Import and exports sort
 		'simple-import-sort/exports': 'error',
 		'simple-import-sort/imports': [
