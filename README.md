@@ -35,6 +35,23 @@ Via [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
 npx npm-check-updates --deep --upgrade
 ```
 
+## Recommended settings
+### [Visual Studio Code](https://code.visualstudio.com/docs/getstarted/settings#_workspace-settingsjson-location)
+```json
+// .vscode/settings.json
+{
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true,
+		"source.fixAll.stylelint": true
+	},
+	"emmet.includeLanguages": { "postcss": "css" },
+	"eslint.workingDirectories": ["apps", "packages"],
+	"files.associations": { "*.css": "postcss" },
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"unocss.root": ["packages/ui", "apps/marketplace"],
+}
+```
+
 ## Inspiration
 
 - [vercel/next.js](https://github.com/vercel/next.js)

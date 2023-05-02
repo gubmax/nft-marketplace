@@ -16,6 +16,8 @@ tmp
 
 # Editor directories and files
 .idea
+.vscode/*
+!.vscode/extensions.json
 .DS_Store
 *.suo
 *.ntvs*
