@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import s from './statistic-card.module.css'
 import e from '@nft-marketplace/ui/elements.module.css'

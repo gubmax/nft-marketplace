@@ -1,5 +1,6 @@
 import { AnchorHTMLAttributes } from 'react'
-import { cn, OpenInNewIcon } from '@nft-marketplace/ui'
+import { OpenInNewIcon } from '@nft-marketplace/ui/components/icons/icons.js'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import { RefProp } from 'client/common/typings/ref-prop.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'

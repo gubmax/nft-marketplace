@@ -1,4 +1,4 @@
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import ButtonBase, { ButtonBaseProps } from '../button-base/button-base.js'
 import s from './icon-button.module.css'

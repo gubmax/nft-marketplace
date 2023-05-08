@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
-import { cn, LanguageIcon, NotificationIcon } from '@nft-marketplace/ui'
+import { LanguageIcon, NotificationIcon } from '@nft-marketplace/ui/components/icons/icons.js'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import Button from 'client/common/components/inputs/buttons/button/button.js'
 import IconButton from 'client/common/components/inputs/buttons/icon-button/icon-button.js'

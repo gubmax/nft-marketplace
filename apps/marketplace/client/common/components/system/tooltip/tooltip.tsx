@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import { StyledProps } from 'client/common/typings/styled-props.js'
 import s from './tooltip.module.css'

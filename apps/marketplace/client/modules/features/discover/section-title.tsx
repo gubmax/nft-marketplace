@@ -1,4 +1,4 @@
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import { ChildrenProp } from 'client/common/typings/children-prop.js'
 import e from '@nft-marketplace/ui/elements.module.css'

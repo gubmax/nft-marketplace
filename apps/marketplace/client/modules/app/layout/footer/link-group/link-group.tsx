@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import A from 'client/common/components/typography/anchor/anchor.js'
 import { links } from './domain/links.js'

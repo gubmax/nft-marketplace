@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react'
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 import { noop } from 'rxjs'
 
 import Loader, { LoaderVariant } from 'client/common/components/elements/loader/loader.js'

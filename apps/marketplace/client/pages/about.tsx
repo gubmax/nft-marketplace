@@ -1,7 +1,6 @@
-import { Button } from '@nft-marketplace/ui'
-
 import PageTitle from 'client/common/components/elements/page/page-title.js'
 import PageWrapper from 'client/common/components/elements/page/page-wrapper/page-wrapper.js'
+import Button from 'client/common/components/inputs/buttons/button/button.js'
 import { MetaFunction } from 'client/modules/entry-route/modules.js'
 import About from 'client/modules/features/about.js'
 

@@ -1,4 +1,4 @@
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import Diamond from 'client/common/components/elements/diamond/diamond.js'
 import PageWrapper from 'client/common/components/elements/page/page-wrapper/page-wrapper.js'

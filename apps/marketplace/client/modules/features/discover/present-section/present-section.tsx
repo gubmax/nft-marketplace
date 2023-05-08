@@ -1,5 +1,6 @@
 import { memo } from 'react'
-import { ChevronIcon, cn } from '@nft-marketplace/ui'
+import { ChevronIcon } from '@nft-marketplace/ui/components/icons/icons.js'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import Button from 'client/common/components/inputs/buttons/button/button.js'
 import { PageRoutes } from 'client/common/constants.js'

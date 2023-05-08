@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 
 import Button from 'client/common/components/inputs/buttons/button/button.js'
 import { PageRoutes } from 'client/common/constants.js'

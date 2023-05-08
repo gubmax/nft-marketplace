@@ -1,5 +1,5 @@
 import { memo, useState } from 'react'
-import { cn } from '@nft-marketplace/ui'
+import { cn } from '@nft-marketplace/ui/helpers/class-names.js'
 import { delay, filter, tap } from 'rxjs'
 
 import { preloadRouteModel } from 'client/common/components/system/browser-router/models/preload-route.model.js'

@@ -7,7 +7,7 @@ import {
 	ScheduleIcon,
 	SettingsIcon,
 	ShowcaseIcon,
-} from '@nft-marketplace/ui'
+} from '@nft-marketplace/ui/components/icons/icons.js'
 
 import { PageRoutes } from 'client/common/constants.js'
 import { StyledProps } from 'client/common/typings/styled-props.js'
